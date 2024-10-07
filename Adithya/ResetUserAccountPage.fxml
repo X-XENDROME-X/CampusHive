@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #f7f6f3;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ResetUserAccountPageController">
    <children>
       <Button alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="322.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="103.0" style="-fx-border-color: #f7f6f3; -fx-border-radius: 75; -fx-padding: 0; -fx-border-width: 2; -fx-border-color: #DC143C; -fx-background-radius: 75; -fx-background-color: #DC143C;" text="Reset" textFill="#f7f6f3">
@@ -33,5 +32,10 @@
             <Font size="24.0" />
          </font>
       </Label>
+      <Button layoutX="38.0" layoutY="27.0" mnemonicParsing="false" text="Home" textFill="#d71313">
+         <font>
+            <Font name="Dubai Light" size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
