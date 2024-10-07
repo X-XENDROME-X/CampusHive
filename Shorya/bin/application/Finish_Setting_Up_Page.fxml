@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F7F6F3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<AnchorPane layoutX="187.0" layoutY="-16.0" prefHeight="1085.0" prefWidth="1494.0">
+			<children>
+				<ImageView fx:id="Logo" fitHeight="355.0" fitWidth="570.0" layoutX="496.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@../../../CampusHive%20Assets/CP_logo_BLANK.png" />
+					</image>
+				</ImageView>
+				<Label fx:id="emailAddress" layoutX="374.0" layoutY="744.0" prefHeight="72.0" prefWidth="243.0" text="Email Address*" textAlignment="RIGHT">
+					<font>
+						<Font size="31.0" />
+					</font>
+				</Label>
+				<Label fx:id="firsName" layoutX="370.0" layoutY="516.0" prefHeight="72.0" prefWidth="243.0" text="First Name*" textAlignment="RIGHT">
+					<font>
+						<Font size="31.0" />
+					</font>
+				</Label>
+				<Label fx:id="middleName" layoutX="371.0" layoutY="589.0" prefHeight="72.0" prefWidth="243.0" text="Middle Name" textAlignment="RIGHT">
+					<font>
+						<Font size="31.0" />
+					</font>
+				</Label>
+				<Label fx:id="lastName" layoutX="373.0" layoutY="666.0" prefHeight="72.0" prefWidth="243.0" text="Last Name" textAlignment="RIGHT">
+					<font>
+						<Font size="31.0" />
+					</font>
+				</Label>
+				<Button fx:id="Save" layoutX="662.0" layoutY="935.0" mnemonicParsing="false" style="-fx-background-color: #47ae6a;" text="Save" textAlignment="CENTER">
+					<font>
+						<Font size="28.0" />
+					</font>
+				</Button>
+				<Label fx:id="errorMessage" layoutX="614.0" layoutY="848.0" prefHeight="72.0" prefWidth="243.0" text="Error Message" textAlignment="RIGHT" textFill="#c90909">
+					<font>
+						<Font size="31.0" />
+					</font>
+				</Label>
+				<TextField fx:id="FirstNameTestField" layoutX="772.0" layoutY="518.0">
+					<font>
+						<Font size="24.0" />
+					</font>
+				</TextField>
+				<TextField fx:id="MiddleNameTextField" layoutX="770.0" layoutY="605.0">
+					<font>
+						<Font size="24.0" />
+					</font>
+				</TextField>
+				<TextField fx:id="LastNameTextField" layoutX="773.0" layoutY="680.0">
+					<font>
+						<Font size="24.0" />
+					</font>
+				</TextField>
+				<TextField fx:id="EmailAddressTestField" layoutX="772.0" layoutY="759.0">
+					<font>
+						<Font size="24.0" />
+					</font>
+				</TextField>
+				<Label fx:id="HeadingLabel" layoutX="441.0" layoutY="401.0" prefHeight="60.0" prefWidth="626.0" text="Finish Setting Up Your Account " textAlignment="RIGHT" textFill="#0171bc">
+					<font>
+						<Font size="44.0" />
+					</font>
+				</Label>
+			</children>
+		</AnchorPane>
+	</children>
+</AnchorPane>
