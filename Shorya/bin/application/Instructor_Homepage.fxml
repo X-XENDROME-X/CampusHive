@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="9.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F7F6F3;">
+         <children>
+            <ImageView fx:id="Logo" fitHeight="150.0" fitWidth="200.0" layoutX="50.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../CampusHive%20Assets/CP_logo_BLANK.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="Heading" layoutX="675.0" layoutY="51.0" style="-fx-font-: #0171bc;" text="Instructor Home ">
+               <font>
+                  <Font size="70.0" />
+               </font>
+            </Label>
+            <Button fx:id="LogOutButton" layoutX="1565.0" layoutY="58.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="170.0" style="-fx-background-color: #b23b3b;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
