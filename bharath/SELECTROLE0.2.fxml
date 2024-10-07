@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F7F6F3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="354.0" prefWidth="195.0">
          <children>
-            <AnchorPane prefHeight="108.0" prefWidth="195.0" />
+            <AnchorPane prefHeight="108.0" prefWidth="195.0">
+               <children>
+                  <BorderPane layoutX="-6.0" prefHeight="105.0" prefWidth="200.0">
+                     <center>
+                        <ImageView fitHeight="90.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                           <image>
+                              <Image url="@../../../Downloads/CampusHive_Logo.png" />
+                           </image>
+                        </ImageView>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
             <BorderPane prefHeight="142.0" prefWidth="188.0">
                <center>
                   <ImageView fitHeight="148.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@STUDENT.png" />
+                        <Image url="@../../../Downloads/STUDENT.png" />
                      </image>
                   </ImageView>
                </center>
@@ -33,7 +46,11 @@
                <children>
                   <BorderPane layoutY="-1.0" prefHeight="105.0" prefWidth="200.0">
                      <center>
-                        <Label text="SELECT YOUR ROLE" BorderPane.alignment="CENTER" />
+                        <Label text="SELECT YOUR ROLE" BorderPane.alignment="CENTER">
+                           <font>
+                              <Font name="Avenir Light" size="20.0" />
+                           </font>
+                        </Label>
                      </center>
                   </BorderPane>
                </children>
@@ -44,7 +61,7 @@
                      <center>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                            <image>
-                              <Image url="@ADMIN.jpg" />
+                              <Image url="@../../../Downloads/ADMIN-removebg-preview.png" />
                            </image>
                         </ImageView>
                      </center>
@@ -65,7 +82,7 @@
                <center>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                      <image>
-                        <Image url="@INSTRUCTOR.jpeg" />
+                        <Image url="@../../../Downloads/INSTRUCTOR-removebg-preview.png" />
                      </image>
                   </ImageView>
                </center>
