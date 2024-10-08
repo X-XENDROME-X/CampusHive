@@ -14,6 +14,7 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("Finish_Setting_Up_Page.fxml"));
 	        primaryStage.setTitle("Finish Setting Up Account");
 	        primaryStage.setScene(new Scene(root, 1920, 1080)); 
+	        primaryStage.setResizable(false);
 	        primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
