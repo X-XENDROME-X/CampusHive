@@ -10,61 +10,70 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #f7f6f3;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateAccountPageController">
+<VBox prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #f7f6f3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateAccountPageController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="546.0" prefWidth="667.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="1080.0" prefWidth="1920.0" VBox.vgrow="ALWAYS">
       <children>
-        <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" textFill="#9f9f9f" wrapText="false">
-          <font>
-            <Font size="18.0" />
-          </font>
-        </Label>
         <!-- Button to create account -->
-        <Button fx:id="createAccountButton" layoutX="252.0" layoutY="309.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="143.0" style="-fx-background-color: lightgreen;" text="Create Account" onAction="#handleCreateAccountButtonAction">
+        <Button fx:id="createAccountButton" layoutX="379.0" layoutY="618.0" mnemonicParsing="false" onAction="#handleCreateAccountButtonAction" prefHeight="51.0" prefWidth="324.0" style="-fx-background-color: lightgreen; -fx-background-radius: 20; -fx-border-radius: 20;" text="Create Account" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="379.0" AnchorPane.rightAnchor="377.0">
            <font>
-              <Font name="Dubai Light" size="19.0" />
+              <Font size="34.0" />
            </font>
         </Button>
         <!-- Input fields -->
-        <TextField fx:id="usernameField" layoutX="341.0" layoutY="181.0" prefHeight="26.0" prefWidth="190.0" promptText="eg :aranish" />
-        <PasswordField fx:id="passwordField" layoutX="341.0" layoutY="221.0" prefHeight="26.0" prefWidth="190.0" />
-        <PasswordField fx:id="confirmPasswordField" layoutX="341.0" layoutY="254.0" prefHeight="26.0" prefWidth="190.0" />
+        <TextField fx:id="usernameField" layoutX="581.0" layoutY="288.0" prefHeight="60.0" prefWidth="400.0" promptText="eg : aranish" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="288.0">
+               <font>
+                  <Font size="27.0" />
+               </font></TextField>
+        <PasswordField fx:id="passwordField" layoutX="579.0" layoutY="440.0" prefHeight="60.0" prefWidth="400.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="440.0">
+               <font>
+                  <Font size="27.0" />
+               </font></PasswordField>
+        <PasswordField fx:id="confirmPasswordField" layoutX="581.0" layoutY="371.0" prefHeight="60.0" prefWidth="400.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="363.0">
+               <font>
+                  <Font size="27.0" />
+               </font></PasswordField>
         
         <!-- Labels -->
-        <Label alignment="CENTER" layoutX="148.0" layoutY="177.0" prefHeight="18.0" prefWidth="134.0" text="Username">
+        <Label layoutX="133.0" layoutY="288.0" prefHeight="75.0" prefWidth="255.0" text="Username" AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="288.0">
            <font>
-              <Font name="Dubai Light" size="19.0" />
+              <Font size="27.0" />
            </font>
         </Label>
-        <Label alignment="CENTER" layoutX="147.0" layoutY="216.0" prefHeight="18.0" prefWidth="134.0" text="Password">
+        <Label layoutX="133.0" layoutY="363.0" prefHeight="75.0" prefWidth="264.0" text="Password" AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="363.0">
            <font>
-              <Font name="Dubai Light" size="19.0" />
+              <Font size="27.0" />
            </font>
         </Label>
-        <Label alignment="CENTER" layoutX="143.0" layoutY="250.0" prefHeight="35.0" prefWidth="143.0" text="Retype Password">
+        <Label layoutX="131.0" layoutY="431.0" prefHeight="75.0" prefWidth="240.0" text="Retype Password" AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="440.0">
            <font>
-              <Font name="Dubai Light" size="19.0" />
+              <Font size="27.0" />
            </font>
-        </Label>
-
-        <!-- Status label for feedback -->
-        <Label fx:id="statusLabel" alignment="CENTER" layoutX="200.0" layoutY="380.0" prefHeight="30.0" prefWidth="200.0" text="">
-
         </Label>
 
         <!-- ImageView for logo -->
-        <ImageView fitHeight="131.0" fitWidth="171.0" layoutX="236.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="237.0" fitWidth="279.0" layoutX="394.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="394.0" AnchorPane.rightAnchor="407.0" AnchorPane.topAnchor="50.0">
            <image>
               <Image url="@CampusHive_Logo.png" />
            </image>
         </ImageView>
 
         <!-- Login button that switches to the login page -->
-        <Button fx:id="LoginButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="204.0" style="-fx-background-color: #f7f6f3;" text="Already have an account? Login" onAction="#switchToLoginPage">
+        <Button fx:id="LoginButton" layoutX="684.0" layoutY="10.0" mnemonicParsing="false" onAction="#switchToLoginPage" prefHeight="12.0" prefWidth="390.0" style="-fx-background-color: #f#eae8e47f6f3; -fx-border-color: lightgrey; -fx-border-width: 5; -fx-background-radius: 20; -fx-border-radius: 20;" text="Already have an account? Login">
            <font>
-              <Font name="Dubai Light" size="14.0" />
+              <Font name="Al Tarikh Regular" size="23.0" />
            </font>
         </Button>
+            <Label layoutX="133.0" layoutY="511.0" prefHeight="75.0" prefWidth="240.0" text="Invite Code" AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="511.0">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameField1" layoutX="581.0" layoutY="513.0" prefHeight="60.0" prefWidth="400.0" promptText="eg : AV34S" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="513.0">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </TextField>
 
       </children>
     </AnchorPane>
