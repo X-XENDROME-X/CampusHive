@@ -13,7 +13,7 @@ public class Main extends Application {
 		try {
 			
 			Parent root = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
-			primaryStage.setTitle("Hello");
+			primaryStage.setTitle("Campus-Hive");
 			primaryStage.setResizable(false);
 			primaryStage.setScene(new Scene(root,1080,720));
 			primaryStage.show();
