@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F7F6F3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F7F6F3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FinishSettingUpAccountController">
 	<children>
 		<AnchorPane layoutX="187.0" layoutY="-16.0" prefHeight="1085.0" prefWidth="1494.0">
 			<children>
@@ -21,12 +21,12 @@
 						<Font size="31.0" />
 					</font>
 				</Label>
-				<Label fx:id="firsName" layoutX="370.0" layoutY="516.0" prefHeight="72.0" prefWidth="243.0" text="First Name*" textAlignment="RIGHT">
+				<Label fx:id="firsName" layoutX="372.0" layoutY="507.0" prefHeight="72.0" prefWidth="243.0" text="First Name*" textAlignment="RIGHT">
 					<font>
 						<Font size="31.0" />
 					</font>
 				</Label>
-				<Label fx:id="middleName" layoutX="371.0" layoutY="589.0" prefHeight="72.0" prefWidth="243.0" text="Middle Name" textAlignment="RIGHT">
+				<Label fx:id="middleName" layoutX="370.0" layoutY="592.0" prefHeight="72.0" prefWidth="243.0" text="Middle Name" textAlignment="RIGHT">
 					<font>
 						<Font size="31.0" />
 					</font>
@@ -36,32 +36,32 @@
 						<Font size="31.0" />
 					</font>
 				</Label>
-				<Button fx:id="Save" layoutX="662.0" layoutY="935.0" mnemonicParsing="false" style="-fx-background-color: #47ae6a;" text="Save" textAlignment="CENTER">
+				<Button fx:id="Save" layoutX="662.0" layoutY="935.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" style="-fx-background-color: #47ae6a;" text="Save" textAlignment="CENTER">
 					<font>
 						<Font size="28.0" />
 					</font>
 				</Button>
-				<Label fx:id="errorMessage" layoutX="614.0" layoutY="848.0" prefHeight="72.0" prefWidth="243.0" text="Error Message" textAlignment="RIGHT" textFill="#c90909">
+				<Label fx:id="errorMessage" alignment="CENTER" layoutX="302.0" layoutY="848.0" prefHeight="72.0" prefWidth="817.0" textAlignment="RIGHT" textFill="#c90909">
 					<font>
 						<Font size="31.0" />
 					</font>
 				</Label>
-				<TextField fx:id="FirstNameTestField" layoutX="772.0" layoutY="518.0">
+				<TextField fx:id="FirstNameTestField" layoutX="761.0" layoutY="522.0">
 					<font>
 						<Font size="24.0" />
 					</font>
 				</TextField>
-				<TextField fx:id="MiddleNameTextField" layoutX="770.0" layoutY="605.0">
+				<TextField fx:id="MiddleNameTextField" layoutX="762.0" layoutY="607.0">
 					<font>
 						<Font size="24.0" />
 					</font>
 				</TextField>
-				<TextField fx:id="LastNameTextField" layoutX="773.0" layoutY="680.0">
+				<TextField fx:id="LastNameTextField" layoutX="763.0" layoutY="678.0" prefHeight="45.0" prefWidth="296.0">
 					<font>
 						<Font size="24.0" />
 					</font>
 				</TextField>
-				<TextField fx:id="EmailAddressTestField" layoutX="772.0" layoutY="759.0">
+				<TextField fx:id="EmailAddressTestField" layoutX="764.0" layoutY="756.0" prefHeight="45.0" prefWidth="298.0">
 					<font>
 						<Font size="24.0" />
 					</font>

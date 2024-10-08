@@ -1,8 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddRemoveUserRoleController">
+   <children>
+      <AnchorPane layoutX="-13.0" layoutY="-3.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F7F6F3;">
+         <children>
+            <ImageView fx:id="Logo" fitHeight="150.0" fitWidth="200.0" layoutX="111.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../CampusHive%20Assets/CP_logo_BLANK.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="Heading" layoutX="738.0" layoutY="73.0" text="User Role Control">
+               <font>
+                  <Font size="56.0" />
+               </font>
+            </Label>
+            <Label layoutX="573.0" layoutY="283.0" text="Username*">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <TextField fx:id="UsernameTextField" layoutX="981.0" layoutY="281.0">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </TextField>
+            <Label layoutX="576.0" layoutY="442.0" text="Role Selection*">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <Button fx:id="HomeButton" layoutX="1562.0" layoutY="58.0" mnemonicParsing="false" onAction="#HomeButton" prefHeight="96.0" prefWidth="105.0" style="-fx-background-color: #2596be;" text="                   " textFill="#2596be">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="HomeButtonImage" fitHeight="109.0" fitWidth="114.0" layoutX="1560.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../CampusHive%20Assets/Home.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="RoleSelectionBox" layoutX="981.0" layoutY="439.0" prefHeight="56.0" prefWidth="372.0" />
+            <Button fx:id="AddRoleButton" layoutX="683.0" layoutY="611.0" mnemonicParsing="false" onAction="#AddRole" prefHeight="65.0" prefWidth="200.0" style="-fx-background-color: #47ae6a;" text="Add Role">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Button>
+            <Button fx:id="RemoveRoleButton" layoutX="1021.0" layoutY="610.0" mnemonicParsing="false" onAction="#RemoveRole" prefHeight="65.0" prefWidth="216.0" style="-fx-background-color: #ED4337;" text="Remove Role">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Button>
+            <Label fx:id="ErrorMessageLabel" alignment="CENTER" layoutX="370.0" layoutY="757.0" prefHeight="101.0" prefWidth="1211.0" textAlignment="JUSTIFY" textFill="#ff0606">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
-

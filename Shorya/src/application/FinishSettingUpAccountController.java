@@ -44,17 +44,15 @@ public class FinishSettingUpAccountController {
     @FXML
     private ImageView Logo;
 
-    /*
     @FXML
-    void c90909(ActionEvent event) {
-
+    void handleSaveButtonAction() {
+        if (FirstNameTestField.getText().isEmpty() || EmailAddressTestField.getText().isEmpty()) {
+            errorMessage.setText("First Name and Email Address cannot be empty.");
+        } else {
+            errorMessage.setText(""); // Clear error message
+            // Save logic here
+        }
     }
-
-    @FXML
-    void 0171bc(ActionEvent event) {
-
-    }
-    */
 }
 
 
