@@ -7,36 +7,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F7F6F3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FinishSettingUpAccountController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #F7F6F3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FinishSettingUpAccountController">
 	<children>
-		<AnchorPane layoutX="187.0" layoutY="-16.0" prefHeight="1085.0" prefWidth="1494.0">
+		<AnchorPane layoutX="-10.0" layoutY="-142.0" prefHeight="720.0" prefWidth="1080.0">
 			<children>
-				<ImageView fx:id="Logo" fitHeight="355.0" fitWidth="570.0" layoutX="496.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+				<ImageView fx:id="Logo" fitHeight="166.0" fitWidth="222.0" layoutX="434.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@../../../CampusHive%20Assets/CP_logo_BLANK.png" />
 					</image>
 				</ImageView>
-				<Label fx:id="emailAddress" layoutX="374.0" layoutY="744.0" prefHeight="72.0" prefWidth="243.0" text="Email Address*" textAlignment="RIGHT">
+				<Label fx:id="emailAddress" layoutX="275.0" layoutY="613.0" prefHeight="72.0" prefWidth="246.0" text="Email Address*" textAlignment="RIGHT">
 					<font>
 						<Font size="31.0" />
 					</font>
 				</Label>
-				<Label fx:id="firsName" layoutX="372.0" layoutY="507.0" prefHeight="72.0" prefWidth="243.0" text="First Name*" textAlignment="RIGHT">
+				<Label fx:id="lastName" layoutX="275.0" layoutY="547.0" prefHeight="72.0" prefWidth="237.0" text="Last Name" textAlignment="RIGHT">
 					<font>
 						<Font size="31.0" />
 					</font>
 				</Label>
-				<Label fx:id="middleName" layoutX="370.0" layoutY="592.0" prefHeight="72.0" prefWidth="243.0" text="Middle Name" textAlignment="RIGHT">
-					<font>
-						<Font size="31.0" />
-					</font>
-				</Label>
-				<Label fx:id="lastName" layoutX="373.0" layoutY="666.0" prefHeight="72.0" prefWidth="243.0" text="Last Name" textAlignment="RIGHT">
-					<font>
-						<Font size="31.0" />
-					</font>
-				</Label>
-				<Button fx:id="Save" layoutX="662.0" layoutY="935.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" style="-fx-background-color: #47ae6a;" text="Save" textAlignment="CENTER">
+				<Button fx:id="Save" layoutX="473.0" layoutY="723.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" style="-fx-background-color: #47ae6a;" text="Save" textAlignment="CENTER">
 					<font>
 						<Font size="28.0" />
 					</font>
@@ -46,31 +36,41 @@
 						<Font size="31.0" />
 					</font>
 				</Label>
-				<TextField fx:id="FirstNameTestField" layoutX="761.0" layoutY="522.0">
+				<TextField fx:id="FirstNameTestField" layoutX="515.0" layoutY="434.0" prefHeight="45.0" prefWidth="294.0">
 					<font>
 						<Font size="24.0" />
 					</font>
 				</TextField>
-				<TextField fx:id="MiddleNameTextField" layoutX="762.0" layoutY="607.0">
+				<TextField fx:id="MiddleNameTextField" layoutX="515.0" layoutY="491.0" prefHeight="45.0" prefWidth="294.0">
 					<font>
 						<Font size="24.0" />
 					</font>
 				</TextField>
-				<TextField fx:id="LastNameTextField" layoutX="763.0" layoutY="678.0" prefHeight="45.0" prefWidth="296.0">
+				<TextField fx:id="LastNameTextField" layoutX="517.0" layoutY="561.0" prefHeight="45.0" prefWidth="296.0">
 					<font>
 						<Font size="24.0" />
 					</font>
 				</TextField>
-				<TextField fx:id="EmailAddressTestField" layoutX="764.0" layoutY="756.0" prefHeight="45.0" prefWidth="298.0">
+				<TextField fx:id="EmailAddressTestField" layoutX="519.0" layoutY="626.0" prefHeight="45.0" prefWidth="294.0">
 					<font>
 						<Font size="24.0" />
 					</font>
 				</TextField>
-				<Label fx:id="HeadingLabel" layoutX="441.0" layoutY="401.0" prefHeight="60.0" prefWidth="626.0" text="Finish Setting Up Your Account " textAlignment="RIGHT" textFill="#0171bc">
-					<font>
-						<Font size="44.0" />
-					</font>
-				</Label>
+      				<Label fx:id="HeadingLabel" alignment="CENTER" layoutX="242.0" layoutY="341.0" prefHeight="60.0" prefWidth="626.0" text="Finish Setting Up Your Account " textAlignment="RIGHT" textFill="#0171bc">
+      					<font>
+      						<Font size="44.0" />
+      					</font>
+      				</Label>
+      				<Label fx:id="firsName" layoutX="274.0" layoutY="420.0" prefHeight="72.0" prefWidth="243.0" text="First Name*" textAlignment="RIGHT">
+      					<font>
+      						<Font size="31.0" />
+      					</font>
+      				</Label>
+      				<Label fx:id="middleName" layoutX="274.0" layoutY="480.0" prefHeight="72.0" prefWidth="237.0" text="Middle Name" textAlignment="RIGHT">
+      					<font>
+      						<Font size="31.0" />
+      					</font>
+      				</Label>
 			</children>
 		</AnchorPane>
 	</children>

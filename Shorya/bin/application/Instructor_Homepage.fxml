@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:controller="application.InstructorHomepageController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InstructorHomepageController">
    <children>
-      <AnchorPane layoutX="9.0" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #F7F6F3;">
+      <AnchorPane prefHeight="720.0" prefWidth="1080.0">
          <children>
-            <ImageView fx:id="Logo" fitHeight="150.0" fitWidth="200.0" layoutX="50.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="Logo" fitHeight="150.0" fitWidth="200.0" layoutX="36.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../CampusHive%20Assets/CP_logo_BLANK.png" />
                </image>
             </ImageView>
-            <Label fx:id="Heading" layoutX="675.0" layoutY="51.0" style="-fx-font-: #0171bc;" text="Instructor Home ">
+            <Label fx:id="Heading" layoutX="388.0" layoutY="44.0" style="-fx-font-: #0171bc;" text="Instructor Home " textFill="#0171bc">
                <font>
-                  <Font size="70.0" />
+                  <Font size="47.0" />
                </font>
             </Label>
-            <Button fx:id="LogOutButton" layoutX="1565.0" layoutY="58.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="170.0" style="-fx-background-color: #b23b3b;" text="Log Out" textFill="WHITE">
+            <Button fx:id="LogOutButton" layoutX="859.0" layoutY="52.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #b23b3b;" text="Log Out" textFill="WHITE">
                <font>
-                  <Font size="33.0" />
+                  <Font size="21.0" />
                </font>
             </Button>
          </children>

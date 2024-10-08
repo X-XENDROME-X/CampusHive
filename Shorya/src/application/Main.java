@@ -12,8 +12,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("Finish_Setting_Up_Page.fxml"));
-	        primaryStage.setTitle("Finish Setting Up Account");
-	        primaryStage.setScene(new Scene(root, 1920, 1080)); 
+	        primaryStage.setTitle("CampusHive");
+	        primaryStage.setScene(new Scene(root, 1080, 720)); 
 	        primaryStage.setResizable(false);
 	        primaryStage.show();
 		} catch(Exception e) {
