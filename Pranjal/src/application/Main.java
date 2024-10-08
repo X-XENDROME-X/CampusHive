@@ -12,9 +12,10 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
-			Parent root = FXMLLoader.load(getClass().getResource("Invite_User_Page.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
 			primaryStage.setTitle("Hello");
-			primaryStage.setScene(new Scene(root,1920,1080));
+			primaryStage.setResizable(false);
+			primaryStage.setScene(new Scene(root,1080,720));
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
