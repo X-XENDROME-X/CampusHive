@@ -1,14 +1,12 @@
 package application;
 
+import javax.mail.*;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.HtmlEmail;
+import javafx.stage.Stage;
 
 public class Main extends Application {
     private static Stage primaryStage; // Store the primary stage for navigation
