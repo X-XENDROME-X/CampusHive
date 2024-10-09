@@ -31,4 +31,4 @@ Posts are visible to the entire community, encouraging collaborative problem-sol
 Users can reply to questions and provide solutions or guidance.
 " alt="CampusHive Logo" width="400"/>
 </p>
-Campus Hive is a JavaFX-based application designed to foster an interactive community for instructors, students, and admins in the CSE 360 course. The platform allows users to create posts, ask questions, and receive support from the community on topics related to GitHub, Java, JavaFX, Eclipse, and other course content. It encourages collaborative learning and problem-solving within the course framework.
+
