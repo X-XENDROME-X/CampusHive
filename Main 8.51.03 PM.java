@@ -14,7 +14,7 @@ public class Main extends Application {
 		try {
 			//Parent root = FXMLLoader.load(getClass().getResource("SELECTROLE02.fxml"));
 			//Parent root = FXMLLoader.load(getClass().getResource("STUDENTHOMEPAGE.fxml"));
-			//Parent root = FXMLLoader.load(getClass().getResource("Login Page OTP.fxml"));
+			//Parent root = FXMLLoader.load(getClass().getResource("invite_User_Page.fxml"));
 			Parent root = FXMLLoader.load(getClass().getResource("Create1stUserAdmin.fxml"));
 			//Parent root = FXMLLoader.load(getClass().getResource("Create1stUserAdmin.fxml"));
 			//Parent root = FXMLLoader.load(getClass().getResource("Finish_Setting_Up_Page 2.fxml"));

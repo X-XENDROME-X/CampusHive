@@ -23,7 +23,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="resetUser" contentDisplay="CENTER" layoutX="177.0" layoutY="472.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: red;" text="Reset User">
+      <Button fx:id="resetUser" contentDisplay="CENTER" layoutX="177.0" layoutY="472.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: red;" text="Reset User" onAction="#handleResetUserAction">
          <font>
             <Font size="22.0" />
          </font>
@@ -33,7 +33,7 @@
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="listUsers" layoutX="759.0" layoutY="248.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: blue;" text="List Users">
+      <Button fx:id="listUsers" layoutX="759.0" layoutY="248.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: blue;" text="List Users" onAction ="#handleListUsersAction">
          <font>
             <Font size="22.0" />
          </font>
@@ -48,7 +48,7 @@
             <Font size="22.0" />
          </font>
       </Button>
-      <Button fx:id="deleteUser" layoutX="768.0" layoutY="457.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: red;" text="Delete User">
+      <Button fx:id="deleteUser" layoutX="768.0" layoutY="457.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: red;" text="Delete User" onAction="#handleDeleteUserAction">
          <font>
             <Font size="22.0" />
          </font>
@@ -68,7 +68,7 @@
             <Image url="@images/delete-account-3130160-2640498.png" />
          </image>
       </ImageView>
-      <Button fx:id="inviteUser" layoutX="174.0" layoutY="247.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: green;" text="Invite User">
+      <Button fx:id="inviteUser" layoutX="174.0" layoutY="247.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: green;" text="Invite User" onAction="#handleInviteUserAction">
          <font>
             <Font size="22.0" />
          </font>
