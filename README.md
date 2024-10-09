@@ -29,6 +29,5 @@ Eclipse: IDE setup, configuration, and troubleshooting.
 ### Community Support:
 Posts are visible to the entire community, encouraging collaborative problem-solving.
 Users can reply to questions and provide solutions or guidance.
-" alt="CampusHive Logo" width="400"/>
-</p>
+
 
