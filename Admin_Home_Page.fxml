@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #f7f6f3;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Admin_Home_PageController">
+   <children>
+      <AnchorPane layoutX="-25.0" layoutY="-25.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="1104.0" style="-fx-background-color: #f7f6f3;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="219.0" layoutY="38.0" prefHeight="176.0" prefWidth="731.0" text="Admin Home Page">
+               <font>
+                  <Font name="Avenir Light" size="35.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="248.0" fitWidth="359.0" layoutX="24.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/CampusHive_Logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Button fx:id="resetUser" contentDisplay="CENTER" layoutX="177.0" layoutY="472.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: red;" text="Reset User" onAction="#handleResetUserAction">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="editRoles" layoutX="473.0" layoutY="372.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: green;" text="Edit Roles">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="listUsers" layoutX="759.0" layoutY="248.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: blue;" text="List Users" onAction ="#handleListUsersAction">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="39.0" fitWidth="30.0" layoutX="613.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/5151146.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="logOut" layoutX="508.0" layoutY="620.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="123.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: darkred; -fx-background-color: red;" text="Logout " textFill="#f8f8f8" onAction="#handleLogoutAction">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteUser" layoutX="768.0" layoutY="457.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: red;" text="Delete User" onAction="#handleDeleteUserAction">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="39.0" fitWidth="30.0" layoutX="319.0" layoutY="491.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/reset-password-1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="39.0" fitWidth="37.0" layoutX="889.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/374770-200.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="915.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/delete-account-3130160-2640498.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="inviteUser" layoutX="174.0" layoutY="247.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: green;" text="Invite User" onAction="#handleInviteUserAction">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="18.0" fitWidth="21.0" layoutX="325.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/png-clipart-black-email-sms-email-text-messaging-logo-computer-icons-envelope-mail-miscellaneous-angle.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
