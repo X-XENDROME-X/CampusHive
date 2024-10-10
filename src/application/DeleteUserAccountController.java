@@ -1,3 +1,18 @@
+/*******
+ * <p> DeleteUserAccountController Class </p>
+ * 
+ * <p> Description: This class handles the logic for deleting user accounts within the Campus Hive application. 
+ * It provides the necessary methods to confirm user deletion and update the user database accordingly, ensuring 
+ * that all changes are reflected in the system. </p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 package application;
 
 import javafx.fxml.FXML;
