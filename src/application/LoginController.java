@@ -1,3 +1,18 @@
+/*******
+ * <p> LoginController Class </p>
+ * 
+ * <p> Description: This class handles user authentication within the Campus Hive application. 
+ * It manages the login process by validating user credentials against the stored data and 
+ * directing users to the appropriate interface based on their account setup status. </p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 package application;
 
 import java.util.Arrays;
