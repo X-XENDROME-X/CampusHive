@@ -1,3 +1,16 @@
+/*******
+ * <p> CreateAccountPageController Class </p>
+ * 
+ * <p> Description: This class manages the logic for user account creation in the Campus Hive application. It handles user input, validates form data, and creates new user accounts with relevant details such as username, password, and role. This controller is a part of the user onboarding process within the application. </p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 package application;
 
 import java.io.IOException;
