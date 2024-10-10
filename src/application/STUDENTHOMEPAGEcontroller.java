@@ -1,3 +1,20 @@
+/*******
+ * <p> STUDENTHOMEPAGEcontroller Class </p>
+ * 
+ * <p> Description: Manages the user interface and functionalities for the student home 
+ * page within the Campus Hive JavaFX application. This class handles student-specific 
+ * actions, such as viewing course materials, accessing discussion forums, and managing 
+ * personal profiles, providing an intuitive environment for students to engage with 
+ * educational content and resources. </p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 package application;
 
 import javafx.event.ActionEvent;
