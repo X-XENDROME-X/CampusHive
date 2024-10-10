@@ -1,3 +1,19 @@
+/*******
+ * <p> OTPController Class </p>
+ * 
+ * <p> Description: Handles the functionality related to the One-Time Password (OTP) 
+ * feature within the Campus Hive JavaFX application. This class manages OTP 
+ * generation, sending, and verification processes to facilitate secure user actions 
+ * such as password recovery and user authentication. </p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 package application;
 
 import javafx.event.ActionEvent;
