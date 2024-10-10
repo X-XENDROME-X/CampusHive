@@ -1,3 +1,18 @@
+/*******
+ * <p> Invite_User_PageController Class </p>
+ * 
+ * <p> Description: This class manages the user interface and functionality for the invitation page 
+ * within the Campus Hive application. It handles actions related to inviting new users, 
+ * including collecting user information and sending invitation emails with role assignments. </p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 package application;
 
 import java.security.SecureRandom;
