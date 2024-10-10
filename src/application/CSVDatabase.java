@@ -1,3 +1,17 @@
+/*******
+ * <p> CSVDatabase Class </p>
+ * 
+ * <p> Description: This class provides methods for managing user data in the Campus Hive application using CSV files. It supports adding users, retrieving user data, updating account status, and verifying login credentials. This class acts as a simple database layer for the application, storing user details such as username, password, and roles in a CSV file. </p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
+
 package application;
 
 import java.io.*;
