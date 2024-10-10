@@ -1,3 +1,16 @@
+/*******
+ * <p> Create1stUserAdminController Class </p>
+ * 
+ * <p> Description: This class handles the logic for creating the first user in the Campus Hive application, automatically assigning them the Admin role. It manages user input during the initial account creation process and sets up the admin account before redirecting to the appropriate view for further setup or role selection.</p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 package application;
 
 import javafx.event.ActionEvent;
