@@ -1,16 +1,3 @@
-/*******
- * <p> Add_Remove_UserRole.fxml </p>
- * 
- * <p> Description: The `Add_Remove_UserRole.fxml` file defines the user interface layout for adding and removing user roles within the Campus Hive application. It provides the visual elements such as buttons, text fields, and drop-down menus that administrators use to manage user roles, ensuring easy interaction with the system for role assignment and removal tasks. This file is linked to the `AddRemoveUserRoleController` for functionality. </p>
- * 
- * <p> Copyright: Campus Hive Â© 2024 </p>
- * 
- * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
- * 
- * @version 1.002024-10-09 First version of this JavaFX project was made
- * 
- */
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.text.*?>
