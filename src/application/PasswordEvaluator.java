@@ -1,3 +1,19 @@
+/*******
+ * <p> PasswordEvaluator Class </p>
+ * 
+ * <p> Description: Responsible for assessing the strength of user-provided passwords 
+ * within the Campus Hive JavaFX application. This class includes methods for checking 
+ * password complexity based on criteria such as length, character variety, and common 
+ * weaknesses, ensuring users create secure passwords for their accounts. </p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 package application;
 
 public class PasswordEvaluator {
