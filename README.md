@@ -147,7 +147,7 @@ This project is licensed under proprietary rights by the original developers. Yo
 
 The project uses the following third-party libraries and frameworks:
 
-- **JavaFX SDK**: Licensed under the [GNU General Public License (GPL)](https://openjfx.io/license/), version 2, with the Classpath Exception.
+- **JavaFX SDK**: Licensed under the [GNU General Public License (GPL)]([https://openjfx.io/license/](https://openjdk.java.net/legal/gplv2+ce.html)), version 2, with the Classpath Exception.
 - **SQLite JDBC**: Licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
 - **JavaMail API**: Distributed under the [GPL v2 + CPE](https://javaee.github.io/javamail/).
 - **Java Activation Framework**: Licensed under the [Common Development and Distribution License (CDDL)](https://opensource.org/licenses/CDDL-1.0).
