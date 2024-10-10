@@ -1,3 +1,17 @@
+/*******
+ * <p> AddRemoveUserRoleController Class </p>
+ * 
+ * <p> Description: The AddRemoveUserRoleController class manages the process of adding and removing roles for users in the Campus Hive application. It allows administrators to assign, revoke, or modify user roles by interacting with the backend data (CSV file or database), ensuring that role changes are updated in real-time within the system.</p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
+
 package application;
 
 import javafx.event.ActionEvent;
