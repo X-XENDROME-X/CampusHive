@@ -1,3 +1,19 @@
+/*******
+ * <p> ListofUsersController Class </p>
+ * 
+ * <p> Description: This class manages the user interface for displaying and managing the list of 
+ * users within the Campus Hive application. It handles functionalities such as retrieving user 
+ * data from the database, displaying it in the UI, and providing options for user management, 
+ * including deletion and role assignment.</p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 package application;
 
 import javafx.fxml.FXML;
