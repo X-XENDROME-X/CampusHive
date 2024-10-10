@@ -1,3 +1,16 @@
+/*******
+ * <p> Admin_Home_PageController Class </p>
+ * 
+ * <p> Description: This class controls the Admin Home Page in the Campus Hive application. It handles user interactions and provides functionalities such as managing user accounts, viewing the list of users, and navigating to other administrative tasks like inviting users, resetting accounts, and modifying roles. </p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 	package application;
 	
 	import java.io.IOException;
