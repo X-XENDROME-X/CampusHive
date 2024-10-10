@@ -1,3 +1,18 @@
+/*******
+ * <p> FinishSettingUpAccountController Class </p>
+ * 
+ * <p> Description: This class manages the user interface and logic for finalizing user account setup in the 
+ * Campus Hive application. It handles user input for completing account details, validates the information, 
+ * and updates the user status in the system upon successful setup.</p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 package application;
 
 import javafx.fxml.FXML;
