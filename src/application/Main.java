@@ -1,3 +1,18 @@
+/*******
+ * <p> Main Class </p>
+ * 
+ * <p> Description: The entry point of the Campus Hive JavaFX application. 
+ * This class initializes the application and loads the primary user interface, 
+ * setting up the application environment and managing the application's lifecycle.</p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 	package application;
 
 	import javafx.application.Application;
