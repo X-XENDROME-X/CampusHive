@@ -141,4 +141,20 @@ The **Campus Hive** project uses SQLite for data persistence:
 
 ## Copyright
 
-All rights reserved to the original developers and contributors of **Campus Hive**. This project utilizes open-source libraries (JavaFX, SQLite JDBC, JavaMail API) under their respective licenses.
+**Campus Hive** © 2024. All rights reserved.
+
+This project is licensed under proprietary rights by the original developers. You may use the application for personal or educational purposes, but commercial use is prohibited without explicit permission from the authors.
+
+The project uses the following third-party libraries and frameworks:
+
+- **JavaFX SDK**: Licensed under the [GNU General Public License (GPL)](https://openjfx.io/license/), version 2, with the Classpath Exception.
+- **SQLite JDBC**: Licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+- **JavaMail API**: Distributed under the [GPL v2 + CPE](https://javaee.github.io/javamail/).
+- **Java Activation Framework**: Licensed under the [Common Development and Distribution License (CDDL)](https://opensource.org/licenses/CDDL-1.0).
+
+Please consult the respective licenses for each library for more information. Use of these libraries is subject to their respective terms and conditions.
+
+Unauthorized use, reproduction, or distribution of this software, in part or whole, is strictly prohibited. For commercial inquiries or further licensing options, please contact the original developers.
+
+All product names, logos, and brands are property of their respective owners.
+
