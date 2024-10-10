@@ -1,3 +1,19 @@
+/*******
+ * <p> SELECTROLEcontroller Class </p>
+ * 
+ * <p> Description: Manages the user interface for role selection within the Campus Hive 
+ * JavaFX application. This class handles user input for selecting the appropriate role 
+ * (e.g., student, instructor, admin) during the account setup process, ensuring that 
+ * users are assigned the correct permissions and functionalities based on their chosen role. </p>
+ * 
+ * <p> Copyright: Campus Hive Â© 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 1.002024-10-09 First version of this JavaFX project was made
+ * 
+ */
+
 package application;
 
 import javafx.fxml.FXML;
