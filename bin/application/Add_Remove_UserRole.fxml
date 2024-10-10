@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddRemoveUserRoleController">
+   <children>
+      <AnchorPane prefHeight="720.0" prefWidth="1080.0">
+         <children>
+            <ImageView fx:id="Logo" fitHeight="150.0" fitWidth="200.0" layoutX="19.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/CampusHive_Logo.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="Heading" layoutX="337.0" layoutY="57.0" text="User Role Control" textFill="#0171bc">
+               <font>
+                  <Font size="56.0" />
+               </font>
+            </Label>
+            <Label layoutX="290.0" layoutY="213.0" text="Username*">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <TextField fx:id="UsernameTextField" layoutX="531.0" layoutY="208.0">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </TextField>
+            <Label layoutX="290.0" layoutY="339.0" prefHeight="48.0" prefWidth="251.0" text="Role Selection*">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+            <Button fx:id="HomeButton" layoutX="930.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="52.0" prefWidth="53.0" style="-fx-background-color: #2596be;" textFill="#2596be">
+    		<graphic>
+       		<ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/Home.png" />
+            </image>
+        	</ImageView>
+    		</graphic>
+    		<font>
+        		<Font size="20.0" />
+   			 </font>
+			</Button>
+
+            <ComboBox fx:id="RoleSelectionBox" layoutX="534.0" layoutY="344.0" prefHeight="56.0" prefWidth="369.0" />
+            <Button fx:id="AddRoleButton" layoutX="344.0" layoutY="464.0" mnemonicParsing="false" onAction="#AddRole" prefHeight="49.0" prefWidth="178.0" style="-fx-background-color: #47ae6a;" text="Add Role">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Button>
+            <Button fx:id="RemoveRoleButton" layoutX="575.0" layoutY="463.0" mnemonicParsing="false" onAction="#RemoveRole" prefHeight="56.0" prefWidth="194.0" style="-fx-background-color: #ED4337;" text="Remove Role">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Button>
+            <Label fx:id="ErrorMessageLabel" alignment="CENTER" layoutX="155.0" layoutY="620.0" prefHeight="43.0" prefWidth="837.0" textAlignment="JUSTIFY" textFill="#ff0606">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
