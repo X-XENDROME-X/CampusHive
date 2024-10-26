@@ -46,8 +46,8 @@ To run **Campus Hive**, ensure you have the following installed:
    - The project can be cloned and opened in any modern Java IDE like **Eclipse** or **IntelliJ IDEA**.
    - Ensure the IDE is configured with the **JavaFX** libraries. See detailed setup instructions below.
 
-4. **SQLite JDBC**
-   - The application uses an SQLite database to store user data. Ensure you have the **SQLite JDBC driver** included in your project setup.
+4. **H2 Database**
+   - The application uses an H2 database to store user data. Ensure you have the **H2 database driver** included in your project setup.
 
 5. **Git (Optional)**
    - **Git** is optional but recommended for managing your project repository.
@@ -68,8 +68,8 @@ Below are the libraries required to run **Campus Hive**:
   - `javafx.web.jar`
   - `javafx-swt.jar`
 
-- **SQLite JDBC Driver 3.46.1.3**:
-  - `sqlite-jdbc-3.46.1.3.jar`
+- **H2 Database Engine**:
+  - `h2-2.2.224.jar`
 
 - **Java Activation Framework (javax.activation)**:
   - `javax.activation.jar`
@@ -101,14 +101,14 @@ Once you've cloned the project:
     --module-path /path-to-javafx-sdk/lib --add-modules=javafx.controls,javafx.fxml
     ```
 
-### 3. Configure SQLite Database
-The **Campus Hive** project uses SQLite for data persistence:
+### 3. Configure H2 Database
+The **Campus Hive** project uses H2 for data persistence:
 
-- Ensure the SQLite JDBC driver is included in the project’s classpath.
-- The driver is already included in the project as `sqlite-jdbc-3.46.1.3.jar`.
+- Ensure the H2 database driver is included in the project's classpath.
+- The driver is already included in the project as `h2-2.2.224.jar`.
 
 ### 4. Run the Application
-- After setting up the JavaFX SDK and SQLite JDBC, navigate to the main application file in the **src/application** directory.
+- After setting up the JavaFX SDK and H2 database, navigate to the main application file in the **src/application** directory.
 - Run the application from your IDE.
 
 ---
@@ -133,7 +133,7 @@ The **Campus Hive** project uses SQLite for data persistence:
 **Campus Hive** uses the following third-party libraries and software:
 
 - **JavaFX SDK** for creating the graphical user interface (GUI).
-- **SQLite JDBC** for managing and accessing the embedded SQLite database.
+- **H2 Database Engine** for managing and accessing the embedded H2 database.
 - **JavaMail API** for handling email functionalities.
 - **Java Activation Framework** for handling MIME data types in Java applications.
 
@@ -148,7 +148,7 @@ This project is licensed under proprietary rights by the original developers. Yo
 The project uses the following third-party libraries and frameworks:
 
 - **JavaFX SDK**: Licensed under the [GNU General Public License (GPL)](https://openjdk.java.net/legal/gplv2+ce.html), version 2, with the Classpath Exception.
-- **SQLite JDBC**: Licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+- **H2 Database Engine**: Licensed under the [Mozilla Public License 2.0](https://www.h2database.com/html/license.html) or the [Eclipse Public License 1.0](https://www.h2database.com/html/license.html).
 - **JavaMail API**: Distributed under the [GPL v2 + CPE](https://javaee.github.io/javamail/).
 - **Java Activation Framework**: Licensed under the [Common Development and Distribution License (CDDL)](https://opensource.org/licenses/CDDL-1.0).
 
@@ -157,4 +157,3 @@ Please consult the respective licenses for each library for more information. Us
 Unauthorized use, reproduction, or distribution of this software, in part or whole, is strictly prohibited. For commercial inquiries or further licensing options, please contact the original developers.
 
 All product names, logos, and brands are property of their respective owners.
-
