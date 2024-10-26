@@ -1,8 +1,4 @@
 <p align="center">
-# Campus Hive
-</p>
-
-<p align="center">
  <img src="images/CampusHive_Logo.png" alt="CampusHive Logo" width="400"/>
 </p>
 
