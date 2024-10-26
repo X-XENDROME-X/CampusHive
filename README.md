@@ -83,7 +83,7 @@ Below are the libraries required to run **Campus Hive**:
 To get a local copy of the project, clone it using Git:
 
 ```bash
-git clone https://github.com/YourUsername/CampusHive.git
+git clone https://github.com/Abhinav-ranish/Campus-Hive.git
 ```
 
 Alternatively, you can download the ZIP file from the GitHub repository and extract it.
