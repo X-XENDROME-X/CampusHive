@@ -53,7 +53,7 @@
 				//Session Logout
 				UserSession.getInstance().cleanUserSession(); // Clear the session
 	            // Load the Create Account FXML file
-	            Parent createAccountPage = FXMLLoader.load(getClass().getResource("Create Account Page.fxml"));
+	            Parent createAccountPage = FXMLLoader.load(getClass().getResource("Login Page.fxml"));
 	            
 	            // Set up the new scene
 	            Scene createAccountScene = new Scene(createAccountPage);
