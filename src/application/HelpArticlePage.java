@@ -24,9 +24,6 @@ import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
 public class HelpArticlePage implements Initializable {
 
     @FXML private MenuItem newArticleMenuItem;
@@ -210,6 +207,9 @@ public class HelpArticlePage implements Initializable {
     private void setupEventHandlers() {
         // Menu items
         newArticleMenuItem.setOnAction(e -> handleNewArticle());
+//        backupMenuItem.setOnAction(e -> handleBackup());
+//        restoreMenuItem.setOnAction(e -> handleRestore(false));
+//        restoreAllMenuItem.setOnAction(e -> handleRestore(true));
 
         // Buttons
         newArticleButton.setOnAction(e -> handleNewArticle());
@@ -293,7 +293,7 @@ public class HelpArticlePage implements Initializable {
         return selectedGroups;
     }
 
- 
+
     private void handleCancel() {
         clearForm();
         articleList.getSelectionModel().clearSelection();
@@ -351,6 +351,12 @@ public class HelpArticlePage implements Initializable {
             showMessage("Level is required", true);
             return false;
         }
+        if (article.getGroups() == null || article.getGroups().isEmpty()) {  // Checking if group is not selected
+            showMessage("Please select a group", true);
+            return false;
+        }
+        
+        
         // Add more validation as needed
         return true;
     }

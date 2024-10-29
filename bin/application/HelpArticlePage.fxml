@@ -15,8 +15,8 @@
             <items>
               <MenuItem fx:id="newArticleMenuItem" mnemonicParsing="false" text="New Article" />
 <!--               <MenuItem fx:id="backupMenuItem" mnemonicParsing="false" text="Backup Articles" />
-              <MenuItem fx:id="restoreMenuItem" mnemonicParsing="false" text="Restore (Merge)" />
-              <MenuItem fx:id="restoreAllMenuItem" mnemonicParsing="false" text="Restore (Remove All)" /> -->
+             <MenuItem fx:id="restoreMenuItem" mnemonicParsing="false" text="Restore (Merge)" />
+             <MenuItem fx:id="restoreAllMenuItem" mnemonicParsing="false" text="Restore (Remove All)" />  -->
             </items>
           </Menu>
         </menus>
