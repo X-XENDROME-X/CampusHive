@@ -43,7 +43,7 @@ public class Main extends Application {
     // Method to initialize the H2 user database
     private void initializeUserDatabase() {
         try {
-            dbConnection = DriverManager.getConnection("jdbc:h2:./userdb", "sa", "");
+            dbConnection = DriverManager.getConnection("jdbc:h2:./data/users/userdb", "sa", "");
             Statement stmt = dbConnection.createStatement();
 
             // Create user table

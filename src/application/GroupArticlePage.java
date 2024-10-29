@@ -153,7 +153,7 @@
 	
 	    private void filterArticles(List<String> selectedGroups) {
 	        // Database connection setup
-	        String url = "jdbc:h2:./data/help_articles";
+	        String url = "jdbc:h2:./data/articles/help_articles";
 	        String user = "sa";
 	        String password = "";
 
@@ -334,7 +334,7 @@
 
 	    private void createBackup(File file, List<String> selectedGroups) throws IOException {
 	        try (FileWriter writer = new FileWriter(file)) {
-	            String url = "jdbc:h2:./data/help_articles";
+	            String url = "jdbc:h2:./data/articles/help_articles";
 	            String user = "sa";
 	            String password = "";
 	            
@@ -368,7 +368,7 @@
 
 
 	    private void restoreBackup(File file, boolean replaceExisting) throws IOException {
-	        String url = "jdbc:h2:./data/help_articles";
+	        String url = "jdbc:h2:./data/articles/help_articles";
 	        String user = "sa";
 	        String password = "";
 

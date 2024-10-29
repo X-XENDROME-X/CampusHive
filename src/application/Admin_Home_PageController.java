@@ -50,6 +50,8 @@
 	    @FXML
 	    private void handleLogoutAction(ActionEvent event) {
 	        try {
+				//Session Logout
+				UserSession.getInstance().cleanUserSession(); // Clear the session
 	            // Load the Create Account FXML file
 	            Parent createAccountPage = FXMLLoader.load(getClass().getResource("Create Account Page.fxml"));
 	            

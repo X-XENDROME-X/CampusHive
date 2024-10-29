@@ -23,6 +23,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Platform;
 
 public class HelpArticlePage implements Initializable {
 
@@ -69,7 +70,7 @@ public class HelpArticlePage implements Initializable {
     private ObservableList<String> links = FXCollections.observableArrayList();
     private final String[] levels = {"Beginner", "Intermediate", "Advanced", "Expert"};
 
-    private static final String DB_URL = "jdbc:h2:./data/help_articles"; // Path to H2 database
+    private static final String DB_URL = "jdbc:h2:./data/articles/help_articles"; // Path to H2 database
     private static final String USER = "sa";
     private static final String PASSWORD = "";
 
@@ -95,6 +96,9 @@ public class HelpArticlePage implements Initializable {
 
         // Load existing articles from database
         loadArticles();
+
+        // Setup Enter key handling
+        // setupEnterKeyHandling();
     }
 
     @FXML
@@ -133,6 +137,36 @@ public class HelpArticlePage implements Initializable {
         }
     }
 
+//    private void setupEnterKeyHandling() {
+//        // Use Platform.runLater to ensure fields are properly focused after loading
+//        Platform.runLater(() -> searchBox.requestFocus());
+//
+//        // Set up Enter key focus movement for each field
+//        searchBox.setOnAction(event -> levelFilter.requestFocus());
+//        levelFilter.setOnAction(event -> idField.requestFocus());
+//        idField.setOnAction(event -> articleLevel.requestFocus());
+//        articleLevel.setOnAction(event -> titleField.requestFocus());
+//        titleField.setOnAction(event -> descriptionArea.requestFocus());
+//
+//        // Handle Enter key in TextArea fields (descriptionArea and bodyArea)
+//        descriptionArea.setOnKeyPressed(event -> {
+//            if (event.getCode().toString().equals("ENTER")) {
+//                keywordsField.requestFocus(); // Move to the next field when Enter is pressed
+//                event.consume(); // Prevent adding a new line
+//            }
+//        });
+//
+//        keywordsField.setOnAction(event -> bodyArea.requestFocus());
+//
+//        bodyArea.setOnKeyPressed(event -> {
+//            if (event.getCode().toString().equals("ENTER")) {
+//                newLinkField.requestFocus(); // Move to the next field when Enter is pressed
+//                event.consume(); // Prevent adding a new line
+//            }
+//        });
+//
+//        newLinkField.setOnAction(event -> handleAddLink()); // Trigger link addition on Enter
+//    }
 
     @FXML
     private void handleGroupArticlePageAction(ActionEvent event) {

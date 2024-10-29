@@ -6,7 +6,7 @@ import java.util.List;
 
 public class H2Database {
 
-    private static final String DB_URL = "jdbc:h2:./userdb";
+    private static final String DB_URL = "jdbc:h2:./data/users/userdb";
     private static final String USER = "sa";
     private static final String PASSWORD = "";
 

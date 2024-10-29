@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 
 public class LoginController {
 
@@ -34,6 +35,14 @@ public class LoginController {
     
     @FXML
     private Button CreateButton;
+
+    @FXML
+    private void initialize() {
+        // Add action listeners to handle "Enter" key press for both fields
+        Platform.runLater(() -> usernameField.requestFocus());
+        usernameField.setOnAction(event -> passwordField.requestFocus()); // Move to password field on "Enter"
+        passwordField.setOnAction(event -> handleLoginButtonAction(new ActionEvent())); // Trigger login on "Enter" in password field
+    }
 
     @FXML
     private void handleLoginButtonAction(ActionEvent event) {

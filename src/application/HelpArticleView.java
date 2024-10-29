@@ -75,7 +75,7 @@ public class HelpArticleView {
     private HelpArticle fetchFullArticleDetails(long articleId) {
         String query = "SELECT * FROM articles WHERE id = ?";
         
-        String url = "jdbc:h2:./data/help_articles";
+        String url = "jdbc:h2:./data/articles/help_articles";
         String user = "sa";
         String password = "";
         

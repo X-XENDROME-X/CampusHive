@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
+import javafx.application.Platform;
 
 public class Create1stUserAdminController { 
 
@@ -69,6 +70,19 @@ public class Create1stUserAdminController {
                 error.setText("An error occurred while checking the user. Please try again.");
             }
         }
+    }
+
+    // Method to initialize and add "Enter" key functionality
+    @FXML
+    private void initialize() {
+        // Ensure username field gets focus when the scene is loaded
+        Platform.runLater(() -> userName.requestFocus());
+
+        // Move focus to password field when "Enter" is pressed in the username field
+        userName.setOnAction(event -> password.requestFocus());
+
+        // Trigger account creation when "Enter" is pressed in the password field
+        password.setOnAction(event -> handleCreateAdminAccount(new ActionEvent()));
     }
 
     // Method to create admin account and add it to the users table in the H2 database

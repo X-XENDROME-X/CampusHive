@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 
 public class CreateAccountPageController {
 
@@ -36,6 +37,25 @@ public class CreateAccountPageController {
 
     @FXML
     private TextField invitationCodeField;
+
+    // Method to initialize and add "Enter" key functionality Coded this cus I am Physically repulsed by he mouse :>
+    @FXML
+    private void initialize() {
+        // Delay the focus request until the scene is fully loaded
+        Platform.runLater(() -> usernameField.requestFocus());
+
+        // Move focus to passwordField when Enter is pressed in usernameField
+        usernameField.setOnAction(event -> passwordField.requestFocus());
+
+        // Move focus to confirmPasswordField when Enter is pressed in passwordField
+        passwordField.setOnAction(event -> confirmPasswordField.requestFocus());
+
+        // Move focus to invitationCodeField when Enter is pressed in confirmPasswordField
+        confirmPasswordField.setOnAction(event -> invitationCodeField.requestFocus());
+
+        // Trigger account creation when Enter is pressed in invitationCodeField
+        invitationCodeField.setOnAction(event -> handleCreateAccountButtonAction(new ActionEvent()));
+    }
 
     // Method to handle account creation
     @FXML
