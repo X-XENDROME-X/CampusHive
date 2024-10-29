@@ -27,7 +27,7 @@ public class STUDENTHOMEPAGEcontroller {
         try {
             UserSession.getInstance().cleanUserSession(); // Clear the session
             // Load the Create Account FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Create Account Page.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login Page.fxml"));
             Parent root = loader.load();
 
             // Get the current stage and set the new scene
