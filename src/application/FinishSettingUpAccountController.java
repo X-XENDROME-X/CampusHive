@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import java.io.IOException;
 import java.sql.SQLException;
+import javafx.application.Platform;
+
 
 public class FinishSettingUpAccountController {
 
@@ -31,6 +33,24 @@ public class FinishSettingUpAccountController {
     @FXML
     private TextField MiddleNameTextField;
 
+    // Method to initialize and add "Enter" key functionality
+    @FXML
+    private void initialize() {
+        // Focus on the first field when the scene loads
+        Platform.runLater(() -> FirstNameTestField.requestFocus());
+
+        // Move focus to MiddleNameTextField when Enter is pressed in FirstNameTestField
+        FirstNameTestField.setOnAction(event -> MiddleNameTextField.requestFocus());
+
+        // Move focus to LastNameTextField when Enter is pressed in MiddleNameTextField
+        MiddleNameTextField.setOnAction(event -> LastNameTextField.requestFocus());
+
+        // Move focus to EmailAddressTestField when Enter is pressed in LastNameTextField
+        LastNameTextField.setOnAction(event -> EmailAddressTestField.requestFocus());
+
+        // Trigger Save action when Enter is pressed in EmailAddressTestField
+        EmailAddressTestField.setOnAction(event -> handleSaveButtonAction());
+    }
     // Handle save button click event
     @FXML
     void handleSaveButtonAction() {
