@@ -121,53 +121,13 @@ The **Campus Hive** project uses H2 for data persistence:
 ---
 
 ## Project Structure
-
 ```
 ├── src/
 │   ├── application/
-│   │   ├── AddRemoveUserRoleController.java
-│   │   ├── Admin_Home_PageController.java
-│   │   ├── Create1stUserAdminController.java
-│   │   ├── CreateAccountPageController.java
-│   │   ├── DeleteUserAccountController.java
-│   │   ├── FinishSettingUpAccountController.java
-│   │   ├── GroupArticlePage.java
-│   │   ├── H2Database.java
-│   │   ├── HelpArticlePage.java
-│   │   ├── HelpArticleView.java
-│   │   ├── InstructorHomepageController.java
-│   │   ├── Invite_User_PageController.java
-│   │   ├── ListofUsersController.java
-│   │   ├── LoginController.java
-│   │   ├── Main.java
-│   │   ├── OTPController_user.java
-│   │   ├── OTPController.java
-│   │   ├── PasswordEvaluator.java
-│   │   ├── SELECTROLEcontroller.java
-│   │   ├── STUDENTHOMEPAGEcontroller.java
-│   │   └── UserSession.java
-│   │   ├── Add_Remove_UserRole.fxml
-│   │   ├── Admin_Home_Page.fxml
-│   │   ├── application.css
-│   │   ├── Create1stUserAdmin.fxml
-│   │   ├── Create Account Page.fxml
-│   │   ├── Delete User Account.fxml
-│   │   ├── Finish_Setting_Up_Page 2.fxml
-│   │   ├── GroupArticlePage.fxml
-│   │   ├── HelpArticlePage.fxml
-│   │   ├── HelpArticleView.fxml
-│   │   ├── Instructor_Homepage.fxml
-│   │   ├── Invite_User_Page.fxml
-│   │   ├── ListofUsers.fxml
-│   │   ├── Login Page.fxml
-│   │   ├── ResetPassOTP_user.fxml
-│   │   ├── ResetPassOTP.fxml
-│   │   ├── SELECTROLE02.fxml
-│   │   └── STUDENTHOMEPAGE.fxml
+│   │   ├── controllers/
+│   │   └── views/
 │   ├── application.images/
 │   └── module-info.java
-├── resources/
-│   └── build.fxbuild
 ├── lib/
 │   ├── bcprov-lts8on-2.73.6.jar
 │   ├── h2-2.2.232.jar
@@ -176,6 +136,8 @@ The **Campus Hive** project uses H2 for data persistence:
 ├── articlebackups/
 ├── data/
 ├── images/
+├── resources/
+│   └── build.fxbuild
 └── README.md
 ```
 
