@@ -1,3 +1,7 @@
+<H1 align="center">
+CampusHive 🎓
+</H1>
+
 <p align="center">
  <img src="images/CampusHive_Logo.png" alt="CampusHive Logo" width="400"/>
 </p>
@@ -8,7 +12,7 @@ Campus Hive is a JavaFX-based application designed to foster an interactive comm
 
 ### 1. **Post Creation**
 - Instructors, students, and admins can create posts on topics ranging from course-related challenges to technical issues.
-  
+
 ### 2. **Q&A Forum**
 - Users can post questions about course-related difficulties, whether it's about coding issues, development tools, or project setup.
 - Replies from peers and instructors help foster community-based learning.
@@ -67,7 +71,7 @@ Below are the libraries required to run **Campus Hive**:
   - `javafx-swt.jar`
 
 - **H2 Database Engine**:
-  - `h2-2.2.224.jar`
+  - `h2-2.2.232.jar`
 
 - **Java Activation Framework (javax.activation)**:
   - `javax.activation.jar`
@@ -75,11 +79,15 @@ Below are the libraries required to run **Campus Hive**:
 - **JavaMail API**:
   - `javax.mail.jar`
 
+- **Bouncy Castle Cryptography**:
+  - `bcprov-lts8on-2.73.6.jar`
+
 ---
 
 ## Installation & Usage
 
 ### 1. Clone the Repository
+
 To get a local copy of the project, clone it using Git:
 
 ```bash
@@ -89,21 +97,22 @@ git clone https://github.com/Abhinav-ranish/Campus-Hive.git
 Alternatively, you can download the ZIP file from the GitHub repository and extract it.
 
 ### 2. Set Up JavaFX
-Once you've cloned the project:
 
+Once you've cloned the project:
 - Download the **JavaFX SDK** from [OpenJFX](https://openjfx.io/).
 - Add the JavaFX SDK library files to your project. For example, in Eclipse:
   - Right-click the project > Build Path > Add Libraries > JavaFX SDK.
-  - Ensure you add the required JavaFX modules to your VM arguments:
-    ```bash
-    --module-path /path-to-javafx-sdk/lib --add-modules=javafx.controls,javafx.fxml
-    ```
+- Ensure you add the required JavaFX modules to your VM arguments:
+
+```bash
+--module-path /path-to-javafx-sdk/lib --add-modules=javafx.controls,javafx.fxml
+```
 
 ### 3. Configure H2 Database
-The **Campus Hive** project uses H2 for data persistence:
 
+The **Campus Hive** project uses H2 for data persistence:
 - Ensure the H2 database driver is included in the project's classpath.
-- The driver is already included in the project as `h2-2.2.224.jar`.
+- The driver is already included in the project as `h2-2.2.232.jar`.
 
 ### 4. Run the Application
 - After setting up the JavaFX SDK and H2 database, navigate to the main application file in the **src/application** directory.
@@ -115,13 +124,59 @@ The **Campus Hive** project uses H2 for data persistence:
 
 ```
 ├── src/
-│   ├── application/          # Main application package
-│   ├── application.images/   # Image resources
-├── resources/                # Project resources
-├── lib/                      # External libraries
-├── README.md                 # Project documentation
-├── invitations.csv           # Sample CSV for managing invites
-├── users.csv                 # Sample CSV for user data
+│   ├── application/
+│   │   ├── AddRemoveUserRoleController.java
+│   │   ├── Admin_Home_PageController.java
+│   │   ├── Create1stUserAdminController.java
+│   │   ├── CreateAccountPageController.java
+│   │   ├── DeleteUserAccountController.java
+│   │   ├── FinishSettingUpAccountController.java
+│   │   ├── GroupArticlePage.java
+│   │   ├── H2Database.java
+│   │   ├── HelpArticlePage.java
+│   │   ├── HelpArticleView.java
+│   │   ├── InstructorHomepageController.java
+│   │   ├── Invite_User_PageController.java
+│   │   ├── ListofUsersController.java
+│   │   ├── LoginController.java
+│   │   ├── Main.java
+│   │   ├── OTPController_user.java
+│   │   ├── OTPController.java
+│   │   ├── PasswordEvaluator.java
+│   │   ├── SELECTROLEcontroller.java
+│   │   ├── STUDENTHOMEPAGEcontroller.java
+│   │   └── UserSession.java
+│   │   ├── Add_Remove_UserRole.fxml
+│   │   ├── Admin_Home_Page.fxml
+│   │   ├── application.css
+│   │   ├── Create1stUserAdmin.fxml
+│   │   ├── Create Account Page.fxml
+│   │   ├── Delete User Account.fxml
+│   │   ├── Finish_Setting_Up_Page 2.fxml
+│   │   ├── GroupArticlePage.fxml
+│   │   ├── HelpArticlePage.fxml
+│   │   ├── HelpArticleView.fxml
+│   │   ├── Instructor_Homepage.fxml
+│   │   ├── Invite_User_Page.fxml
+│   │   ├── ListofUsers.fxml
+│   │   ├── Login Page.fxml
+│   │   ├── ResetPassOTP_user.fxml
+│   │   ├── ResetPassOTP.fxml
+│   │   ├── SELECTROLE02.fxml
+│   │   └── STUDENTHOMEPAGE.fxml
+│   ├── application.images/
+│   └── module-info.java
+├── resources/
+│   └── build.fxbuild
+├── lib/
+│   ├── bcprov-lts8on-2.73.6.jar
+│   ├── h2-2.2.232.jar
+│   ├── javax.activation.jar
+│   └── javax.mail.jar
+├── articlebackups/
+├── data/
+├── images/
+└── README.md
 ```
 
 ---
@@ -129,11 +184,11 @@ The **Campus Hive** project uses H2 for data persistence:
 ## Credits
 
 **Campus Hive** uses the following third-party libraries and software:
-
 - **JavaFX SDK** for creating the graphical user interface (GUI).
 - **H2 Database Engine** for managing and accessing the embedded H2 database.
 - **JavaMail API** for handling email functionalities.
 - **Java Activation Framework** for handling MIME data types in Java applications.
+- **Bouncy Castle** for cryptography and encryption functionalities.
 
 ---
 
@@ -144,11 +199,11 @@ The **Campus Hive** project uses H2 for data persistence:
 This project is licensed under proprietary rights by the original developers. You may use the application for personal or educational purposes, but commercial use is prohibited without explicit permission from the authors.
 
 The project uses the following third-party libraries and frameworks:
-
 - **JavaFX SDK**: Licensed under the [GNU General Public License (GPL)](https://openjdk.java.net/legal/gplv2+ce.html), version 2, with the Classpath Exception.
 - **H2 Database Engine**: Licensed under the [Mozilla Public License 2.0](https://www.h2database.com/html/license.html) or the [Eclipse Public License 1.0](https://www.h2database.com/html/license.html).
 - **JavaMail API**: Distributed under the [GPL v2 + CPE](https://javaee.github.io/javamail/).
 - **Java Activation Framework**: Licensed under the [Common Development and Distribution License (CDDL)](https://opensource.org/licenses/CDDL-1.0).
+- **Bouncy Castle**: Licensed under the [MIT License](https://www.bouncycastle.org/licence.html).
 
 Please consult the respective licenses for each library for more information. Use of these libraries is subject to their respective terms and conditions.
 
