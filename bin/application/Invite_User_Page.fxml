@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Invite_User_PageController">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="7.0" prefHeight="271.0" prefWidth="1083.0">
+         <children>
+            <ImageView fitHeight="189.0" fitWidth="137.0" layoutX="438.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/CampusHive_Logo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="427.0" layoutY="169.0" prefHeight="53.0" prefWidth="174.0" text="Invite a User" textFill="#2596be">
+               <font>
+                  <Font name="Avenir Light" size="29.0" />
+               </font>
+            </Label>
+            <Button fx:id="Home" layoutX="930.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="52.0" prefWidth="53.0" style="-fx-background-color: #2596be;" textFill="#2596be">
+    		<graphic>
+       		<ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/Home.png" />
+            </image>
+        	</ImageView>
+    		</graphic>
+    		<font>
+        		<Font size="20.0" />
+   			 </font>
+			</Button>
+            
+            <TextArea fx:id="emailAddress" layoutX="544.0" layoutY="281.0" prefHeight="39.0" prefWidth="268.0" promptText="eg: pranish@gmail.com" />
+            <Label layoutX="265.0" layoutY="278.0" prefHeight="41.0" prefWidth="187.0" text="Email Address">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="281.0" layoutY="410.0" prefHeight="54.0" prefWidth="181.0" text="Role Selection">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Button fx:id="sendInvite" layoutX="470.0" layoutY="522.0" mnemonicParsing="false" onAction="#handleSendInvite" prefHeight="45.0" prefWidth="121.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: lightgreen; -fx-border-color: darkgreen;" text="Send Invite">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="Message" alignment="CENTER" layoutX="176.0" layoutY="601.0" prefHeight="34.0" prefWidth="702.0" textFill="#256f25">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="Student" layoutX="561.0" layoutY="425.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="98.0" text="STUDENT">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="admin" layoutX="679.0" layoutY="426.0" mnemonicParsing="false" text="ADMIN" />
+      <CheckBox fx:id="instructor" layoutX="776.0" layoutY="426.0" mnemonicParsing="false" text="INSTRUCTOR" />
+   </children>
+</AnchorPane>
