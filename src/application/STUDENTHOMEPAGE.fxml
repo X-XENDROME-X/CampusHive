@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.STUDENTHOMEPAGEcontroller">
+   <top>
+      <AnchorPane prefHeight="104.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="213.0" prefWidth="266.0">
+               <children>
+                  <ImageView fitHeight="210.0" fitWidth="176.0" layoutX="51.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/CampusHive_Logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="283.0" layoutY="35.0" prefHeight="164.0" prefWidth="490.0">
+               <children>
+                  <Label layoutY="68.0" text="STUDENT HOME PAGE">
+                     <font>
+                        <Font name="Avenir Light" size="48.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <Button fx:id="logout" mnemonicParsing="false" onAction="#handleLogoutAction" style="-fx-background-color: RED; -fx-background-radius: 10; -fx-border-radius: 10;" text="LOGOUT" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Button>
+   </center>
+   <bottom>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="Back" layoutX="490.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="51.0" prefWidth="100.0" text="BACK">
+               <font>
+                  <Font name="Avenir Light" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>
