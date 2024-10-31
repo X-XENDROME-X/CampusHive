@@ -83,7 +83,7 @@ public class HelpArticlePage implements Initializable {
     // Observable lists for UI components
     private ObservableList<HelpArticle> articles = FXCollections.observableArrayList();
     private ObservableList<String> links = FXCollections.observableArrayList();
-    private final String[] levels = {"Beginner", "Intermediate", "Advanced", "Expert"};
+    private final String[] levels = {"View All Articles","Beginner", "Intermediate", "Advanced", "Expert"};
 
     private static final String DB_URL = "jdbc:h2:./data/articles/help_articles"; // Path to H2 database
     private static final String USER = "sa";
@@ -241,12 +241,13 @@ public class HelpArticlePage implements Initializable {
         ObservableList<HelpArticle> filteredList = FXCollections.observableArrayList();
 
         for (HelpArticle article : articles) {
-            boolean levelMatch = selectedLevel == null || article.getLevel().equals(selectedLevel);
+            boolean levelMatch = (selectedLevel == null || selectedLevel.equals("View All Articles")) || 
+                                article.getLevel().equals(selectedLevel);
             boolean searchMatch = searchText.isEmpty() || 
-                                  article.getTitle().toLowerCase().contains(searchText) ||
-                                  article.getDescription().toLowerCase().contains(searchText) ||
-                                  article.getKeywords().toLowerCase().contains(searchText);
-            
+                                article.getTitle().toLowerCase().contains(searchText) ||
+                                article.getDescription().toLowerCase().contains(searchText) ||
+                                article.getKeywords().toLowerCase().contains(searchText);
+
             if (levelMatch && searchMatch) {
                 filteredList.add(article);
             }

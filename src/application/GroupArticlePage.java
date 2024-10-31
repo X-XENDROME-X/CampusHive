@@ -219,29 +219,38 @@
 	            return;
 	        }
 
+	        // Define default backup directory
+	        File defaultDir = new File("data/backup");
+	        if (!defaultDir.exists()) {
+	            defaultDir.mkdirs(); // Create the directory if it doesn't exist
+	        }
+
+	        // Define default backup file
+	        File defaultFile = new File(defaultDir, "backup_" + System.currentTimeMillis() + ".txt");
+
 	        FileChooser fileChooser = new FileChooser();
 	        fileChooser.setTitle("Save Backup File");
-	        fileChooser.getExtensionFilters().add(
-	            new FileChooser.ExtensionFilter("Text Files", "*.txt"));
-	        fileChooser.setInitialFileName("backup_" + System.currentTimeMillis() + ".txt");
+	        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+	        fileChooser.setInitialDirectory(defaultDir);
+	        fileChooser.setInitialFileName(defaultFile.getName());
 
+	        // Prompt the user to confirm the default location or choose a different location
 	        File file = fileChooser.showSaveDialog(null);
 	        if (file != null) {
 	            try {
 	                createBackup(file, selectedGroups);
 	                showAlert("Backup Success", "Backup has been created successfully!");
-
 	                errorLabel.setStyle("-fx-text-fill: green;");
 	                errorLabel.setText("Backup created successfully.");
 	            } catch (Exception e) {
 	                showAlert("Backup Failed", "Failed to create backup: " + e.getMessage());
-
 	                errorLabel.setStyle("-fx-text-fill: red;");
 	                errorLabel.setText("Failed to create backup: " + e.getMessage());
 	                e.printStackTrace();
 	            }
 	        }
 	    }
+
 
 	    @FXML
 	    private void handleRestoreMerge(ActionEvent event) {
