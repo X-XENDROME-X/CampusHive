@@ -73,7 +73,7 @@ public class HelpArticlePage implements Initializable {
     @FXML private TextField newLinkField;
     @FXML private Button addLinkButton;
     @FXML private CheckBox sensitiveCheckbox;
-
+   
     @FXML private Button saveButton;
     @FXML private Button deleteButton;
     @FXML private Button cancelButton;
@@ -454,25 +454,60 @@ public class HelpArticlePage implements Initializable {
     }
 
 
+ // Update the saveArticle method to handle both insert and update operations
     public void saveArticle(HelpArticle article) {
-    	String insertSQL = "INSERT INTO articles (id, level, title, description, keywords, body, referenceLinks, isSensitive, groups) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(insertSQL)) {
-            
-            preparedStatement.setLong(1, article.getId()); 
-            preparedStatement.setString(2, article.getLevel());
-            preparedStatement.setString(3, article.getTitle());
-            preparedStatement.setString(4, article.getDescription());
-            preparedStatement.setString(5, article.getKeywords());
-            preparedStatement.setString(6, article.getBody());
-            preparedStatement.setString(7, article.getReferenceLinks());
-            preparedStatement.setBoolean(8, article.isSensitive());
-            preparedStatement.setString(9, article.getGroups());
-            
-            preparedStatement.executeUpdate();
-            System.out.println("Article saved successfully.");
+        // First check if the article exists
+        String checkSQL = "SELECT COUNT(*) FROM articles WHERE id = ?";
+        String updateSQL = "UPDATE articles SET level = ?, title = ?, description = ?, keywords = ?, " +
+                          "body = ?, referenceLinks = ?, isSensitive = ?, groups = ? WHERE id = ?";
+        String insertSQL = "INSERT INTO articles (id, level, title, description, keywords, body, " +
+                          "referenceLinks, isSensitive, groups) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
+            // Check if article exists
+            boolean articleExists = false;
+            try (PreparedStatement checkStmt = connection.prepareStatement(checkSQL)) {
+                checkStmt.setLong(1, article.getId());
+                ResultSet rs = checkStmt.executeQuery();
+                if (rs.next()) {
+                    articleExists = rs.getInt(1) > 0;
+                }
+            }
+
+            // Prepare the appropriate statement based on whether the article exists
+            PreparedStatement stmt;
+            if (articleExists) {
+                // Update existing article
+                stmt = connection.prepareStatement(updateSQL);
+                stmt.setString(1, article.getLevel());
+                stmt.setString(2, article.getTitle());
+                stmt.setString(3, article.getDescription());
+                stmt.setString(4, article.getKeywords());
+                stmt.setString(5, article.getBody());
+                stmt.setString(6, article.getReferenceLinks());
+                stmt.setBoolean(7, article.isSensitive());
+                stmt.setString(8, article.getGroups());
+                stmt.setLong(9, article.getId());
+            } else {
+                // Insert new article
+                stmt = connection.prepareStatement(insertSQL);
+                stmt.setLong(1, article.getId());
+                stmt.setString(2, article.getLevel());
+                stmt.setString(3, article.getTitle());
+                stmt.setString(4, article.getDescription());
+                stmt.setString(5, article.getKeywords());
+                stmt.setString(6, article.getBody());
+                stmt.setString(7, article.getReferenceLinks());
+                stmt.setBoolean(8, article.isSensitive());
+                stmt.setString(9, article.getGroups());
+            }
+
+            stmt.executeUpdate();
+            System.out.println(articleExists ? "Article updated successfully." : "Article saved successfully.");
+            showMessage(articleExists ? "Article updated successfully" : "Article saved successfully", false);
         } catch (SQLException e) {
             showMessage("Error saving article: " + e.getMessage(), true);
+            e.printStackTrace();
         }
     }
 
