@@ -86,33 +86,44 @@
 	    private void handleBackButtonAction(ActionEvent event) {
 	        try {
 	            UserSession session = UserSession.getInstance();
-	            String userRole = session.getRole();
-	            String destinationPage;
+	            Parent homePage;
 	            
-	            // Determine destination page based on user role
-	            if (userRole.equalsIgnoreCase("Student")) {
-	                destinationPage = "STUDENTHOMEPAGE.fxml";
-	            } else if (userRole.equalsIgnoreCase("Admin") || userRole.equalsIgnoreCase("Instructor")) {
-	                destinationPage = "HelpArticlePage.fxml";
-	            } else {
-	                // Default fallback or error handling
-	                throw new IllegalStateException("Invalid user role");
-	            }
-	            
-	            // Load the appropriate FXML
-	            FXMLLoader loader = new FXMLLoader(getClass().getResource(destinationPage));
-	            Parent root = loader.load();
-	            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	            Scene scene = new Scene(root);
-	            stage.setScene(scene);
-	            stage.show();
-	            
+
+	        	 if (session.hasPreviousPage()) {
+	                 String previousPage = session.getPreviousPage();
+	                 homePage = FXMLLoader.load(getClass().getResource(previousPage));
+
+	                 System.out.println("Redirecting to: " + previousPage);
+	                 
+	                 Scene homeScene = new Scene(homePage);
+	                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	                 currentStage.setScene(homeScene);
+	                 currentStage.show();
+	             } else {
+	                 System.out.println("No previous page found.");
+	                 String username = null;
+					 String role = null;
+					 String email = null;
+					 UserSession.initializeSession(username, role, email);
+
+	                 
+					 if ("admin".equals(role)) {
+						    homePage = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
+					} else if ("instructor".equals(role)) {
+						    homePage = FXMLLoader.load(getClass().getResource("Instructor_Homepage.fxml"));
+					} else {
+						    throw new IOException("User role not recognized");
+					}
+
+	                 Scene homeScene = new Scene(homePage);
+	                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	                 currentStage.setScene(homeScene);
+	                 currentStage.show();
+	                 
+	             }
+
 	        } catch (IOException e) {
 	            e.printStackTrace();
-	            Alert alert = new Alert(Alert.AlertType.ERROR);
-	            alert.setTitle("Navigation Error");
-	            alert.setContentText("Error returning to previous page");
-	            alert.showAndWait();
 	        }
 	    }
 

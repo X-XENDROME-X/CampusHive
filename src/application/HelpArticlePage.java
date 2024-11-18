@@ -189,6 +189,7 @@ public class HelpArticlePage implements Initializable {
     @FXML
     private void handleGroupArticlePageAction(ActionEvent event) {
         try {
+        	UserSession.getInstance().addPageToHistory("HelpArticlePage.fxml");
             Parent groupPage = FXMLLoader.load(getClass().getResource("GroupArticlePage.fxml"));
             Scene groupScene = new Scene(groupPage);
             Stage currentStage = (Stage) viewByGroupButton.getScene().getWindow();
@@ -212,23 +213,43 @@ public class HelpArticlePage implements Initializable {
     @FXML
     private void handleBackButtonAction(ActionEvent event) {
         try {
-            // Get the current user session
             UserSession session = UserSession.getInstance();
             Parent homePage;
+            
 
-            // Load the appropriate homepage based on user role
-            if (session != null && session.getRole().equalsIgnoreCase("admin")) {
-                homePage = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
-            } else if (session != null && session.getRole().equalsIgnoreCase("instructor")) {
-                homePage = FXMLLoader.load(getClass().getResource("Instructor_Homepage.fxml"));
-            } else {
-                throw new IOException("User role not recognized");
-            }
+        	 if (session.hasPreviousPage()) {
+                 String previousPage = session.getPreviousPage();
+                 homePage = FXMLLoader.load(getClass().getResource(previousPage));
 
-            Scene homeScene = new Scene(homePage);
-            Stage currentStage = (Stage) BackButton.getScene().getWindow();
-            currentStage.setScene(homeScene);
-            currentStage.show();
+                 System.out.println("Redirecting to: " + previousPage);
+                 
+                 Scene homeScene = new Scene(homePage);
+                 Stage currentStage = (Stage) BackButton.getScene().getWindow();
+                 currentStage.setScene(homeScene);
+                 currentStage.show();
+             } else {
+                 System.out.println("No previous page found.");
+                 String username = null;
+				 String role = null;
+				 String email = null;
+				 UserSession.initializeSession(username, role, email);
+
+                 
+				 if ("admin".equals(role)) {
+					    homePage = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
+				} else if ("instructor".equals(role)) {
+					    homePage = FXMLLoader.load(getClass().getResource("Instructor_Homepage.fxml"));
+				} else {
+					    throw new IOException("User role not recognized");
+				}
+
+                 Scene homeScene = new Scene(homePage);
+                 Stage currentStage = (Stage) BackButton.getScene().getWindow();
+                 currentStage.setScene(homeScene);
+                 currentStage.show();
+                 
+             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

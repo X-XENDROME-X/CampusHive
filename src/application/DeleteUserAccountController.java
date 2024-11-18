@@ -103,17 +103,44 @@ public class DeleteUserAccountController {
     @FXML
     private void handleHomeButtonAction(ActionEvent event) {
         try {
+            UserSession session = UserSession.getInstance();
+            Parent homePage;
+            
 
-            Parent adminHomePage = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
+        	 if (session.hasPreviousPage()) {
+                 String previousPage = session.getPreviousPage();
+                 homePage = FXMLLoader.load(getClass().getResource(previousPage));
 
-            Scene adminHomeScene = new Scene(adminHomePage);
+                 System.out.println("Redirecting to: " + previousPage);
+                 
+                 Scene homeScene = new Scene(homePage);
+                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                 currentStage.setScene(homeScene);
+                 currentStage.show();
+             } else {
+                 System.out.println("No previous page found.");
+                 String role = session.getRole(); // Retrieve role from session if available
+                 if (role == null) {
+                     System.out.println("Role not set in session. Defaulting to SELECTROLE02.fxml.");
+                     homePage = FXMLLoader.load(getClass().getResource("SELECTROLE02.fxml"));
+                 } else if ("admin".equals(role)) {
+                     homePage = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
+                 } else if ("instructor".equals(role)) {
+                     homePage = FXMLLoader.load(getClass().getResource("Instructor_Homepage.fxml"));
+                 } else if ("student".equals(role)) {
+                	 homePage = FXMLLoader.load(getClass().getResource("STUDENTHOMEPAGE.fxml"));
+                 } else {
+                     throw new IOException("User role not recognized");
+                 }
 
-            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                 Scene homeScene = new Scene(homePage);
+                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                 currentStage.setScene(homeScene);
+                 currentStage.show();
+                 
+             }
 
-            currentStage.setScene(adminHomeScene);
-            currentStage.show();
         } catch (IOException e) {
-
             e.printStackTrace();
         }
     }

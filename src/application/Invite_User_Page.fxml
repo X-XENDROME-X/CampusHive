@@ -29,7 +29,7 @@
                   <Font name="Avenir Light" size="29.0" />
                </font>
             </Label>
-            <Button fx:id="Home" layoutX="930.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="52.0" prefWidth="53.0" style="-fx-background-color: #2596be;" textFill="#2596be">
+            <Button fx:id="homeButton" layoutX="930.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="52.0" prefWidth="53.0" style="-fx-background-color: #2596be;" textFill="#2596be">
     		<graphic>
        		<ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
             <image>
