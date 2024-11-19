@@ -14,12 +14,12 @@
  */
 
 package application;
+import java.util.Stack;
 
 // Cache Setup For User Control / Session
-
 public class UserSession {
-
     private static UserSession instance;
+    private Stack<String> navigationHistory = new Stack<>();
     private String username;
     private String role;
     private String email;
@@ -30,15 +30,33 @@ public class UserSession {
         this.email = email;
     }
 
-    public static UserSession getInstance(String username, String role, String email) {
+    // Initialize the UserSession instance
+    public static void initializeSession(String username, String role, String email) {
         if (instance == null) {
             instance = new UserSession(username, role, email);
+        }
+    }
+
+    // Get the existing instance
+    public static UserSession getInstance() {
+        if (instance == null) {
+            throw new IllegalStateException("Session has not been initialized. Call initializeSession first.");
         }
         return instance;
     }
 
-    public static UserSession getInstance() {
-        return instance;
+    public void addPageToHistory(String page) {
+        System.out.println("Navigating from: " + page);
+        navigationHistory.push(page);
+    }
+
+
+    public String getPreviousPage() {
+        return navigationHistory.isEmpty() ? null : navigationHistory.pop();
+    }
+
+    public boolean hasPreviousPage() {
+        return !navigationHistory.isEmpty();
     }
 
     public String getUsername() {
@@ -54,6 +72,7 @@ public class UserSession {
     }
 
     public void cleanUserSession() {
-        instance = null; // Clear session when the user logs out
+        instance = null;
+        navigationHistory.clear();
     }
 }

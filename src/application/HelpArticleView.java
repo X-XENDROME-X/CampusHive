@@ -142,22 +142,8 @@ public class HelpArticleView {
     @FXML
     private void handleBackButtonAction(ActionEvent event) {
     	try {
-    		  UserSession session = UserSession.getInstance();
-	            String userRole = session.getRole();
-	            String destinationPage;
-	            
-	            // Determine destination page based on user role
-	            if (userRole.equalsIgnoreCase("Student")) {
-	                destinationPage = "GroupArticlePage.fxml";
-	            } else if (userRole.equalsIgnoreCase("Admin") || userRole.equalsIgnoreCase("Instructor")) {
-	                destinationPage = "HelpArticlePage.fxml";
-	            } else {
-	                // Default fallback or error handling
-	                throw new IllegalStateException("Invalid user role");
-	            }
-	            
 	            // Load the appropriate FXML
-	            FXMLLoader loader = new FXMLLoader(getClass().getResource(destinationPage));
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource("GroupArticlePage.fxml"));
 	            Parent root = loader.load();
 	            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	            Scene scene = new Scene(root);

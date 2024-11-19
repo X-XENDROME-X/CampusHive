@@ -58,6 +58,7 @@ public class STUDENTHOMEPAGEcontroller {
     @FXML
     private void handleViewingArticles(ActionEvent event) {
         try {
+        	UserSession.getInstance().addPageToHistory("STUDENTHOMEPAGE.fxml");
             Parent HelpArticlePage = FXMLLoader.load(getClass().getResource("GroupArticlePage.fxml"));
             Scene HelpArticleScene = new Scene(HelpArticlePage);
             Stage currentStage = (Stage) back.getScene().getWindow();
@@ -71,6 +72,7 @@ public class STUDENTHOMEPAGEcontroller {
     @FXML
     private void handleGetHelp(ActionEvent event) {
         try {
+        	UserSession.getInstance().addPageToHistory("STUDENTHOMEPAGE.fxml");
             Parent sendMessagePage = FXMLLoader.load(getClass().getResource("SendMessageView.fxml"));
             Scene sendMessageScene = new Scene(sendMessagePage);
             Stage currentStage = (Stage) getHelpButton.getScene().getWindow();

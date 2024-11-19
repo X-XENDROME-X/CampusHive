@@ -35,7 +35,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.SecretKey;
+
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import javafx.application.Platform;
 import javafx.scene.control.TextArea;
@@ -110,7 +115,12 @@ public class HelpArticlePage implements Initializable {
         initializeArticleGroups();
 
         // Load existing articles from database
-        loadArticles();
+        try {
+			loadArticles();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         // Setup Enter key handling
          setupEnterKeyHandling();
@@ -132,28 +142,34 @@ public class HelpArticlePage implements Initializable {
     }
     
     private void initializeDatabase() {
-        String createTableSQL = "CREATE TABLE IF NOT EXISTS articles (" +
-            "id BIGINT PRIMARY KEY, " +
-            "level VARCHAR(20), " +
-            "title VARCHAR(255), " +
-            "description TEXT, " +
-            "keywords VARCHAR(255), " +
-            "body TEXT, " +
-            "isSensitive BOOLEAN, " +
-            "groups VARCHAR(255)" +
-            ");";
-        
-        String alterTableSQL = "ALTER TABLE articles ADD COLUMN IF NOT EXISTS referenceLinks VARCHAR(255);";
+        String createArticlesTableSQL = "CREATE TABLE IF NOT EXISTS articles (" +
+                "id BIGINT PRIMARY KEY, " +
+                "level VARCHAR(20), " +
+                "title VARCHAR(255), " +
+                "description TEXT, " +
+                "keywords VARCHAR(255), " +
+                "body TEXT, " +
+                "isSensitive BOOLEAN, " +
+                "groups VARCHAR(255), " +
+                "referenceLinks VARCHAR(255)" +
+                ");";
+
+        String createEncryptionTableSQL = "CREATE TABLE IF NOT EXISTS article_encryption (" +
+                "article_id BIGINT PRIMARY KEY, " +
+                "encryption_key VARCHAR(512) NOT NULL, " +
+                "FOREIGN KEY (article_id) REFERENCES articles(id)" +
+                ");";
 
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              Statement statement = connection.createStatement()) {
-            statement.execute(createTableSQL);
-            statement.execute(alterTableSQL);
+            statement.execute(createArticlesTableSQL);
+            statement.execute(createEncryptionTableSQL); // Ensure encryption table is created
             System.out.println("Database initialized successfully.");
         } catch (SQLException e) {
             System.err.println("Error initializing database: " + e.getMessage());
         }
     }
+
 
     private void setupEnterKeyHandling() {
         // Use Platform.runLater to ensure fields are properly focused after loading
@@ -186,8 +202,10 @@ public class HelpArticlePage implements Initializable {
 //        newLinkField.setOnAction(event -> handleAddLink()); // Trigger link addition on Enter
    }
 
+    @FXML
     private void handleGroupArticlePageAction(ActionEvent event) {
         try {
+        	UserSession.getInstance().addPageToHistory("HelpArticlePage.fxml");
             Parent groupPage = FXMLLoader.load(getClass().getResource("GroupArticlePage.fxml"));
             Scene groupScene = new Scene(groupPage);
             Stage currentStage = (Stage) viewByGroupButton.getScene().getWindow();
@@ -267,7 +285,14 @@ public class HelpArticlePage implements Initializable {
         newArticleButton.setOnAction(e -> handleNewArticle());
 
         saveButton.setOnAction(e -> handleSave());
-        deleteButton.setOnAction(e -> handleDelete());
+        deleteButton.setOnAction(e -> {
+			try {
+				handleDelete();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
         cancelButton.setOnAction(e -> handleCancel());
 
         // Article selection
@@ -317,7 +342,7 @@ public class HelpArticlePage implements Initializable {
     }
 
     @FXML
-    private void handleDelete() {
+    private void handleDelete() throws Exception {
         HelpArticle selectedArticle = articleList.getSelectionModel().getSelectedItem();
         if (selectedArticle != null) {
             if (confirmDelete()) {
@@ -420,16 +445,15 @@ public class HelpArticlePage implements Initializable {
         alert.setContentText("Are you sure you want to delete this article?");
         return alert.showAndWait().get() == ButtonType.OK;
     }
-
+   
     private void loadArticles() {
         String query = "SELECT * FROM articles ORDER BY id";
+        String encryptionQuery = "SELECT encryption_key FROM article_encryption WHERE article_id = ?";
         articles.clear();
 
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
-
-            System.out.println("Loading articles from the database...");  // Debug print
 
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");
@@ -440,30 +464,49 @@ public class HelpArticlePage implements Initializable {
                 String body = resultSet.getString("body");
                 String referenceLinks = resultSet.getString("referenceLinks");
                 boolean isSensitive = resultSet.getBoolean("isSensitive");
-                String groups = resultSet.getString("groups");  // Retrieve groups column
-                
+                String groups = resultSet.getString("groups");
+
+                if (isSensitive) {
+                    try (PreparedStatement encStmt = connection.prepareStatement(encryptionQuery)) {
+                        encStmt.setLong(1, id);
+                        ResultSet encResult = encStmt.executeQuery();
+
+                        if (encResult.next()) {
+                            String encryptionKey = encResult.getString("encryption_key");
+
+                            if (encryptionKey != null && body != null) {
+                                try {
+                                    body = EncryptionManager.decrypt(body, encryptionKey);
+                                } catch (Exception ex) {
+                                    System.err.println("Decryption failed for article ID " + id + ": " + ex.getMessage());
+                                    body = "[Decryption Error: Unable to retrieve article content]";
+                                }
+                            }
+                        }
+                    }
+                }
+
                 HelpArticle article = new HelpArticle(id, level, title, description, keywords, body, referenceLinks, isSensitive, groups);
                 articles.add(article);
             }
-
-            System.out.println("Articles loaded successfully. Count: " + articles.size());  // Debug print
         } catch (SQLException e) {
             showMessage("Error loading articles: " + e.getMessage(), true);
+            e.printStackTrace();
         }
     }
-
-
- // Update the saveArticle method to handle both insert and update operations
+  
     public void saveArticle(HelpArticle article) {
-        // First check if the article exists
         String checkSQL = "SELECT COUNT(*) FROM articles WHERE id = ?";
         String updateSQL = "UPDATE articles SET level = ?, title = ?, description = ?, keywords = ?, " +
-                          "body = ?, referenceLinks = ?, isSensitive = ?, groups = ? WHERE id = ?";
+                           "body = ?, referenceLinks = ?, isSensitive = ?, groups = ? WHERE id = ?";
         String insertSQL = "INSERT INTO articles (id, level, title, description, keywords, body, " +
-                          "referenceLinks, isSensitive, groups) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                           "referenceLinks, isSensitive, groups) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        String encryptionCheckSQL = "SELECT COUNT(*) FROM article_encryption WHERE article_id = ?";
+        String encryptionInsertSQL = "INSERT INTO article_encryption (article_id, encryption_key) VALUES (?, ?)";
+        String encryptionUpdateSQL = "UPDATE article_encryption SET encryption_key = ? WHERE article_id = ?";
 
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
-            // Check if article exists
             boolean articleExists = false;
             try (PreparedStatement checkStmt = connection.prepareStatement(checkSQL)) {
                 checkStmt.setLong(1, article.getId());
@@ -473,10 +516,8 @@ public class HelpArticlePage implements Initializable {
                 }
             }
 
-            // Prepare the appropriate statement based on whether the article exists
             PreparedStatement stmt;
             if (articleExists) {
-                // Update existing article
                 stmt = connection.prepareStatement(updateSQL);
                 stmt.setString(1, article.getLevel());
                 stmt.setString(2, article.getTitle());
@@ -488,7 +529,6 @@ public class HelpArticlePage implements Initializable {
                 stmt.setString(8, article.getGroups());
                 stmt.setLong(9, article.getId());
             } else {
-                // Insert new article
                 stmt = connection.prepareStatement(insertSQL);
                 stmt.setLong(1, article.getId());
                 stmt.setString(2, article.getLevel());
@@ -500,17 +540,49 @@ public class HelpArticlePage implements Initializable {
                 stmt.setBoolean(8, article.isSensitive());
                 stmt.setString(9, article.getGroups());
             }
-
             stmt.executeUpdate();
-            System.out.println(articleExists ? "Article updated successfully." : "Article saved successfully.");
-            showMessage(articleExists ? "Article updated successfully" : "Article saved successfully", false);
+
+            if (article.isSensitive()) {
+                boolean encryptionExists = false;
+                String encryptedBody = article.getBody();
+                String encryptionKey = "CustomKey123"; // Example: Replace with your actual key logic
+
+                try {
+                    encryptedBody = EncryptionManager.encrypt(article.getBody(), encryptionKey);
+                    article.setBody(encryptedBody); // Store encrypted data
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    showMessage("Error encrypting article: " + e.getMessage(), true);
+                    return;
+                }
+
+                try (PreparedStatement encCheckStmt = connection.prepareStatement(encryptionCheckSQL)) {
+                    encCheckStmt.setLong(1, article.getId());
+                    ResultSet encRs = encCheckStmt.executeQuery();
+                    if (encRs.next()) {
+                        encryptionExists = encRs.getInt(1) > 0;
+                    }
+                }
+
+                PreparedStatement encStmt;
+                if (encryptionExists) {
+                    encStmt = connection.prepareStatement(encryptionUpdateSQL);
+                    encStmt.setString(1, encryptionKey);
+                    encStmt.setLong(2, article.getId());
+                } else {
+                    encStmt = connection.prepareStatement(encryptionInsertSQL);
+                    encStmt.setLong(1, article.getId());
+                    encStmt.setString(2, encryptionKey);
+                }
+                encStmt.executeUpdate();
+            }
         } catch (SQLException e) {
             showMessage("Error saving article: " + e.getMessage(), true);
             e.printStackTrace();
         }
     }
 
-    
+
     public void deleteArticle(HelpArticle article) {
         String deleteSQL = "DELETE FROM articles WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
@@ -522,7 +594,7 @@ public class HelpArticlePage implements Initializable {
         }
     }
 
-    private void updateArticleList() {
+    private void updateArticleList() throws Exception {
         loadArticles();
     }
 

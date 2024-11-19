@@ -78,6 +78,7 @@ public class Admin_Home_PageController {
     @FXML
     private void handleHelpArticleManagement(ActionEvent event) {
         try {
+            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent HelpArticlePage = FXMLLoader.load(getClass().getResource("HelpArticlePage.fxml"));
 
@@ -95,6 +96,7 @@ public class Admin_Home_PageController {
     @FXML
     private void handleResetUserAction(ActionEvent event) {
         try {
+            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent resetUserAccountPage = FXMLLoader.load(getClass().getResource("ResetPassOTP.fxml"));
 
@@ -112,6 +114,7 @@ public class Admin_Home_PageController {
     @FXML
     private void handleInviteUserAction(ActionEvent event) {
         try {
+            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent inviteUserPage = FXMLLoader.load(getClass().getResource("Invite_User_Page.fxml"));
 
@@ -129,6 +132,7 @@ public class Admin_Home_PageController {
     @FXML
     private void handleListUsersAction(ActionEvent event) {
         try {
+            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent userListPage = FXMLLoader.load(getClass().getResource("ListofUsers.fxml"));
 
@@ -146,6 +150,7 @@ public class Admin_Home_PageController {
     @FXML
     private void handleDeleteUserAction(ActionEvent event) {
         try {
+            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent deleteUserPage = FXMLLoader.load(getClass().getResource("Delete User Account.fxml"));
 
@@ -163,6 +168,7 @@ public class Admin_Home_PageController {
     @FXML
     private void handleEditRoleAction(ActionEvent event) {
         try {
+            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent editRolePage = FXMLLoader.load(getClass().getResource("Add_Remove_UserRole.fxml"));
 
@@ -262,6 +268,7 @@ public class Admin_Home_PageController {
 
     // Helper method to reduce code duplication
     private void navigateToPage(String fxmlFile, ActionEvent event) throws IOException {
+        UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
         Parent page = FXMLLoader.load(getClass().getResource(fxmlFile));
         Scene scene = new Scene(page);
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -123,6 +123,7 @@ public class InstructorHomepageController {
 
     private void navigateToPage(String fxmlFile, ActionEvent event) {
         try {
+            UserSession.getInstance().addPageToHistory("Instructor_Homepage.fxml");
             Parent page = FXMLLoader.load(getClass().getResource(fxmlFile));
             Scene scene = new Scene(page);
             Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

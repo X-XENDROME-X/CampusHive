@@ -72,38 +72,41 @@ public class SpecializedAdminsController {
     private void handleHomeButtonAction(ActionEvent event) {
         try {
             UserSession session = UserSession.getInstance();
-            if (session == null) {
-                showError("No active session found!");
-                return;
-            }
+            Parent homePage;
+            
 
-            String userRole = session.getRole();
-            String destinationPage;
+             if (session.hasPreviousPage()) {
+                 String previousPage = session.getPreviousPage();
+                 homePage = FXMLLoader.load(getClass().getResource(previousPage));
 
-            // Determine destination page based on user role
-            if (userRole.equalsIgnoreCase("Instructor")) {
-                destinationPage = "Instructor_Homepage.fxml";
-            } else if (userRole.equalsIgnoreCase("Admin")) {
-                destinationPage = "Admin_Home_Page.fxml";
-            } else {
-                // Handle unexpected role
-                showError("Invalid user role: " + userRole);
-                return;
-            }
+                 System.out.println("Redirecting to: " + previousPage);
+                 Scene homeScene = new Scene(homePage);
+                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                 currentStage.setScene(homeScene);
+                 currentStage.show();
+             } else {
+                 System.out.println("No previous page found.");
+                 String role = session.getRole(); 
+                 if (role == null) {
+                     System.out.println("Role not set in session. Defaulting to SELECTROLE02.fxml.");
+                     homePage = FXMLLoader.load(getClass().getResource("SELECTROLE02.fxml"));
+                 } else if ("admin".equals(role)) {
+                     homePage = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
+                 } else if ("instructor".equals(role)) {
+                     homePage = FXMLLoader.load(getClass().getResource("Instructor_Homepage.fxml"));
+                 } else if ("student".equals(role)) {
+                     homePage = FXMLLoader.load(getClass().getResource("STUDENTHOMEPAGE.fxml"));
+                 } else {
+                     throw new IOException("User role not recognized");
+                 }
+                 Scene homeScene = new Scene(homePage);
+                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                 currentStage.setScene(homeScene);
+                 currentStage.show();
+             }
 
-            // Load the appropriate FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(destinationPage));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            showError("Error navigating to home page: " + e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-            showError("Unexpected error: " + e.getMessage());
         }
     }
 }

@@ -78,7 +78,10 @@ public class LoginController {
                     String role = userData[7]; 
                     boolean isActive = Boolean.parseBoolean(userData[6]); 
 
-                    UserSession.getInstance(username, role, email); 
+                    UserSession.initializeSession(username, role, email);
+                    UserSession session = UserSession.getInstance();
+                    System.out.println("Welcome, " + session.getUsername());
+
 
                     if (email.isEmpty()) { 
 
