@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InstructorHomepageController">
+   <children>
+      <AnchorPane layoutX="-30.0" prefHeight="720.0" prefWidth="1080.0">
+         <children>
+            <ImageView fx:id="Logo" fitHeight="123.0" fitWidth="145.0" layoutX="122.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/CampusHive_Logo.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="Heading" layoutX="449.0" layoutY="37.0" style="-fx-font-: #0171bc;" text="Instructor Home " textFill="#83550c">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Button fx:id="LogOutButton" layoutX="951.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleLogOutAction" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #b23b3b;" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Button>
+            <Button fx:id="back" layoutX="827.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="50.0" prefWidth="100.0" style="-fx-background-color: #0171bc;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Light" size="24.0" />
+               </font>
+            </Button>
+            <Label fx:id="Welcome" layoutX="425.0" layoutY="102.0" prefHeight="29.0" prefWidth="203.0" style="-fx-font-: #0171bc;" text="Welcome, " textFill="#47ae6a">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="InstructorName" layoutX="540.0" layoutY="102.0" prefHeight="31.0" prefWidth="279.0" style="-fx-font-: #0171bc;" text="[Instructor Name]!" textFill="#47ae6a">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+
+            <VBox alignment="CENTER" layoutX="412.0" layoutY="153.0" prefHeight="320.0" prefWidth="353.0" spacing="20.0">
+               <children>
+                  <Button fx:id="HelpArticleManagementButton" mnemonicParsing="false" onAction="#handleHelpArticleManagement" prefHeight="51.0" prefWidth="310.0" style="-fx-background-color: #2596be;" text="Help Article Management" textFill="WHITE">
+                     <font>
+                        <Font name="Avenir Light" size="24.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="manageViewingRightsButton" mnemonicParsing="false" onAction="#handleManageViewingRights" prefHeight="51.0" prefWidth="310.0" style="-fx-background-color: #47ae6a;" text="Manage Viewing Rights" textFill="WHITE">
+                     <font>
+                        <Font name="Avenir Light" size="24.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="manageAdminRightsButton" mnemonicParsing="false" onAction="#handleManageAdminRights" prefHeight="51.0" prefWidth="310.0" style="-fx-background-color: #f39c12;" text="Manage Admin Rights" textFill="WHITE">
+                     <font>
+                        <Font name="Avenir Light" size="24.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="viewStudentsButton" mnemonicParsing="false" onAction="#handleViewStudents" prefHeight="51.0" prefWidth="310.0" style="-fx-background-color: #9b59b6;" text="View Specialized Students" textFill="WHITE">
+                     <font>
+                        <Font name="Avenir Light" size="24.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="viewInstructorsButton" mnemonicParsing="false" onAction="#handleViewInstructors" prefHeight="51.0" prefWidth="310.0" style="-fx-background-color: #e67e22;" text="View Specialized Instructors" textFill="WHITE">
+                     <font>
+                        <Font name="Avenir Light" size="22.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="viewAdminsButton" mnemonicParsing="false" onAction="#handleViewAdmins" prefHeight="51.0" prefWidth="310.0" style="-fx-background-color: #16a085;" text="View Specialized Admins" textFill="WHITE">
+                     <font>
+                        <Font name="Avenir Light" size="24.0" />
+                     </font>
+                  </Button>
+                 
+					<Button fx:id="viewGenericMessagesButton" mnemonicParsing="false" onAction="#handleViewGenericMessages" prefHeight="51.0" prefWidth="310.0" style="-fx-background-color: #1abc9c;" text="View Generic Messages" textFill="WHITE">
+					    <font>
+					        <Font name="Avenir Light" size="24.0" />
+					    </font>
+					</Button>
+					
+					<Button fx:id="viewSpecificMessagesButton" mnemonicParsing="false" onAction="#handleViewSpecificMessages" prefHeight="51.0" prefWidth="310.0" style="-fx-background-color: #3498db;" text="View Specific Messages" textFill="WHITE">
+					    <font>
+					        <Font name="Avenir Light" size="24.0" />
+					    </font>
+					</Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
