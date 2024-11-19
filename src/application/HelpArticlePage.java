@@ -469,10 +469,10 @@ public class HelpArticlePage implements Initializable {
                 String iv = resultSet.getString("iv");
 
                 if (isSensitive && encryptionKey != null && iv != null) {
-                    // Decrypt the article body
-                    SecretKey key = EncryptionManager.stringToKey(encryptionKey);
-                    byte[] ivBytes = Base64.getDecoder().decode(iv);
-                    body = EncryptionManager.decrypt(body, key, ivBytes);
+//                    // Decrypt the article body
+//                    SecretKey key = EncryptionManager.stringToKey(encryptionKey);
+//                    byte[] ivBytes = Base64.getDecoder().decode(iv);
+//                    body = EncryptionManager.decrypt(body, key, ivBytes);
                 }
 
                 HelpArticle article = new HelpArticle(id, level, title, description, keywords, body, referenceLinks, isSensitive, groups);
@@ -508,12 +508,12 @@ public class HelpArticlePage implements Initializable {
 
             if (article.isSensitive()) {
                 // Encrypt the article body
-                SecretKey key = EncryptionManager.generateKey();
-                byte[] ivBytes = EncryptionManager.generateIV();
-                encryptedBody = EncryptionManager.encrypt(article.getBody(), key, ivBytes);
-
-                encryptionKey = EncryptionManager.keyToString(key);
-                iv = Base64.getEncoder().encodeToString(ivBytes);
+//                SecretKey key = EncryptionManager.generateKey();
+//                byte[] ivBytes = EncryptionManager.generateIV();
+//                encryptedBody = EncryptionManager.encrypt(article.getBody(), key, ivBytes);
+//
+//                encryptionKey = EncryptionManager.keyToString(key);
+//                iv = Base64.getEncoder().encodeToString(ivBytes);
             }
 
             PreparedStatement stmt = articleExists ? connection.prepareStatement(updateSQL) : connection.prepareStatement(insertSQL);
