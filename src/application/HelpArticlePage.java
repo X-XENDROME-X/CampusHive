@@ -35,7 +35,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
+
+import javax.crypto.SecretKey;
+
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import javafx.application.Platform;
 import javafx.scene.control.TextArea;
@@ -139,16 +143,16 @@ public class HelpArticlePage implements Initializable {
             "description TEXT, " +
             "keywords VARCHAR(255), " +
             "body TEXT, " +
+            "referenceLinks VARCHAR(255), " +
             "isSensitive BOOLEAN, " +
-            "groups VARCHAR(255)" +
+            "groups VARCHAR(255), " +
+            "encryptionKey VARCHAR(512), " +
+            "iv VARCHAR(256)" +
             ");";
-        
-        String alterTableSQL = "ALTER TABLE articles ADD COLUMN IF NOT EXISTS referenceLinks VARCHAR(255);";
 
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              Statement statement = connection.createStatement()) {
             statement.execute(createTableSQL);
-            statement.execute(alterTableSQL);
             System.out.println("Database initialized successfully.");
         } catch (SQLException e) {
             System.err.println("Error initializing database: " + e.getMessage());
@@ -451,8 +455,6 @@ public class HelpArticlePage implements Initializable {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
 
-            System.out.println("Loading articles from the database...");  // Debug print
-
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");
                 String level = resultSet.getString("level");
@@ -462,30 +464,35 @@ public class HelpArticlePage implements Initializable {
                 String body = resultSet.getString("body");
                 String referenceLinks = resultSet.getString("referenceLinks");
                 boolean isSensitive = resultSet.getBoolean("isSensitive");
-                String groups = resultSet.getString("groups");  // Retrieve groups column
-                
+                String groups = resultSet.getString("groups");
+                String encryptionKey = resultSet.getString("encryptionKey");
+                String iv = resultSet.getString("iv");
+
+                if (isSensitive && encryptionKey != null && iv != null) {
+                    // Decrypt the article body
+                    SecretKey key = EncryptionManager.stringToKey(encryptionKey);
+                    byte[] ivBytes = Base64.getDecoder().decode(iv);
+                    body = EncryptionManager.decrypt(body, key, ivBytes);
+                }
+
                 HelpArticle article = new HelpArticle(id, level, title, description, keywords, body, referenceLinks, isSensitive, groups);
                 articles.add(article);
             }
-
-            System.out.println("Articles loaded successfully. Count: " + articles.size());  // Debug print
-        } catch (SQLException e) {
+        } catch (Exception e) {
             showMessage("Error loading articles: " + e.getMessage(), true);
+            e.printStackTrace();
         }
     }
 
-
  // Update the saveArticle method to handle both insert and update operations
     public void saveArticle(HelpArticle article) {
-        // First check if the article exists
         String checkSQL = "SELECT COUNT(*) FROM articles WHERE id = ?";
         String updateSQL = "UPDATE articles SET level = ?, title = ?, description = ?, keywords = ?, " +
-                          "body = ?, referenceLinks = ?, isSensitive = ?, groups = ? WHERE id = ?";
+                           "body = ?, referenceLinks = ?, isSensitive = ?, groups = ?, encryptionKey = ?, iv = ? WHERE id = ?";
         String insertSQL = "INSERT INTO articles (id, level, title, description, keywords, body, " +
-                          "referenceLinks, isSensitive, groups) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                           "referenceLinks, isSensitive, groups, encryptionKey, iv) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
-            // Check if article exists
             boolean articleExists = false;
             try (PreparedStatement checkStmt = connection.prepareStatement(checkSQL)) {
                 checkStmt.setLong(1, article.getId());
@@ -495,42 +502,46 @@ public class HelpArticlePage implements Initializable {
                 }
             }
 
-            // Prepare the appropriate statement based on whether the article exists
-            PreparedStatement stmt;
+            String encryptedBody = article.getBody();
+            String encryptionKey = null;
+            String iv = null;
+
+            if (article.isSensitive()) {
+                // Encrypt the article body
+                SecretKey key = EncryptionManager.generateKey();
+                byte[] ivBytes = EncryptionManager.generateIV();
+                encryptedBody = EncryptionManager.encrypt(article.getBody(), key, ivBytes);
+
+                encryptionKey = EncryptionManager.keyToString(key);
+                iv = Base64.getEncoder().encodeToString(ivBytes);
+            }
+
+            PreparedStatement stmt = articleExists ? connection.prepareStatement(updateSQL) : connection.prepareStatement(insertSQL);
+            stmt.setString(1, article.getLevel());
+            stmt.setString(2, article.getTitle());
+            stmt.setString(3, article.getDescription());
+            stmt.setString(4, article.getKeywords());
+            stmt.setString(5, encryptedBody);
+            stmt.setString(6, article.getReferenceLinks());
+            stmt.setBoolean(7, article.isSensitive());
+            stmt.setString(8, article.getGroups());
+            stmt.setString(9, encryptionKey);
+            stmt.setString(10, iv);
+
             if (articleExists) {
-                // Update existing article
-                stmt = connection.prepareStatement(updateSQL);
-                stmt.setString(1, article.getLevel());
-                stmt.setString(2, article.getTitle());
-                stmt.setString(3, article.getDescription());
-                stmt.setString(4, article.getKeywords());
-                stmt.setString(5, article.getBody());
-                stmt.setString(6, article.getReferenceLinks());
-                stmt.setBoolean(7, article.isSensitive());
-                stmt.setString(8, article.getGroups());
-                stmt.setLong(9, article.getId());
+                stmt.setLong(11, article.getId());
             } else {
-                // Insert new article
-                stmt = connection.prepareStatement(insertSQL);
                 stmt.setLong(1, article.getId());
-                stmt.setString(2, article.getLevel());
-                stmt.setString(3, article.getTitle());
-                stmt.setString(4, article.getDescription());
-                stmt.setString(5, article.getKeywords());
-                stmt.setString(6, article.getBody());
-                stmt.setString(7, article.getReferenceLinks());
-                stmt.setBoolean(8, article.isSensitive());
-                stmt.setString(9, article.getGroups());
             }
 
             stmt.executeUpdate();
             System.out.println(articleExists ? "Article updated successfully." : "Article saved successfully.");
-            showMessage(articleExists ? "Article updated successfully" : "Article saved successfully", false);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             showMessage("Error saving article: " + e.getMessage(), true);
             e.printStackTrace();
         }
     }
+
 
     
     public void deleteArticle(HelpArticle article) {
