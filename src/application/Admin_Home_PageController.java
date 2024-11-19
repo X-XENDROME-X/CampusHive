@@ -47,6 +47,14 @@ public class Admin_Home_PageController {
 
     @FXML 
     private Button back;
+    
+    @FXML private Button manageViewingRights;
+    @FXML private Button manageAdminRights;
+    @FXML private Button viewSpecializedStudents;
+    @FXML private Button viewSpecializedInstructors;
+    @FXML private Button viewSpecializedAdmins;
+    @FXML private Button viewGenericMessages;
+    @FXML private Button viewSpecificMessages;
 
     @FXML
     private void handleLogoutAction(ActionEvent event) {
@@ -70,7 +78,6 @@ public class Admin_Home_PageController {
     @FXML
     private void handleHelpArticleManagement(ActionEvent event) {
         try {
-            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent HelpArticlePage = FXMLLoader.load(getClass().getResource("HelpArticlePage.fxml"));
 
@@ -88,7 +95,6 @@ public class Admin_Home_PageController {
     @FXML
     private void handleResetUserAction(ActionEvent event) {
         try {
-            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent resetUserAccountPage = FXMLLoader.load(getClass().getResource("ResetPassOTP.fxml"));
 
@@ -106,7 +112,6 @@ public class Admin_Home_PageController {
     @FXML
     private void handleInviteUserAction(ActionEvent event) {
         try {
-            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent inviteUserPage = FXMLLoader.load(getClass().getResource("Invite_User_Page.fxml"));
 
@@ -124,7 +129,6 @@ public class Admin_Home_PageController {
     @FXML
     private void handleListUsersAction(ActionEvent event) {
         try {
-            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent userListPage = FXMLLoader.load(getClass().getResource("ListofUsers.fxml"));
 
@@ -142,7 +146,6 @@ public class Admin_Home_PageController {
     @FXML
     private void handleDeleteUserAction(ActionEvent event) {
         try {
-            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent deleteUserPage = FXMLLoader.load(getClass().getResource("Delete User Account.fxml"));
 
@@ -160,7 +163,6 @@ public class Admin_Home_PageController {
     @FXML
     private void handleEditRoleAction(ActionEvent event) {
         try {
-            UserSession.getInstance().addPageToHistory("Admin_Home_Page.fxml");
 
             Parent editRolePage = FXMLLoader.load(getClass().getResource("Add_Remove_UserRole.fxml"));
 
@@ -190,5 +192,80 @@ public class Admin_Home_PageController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    // New handlers for the additional buttons
+    @FXML
+    private void handleManageViewingRights(ActionEvent event) {
+        try {
+            navigateToPage("ManageViewingRightsView.fxml", event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleManageAdminRights(ActionEvent event) {
+        try {
+            navigateToPage("ManageAdminRightsView.fxml", event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleViewSpecializedStudents(ActionEvent event) {
+        try {
+            navigateToPage("SpecializedStudentsView.fxml", event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleViewSpecializedInstructors(ActionEvent event) {
+        try {
+            navigateToPage("SpecializedInstructorsView.fxml", event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleViewSpecializedAdmins(ActionEvent event) {
+        try {
+            navigateToPage("SpecializedAdminsView.fxml", event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void handleViewGenericMessages(ActionEvent event) {
+        try {
+            navigateToPage("GenericMessagesView.fxml", event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleViewSpecificMessages(ActionEvent event) {
+        try {
+            navigateToPage("SpecificMessagesView.fxml", event);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    // Helper method to reduce code duplication
+    private void navigateToPage(String fxmlFile, ActionEvent event) throws IOException {
+        Parent page = FXMLLoader.load(getClass().getResource(fxmlFile));
+        Scene scene = new Scene(page);
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.setScene(scene);
+        currentStage.show();
     }
 }

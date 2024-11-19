@@ -1,5 +1,5 @@
-2024-11-16 17:51:17.873389-07:00 database: flush
-org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: /Users/pranj/Documents/eclipse-workspace/CampusHive/data/users/userdb.mv.db [2.3.232/7]" [50000-232]
+2024-11-18 19:10:46.296186-07:00 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: /Users/bharathgowda/ASU-CSE360/Phase_3/data/users/userdb.mv.db [2.3.232/7]" [50000-232]
 	at com.h2database@2.3.232/org.h2.message.DbException.get(DbException.java:212)
 	at com.h2database@2.3.232/org.h2.message.DbException.convert(DbException.java:407)
 	at com.h2database@2.3.232/org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
@@ -25,19 +25,19 @@ org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
 	at javafx.graphics@21.0.4/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
 	at javafx.graphics@21.0.4/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: /Users/pranj/Documents/eclipse-workspace/CampusHive/data/users/userdb.mv.db [2.3.232/7]" [50000-232]
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: /Users/bharathgowda/ASU-CSE360/Phase_3/data/users/userdb.mv.db [2.3.232/7]" [50000-232]
 	at com.h2database@2.3.232/org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
 	at com.h2database@2.3.232/org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 25 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: /Users/pranj/Documents/eclipse-workspace/CampusHive/data/users/userdb.mv.db [2.3.232/7]
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: /Users/bharathgowda/ASU-CSE360/Phase_3/data/users/userdb.mv.db [2.3.232/7]
 	at com.h2database@2.3.232/org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
 	at com.h2database@2.3.232/org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
 	at com.h2database@2.3.232/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
 	at com.h2database@2.3.232/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at com.h2database@2.3.232/org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 19 more
-2024-11-16 17:51:17.877933-07:00 database: flush
-org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: /Users/pranj/Documents/eclipse-workspace/CampusHive/data/users/userdb.mv.db [2.3.232/7]" [50000-232]
+2024-11-18 19:10:46.301803-07:00 database: flush
+org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The file is locked: /Users/bharathgowda/ASU-CSE360/Phase_3/data/users/userdb.mv.db [2.3.232/7]" [50000-232]
 	at com.h2database@2.3.232/org.h2.message.DbException.get(DbException.java:212)
 	at com.h2database@2.3.232/org.h2.message.DbException.convert(DbException.java:407)
 	at com.h2database@2.3.232/org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
@@ -63,11 +63,11 @@ org.h2.message.DbException: General error: "org.h2.mvstore.MVStoreException: The
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
 	at javafx.graphics@21.0.4/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:455)
 	at javafx.graphics@21.0.4/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java:95)
-Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: /Users/pranj/Documents/eclipse-workspace/CampusHive/data/users/userdb.mv.db [2.3.232/7]" [50000-232]
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: General error: "org.h2.mvstore.MVStoreException: The file is locked: /Users/bharathgowda/ASU-CSE360/Phase_3/data/users/userdb.mv.db [2.3.232/7]" [50000-232]
 	at com.h2database@2.3.232/org.h2.message.DbException.getJdbcSQLException(DbException.java:566)
 	at com.h2database@2.3.232/org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 25 more
-Caused by: org.h2.mvstore.MVStoreException: The file is locked: /Users/pranj/Documents/eclipse-workspace/CampusHive/data/users/userdb.mv.db [2.3.232/7]
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: /Users/bharathgowda/ASU-CSE360/Phase_3/data/users/userdb.mv.db [2.3.232/7]
 	at com.h2database@2.3.232/org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
 	at com.h2database@2.3.232/org.h2.mvstore.SingleFileStore.lockFileChannel(SingleFileStore.java:143)
 	at com.h2database@2.3.232/org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:117)
