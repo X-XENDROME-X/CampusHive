@@ -449,6 +449,42 @@ public class HelpArticlePage implements Initializable {
     public static String generateEncryptionKey() {
         return Base64.getEncoder().encodeToString(java.util.UUID.randomUUID().toString().getBytes());
     }
+    
+    private void printDatabaseContent() {
+        String articlesQuery = "SELECT * FROM articles";
+        String encryptionQuery = "SELECT * FROM article_encryption";
+
+        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+             Statement stmt = connection.createStatement()) {
+            System.out.println("----- Articles Table -----");
+            try (ResultSet rs = stmt.executeQuery(articlesQuery)) {
+                while (rs.next()) {
+                    System.out.println("ID: " + rs.getLong("id"));
+                    System.out.println("Level: " + rs.getString("level"));
+                    System.out.println("Title: " + rs.getString("title"));
+                    System.out.println("Description: " + rs.getString("description"));
+                    System.out.println("Keywords: " + rs.getString("keywords"));
+                    System.out.println("Body: " + rs.getString("body"));
+                    System.out.println("Sensitive: " + rs.getBoolean("isSensitive"));
+                    System.out.println("Groups: " + rs.getString("groups"));
+                    System.out.println("Links: " + rs.getString("referenceLinks"));
+                    System.out.println("---------------------------");
+                }
+            }
+
+            System.out.println("----- Article Encryption Table -----");
+            try (ResultSet rs = stmt.executeQuery(encryptionQuery)) {
+                while (rs.next()) {
+                    System.out.println("Article ID: " + rs.getLong("article_id"));
+                    System.out.println("Encryption Key: " + rs.getString("encryption_key"));
+                    System.out.println("---------------------------");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error printing database content: " + e.getMessage());
+        }
+    }
+
 
     public void saveArticle(HelpArticle article) {
         String checkSQL = "SELECT COUNT(*) FROM articles WHERE id = ?";
@@ -467,6 +503,13 @@ public class HelpArticlePage implements Initializable {
                 }
             }
 
+            // Encrypt if sensitive
+            if (article.isSensitive()) {
+                String encryptedBody = EncryptionManager.encrypt(article.getBody(), "CustomKey123");
+                System.out.println("Encrypted Body Before Saving: " + encryptedBody);
+                article.setBody(encryptedBody); // Save the encrypted body
+            }
+            
             PreparedStatement stmt;
             if (articleExists) {
                 stmt = connection.prepareStatement(updateSQL);
@@ -492,18 +535,14 @@ public class HelpArticlePage implements Initializable {
                 stmt.setString(9, article.getGroups());
             }
 
-            // Encrypt if sensitive
-            if (article.isSensitive()) {
-                String encryptedBody = EncryptionManager.encrypt(article.getBody(), "CustomKey123");
-                System.out.println("Encrypted Body Before Saving: " + encryptedBody);
-                article.setBody(encryptedBody); // Save the encrypted body
-            }
 
 
             stmt.executeUpdate();
+            printDatabaseContent(); // Debug the database content
         } catch (SQLException e) {
             showMessage("Error saving article: " + e.getMessage(), true);
             e.printStackTrace();
+            printDatabaseContent(); // Debug the database content.
         }
     }
 
@@ -532,18 +571,21 @@ public class HelpArticlePage implements Initializable {
                     try {
                         body = EncryptionManager.decrypt(body, "CustomKey123");
                     } catch (Exception ex) {
-                        System.err.println("Decryption failed for article ID " + id + ": " + ex.getMessage());
-                        body = "[Decryption Error: Unable to retrieve article content]";
+                        System.err.println(id + ex.getMessage());
                     }
                 }
 
 
                 HelpArticle article = new HelpArticle(id, level, title, description, keywords, body, referenceLinks, isSensitive, groups);
                 articles.add(article);
+                printDatabaseContent(); // Debug the database content.
+
             }
         } catch (SQLException e) {
             showMessage("Error loading articles: " + e.getMessage(), true);
             e.printStackTrace();
+            printDatabaseContent(); // Debug the database content.
+
         }
     }
 
