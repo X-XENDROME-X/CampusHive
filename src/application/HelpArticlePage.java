@@ -445,66 +445,17 @@ public class HelpArticlePage implements Initializable {
         alert.setContentText("Are you sure you want to delete this article?");
         return alert.showAndWait().get() == ButtonType.OK;
     }
-   
-    private void loadArticles() {
-        String query = "SELECT * FROM articles ORDER BY id";
-        String encryptionQuery = "SELECT encryption_key FROM article_encryption WHERE article_id = ?";
-        articles.clear();
-
-        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(query)) {
-
-            while (resultSet.next()) {
-                long id = resultSet.getLong("id");
-                String level = resultSet.getString("level");
-                String title = resultSet.getString("title");
-                String description = resultSet.getString("description");
-                String keywords = resultSet.getString("keywords");
-                String body = resultSet.getString("body");
-                String referenceLinks = resultSet.getString("referenceLinks");
-                boolean isSensitive = resultSet.getBoolean("isSensitive");
-                String groups = resultSet.getString("groups");
-
-                if (isSensitive) {
-                    try (PreparedStatement encStmt = connection.prepareStatement(encryptionQuery)) {
-                        encStmt.setLong(1, id);
-                        ResultSet encResult = encStmt.executeQuery();
-
-                        if (encResult.next()) {
-                            String encryptionKey = encResult.getString("encryption_key");
-
-                            if (encryptionKey != null && body != null) {
-                                try {
-                                    body = EncryptionManager.decrypt(body, encryptionKey);
-                                } catch (Exception ex) {
-                                    System.err.println("Decryption failed for article ID " + id + ": " + ex.getMessage());
-                                    body = "[Decryption Error: Unable to retrieve article content]";
-                                }
-                            }
-                        }
-                    }
-                }
-
-                HelpArticle article = new HelpArticle(id, level, title, description, keywords, body, referenceLinks, isSensitive, groups);
-                articles.add(article);
-            }
-        } catch (SQLException e) {
-            showMessage("Error loading articles: " + e.getMessage(), true);
-            e.printStackTrace();
-        }
+    
+    public static String generateEncryptionKey() {
+        return Base64.getEncoder().encodeToString(java.util.UUID.randomUUID().toString().getBytes());
     }
-  
+
     public void saveArticle(HelpArticle article) {
         String checkSQL = "SELECT COUNT(*) FROM articles WHERE id = ?";
         String updateSQL = "UPDATE articles SET level = ?, title = ?, description = ?, keywords = ?, " +
                            "body = ?, referenceLinks = ?, isSensitive = ?, groups = ? WHERE id = ?";
         String insertSQL = "INSERT INTO articles (id, level, title, description, keywords, body, " +
                            "referenceLinks, isSensitive, groups) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-        String encryptionCheckSQL = "SELECT COUNT(*) FROM article_encryption WHERE article_id = ?";
-        String encryptionInsertSQL = "INSERT INTO article_encryption (article_id, encryption_key) VALUES (?, ?)";
-        String encryptionUpdateSQL = "UPDATE article_encryption SET encryption_key = ? WHERE article_id = ?";
 
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
             boolean articleExists = false;
@@ -540,49 +491,63 @@ public class HelpArticlePage implements Initializable {
                 stmt.setBoolean(8, article.isSensitive());
                 stmt.setString(9, article.getGroups());
             }
-            stmt.executeUpdate();
 
+            // Encrypt if sensitive
             if (article.isSensitive()) {
-                boolean encryptionExists = false;
-                String encryptedBody = article.getBody();
-                String encryptionKey = "CustomKey123"; // Example: Replace with your actual key logic
-
-                try {
-                    encryptedBody = EncryptionManager.encrypt(article.getBody(), encryptionKey);
-                    article.setBody(encryptedBody); // Store encrypted data
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    showMessage("Error encrypting article: " + e.getMessage(), true);
-                    return;
-                }
-
-                try (PreparedStatement encCheckStmt = connection.prepareStatement(encryptionCheckSQL)) {
-                    encCheckStmt.setLong(1, article.getId());
-                    ResultSet encRs = encCheckStmt.executeQuery();
-                    if (encRs.next()) {
-                        encryptionExists = encRs.getInt(1) > 0;
-                    }
-                }
-
-                PreparedStatement encStmt;
-                if (encryptionExists) {
-                    encStmt = connection.prepareStatement(encryptionUpdateSQL);
-                    encStmt.setString(1, encryptionKey);
-                    encStmt.setLong(2, article.getId());
-                } else {
-                    encStmt = connection.prepareStatement(encryptionInsertSQL);
-                    encStmt.setLong(1, article.getId());
-                    encStmt.setString(2, encryptionKey);
-                }
-                encStmt.executeUpdate();
+                String encryptedBody = EncryptionManager.encrypt(article.getBody(), "CustomKey123");
+                System.out.println("Encrypted Body Before Saving: " + encryptedBody);
+                article.setBody(encryptedBody); // Save the encrypted body
             }
+
+
+            stmt.executeUpdate();
         } catch (SQLException e) {
             showMessage("Error saving article: " + e.getMessage(), true);
             e.printStackTrace();
         }
     }
 
+    private void loadArticles() {
+        String query = "SELECT * FROM articles ORDER BY id";
+        articles.clear();
 
+        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+
+            while (resultSet.next()) {
+                long id = resultSet.getLong("id");
+                String level = resultSet.getString("level");
+                String title = resultSet.getString("title");
+                String description = resultSet.getString("description");
+                String keywords = resultSet.getString("keywords");
+                String body = resultSet.getString("body");
+                String referenceLinks = resultSet.getString("referenceLinks");
+                boolean isSensitive = resultSet.getBoolean("isSensitive");
+                String groups = resultSet.getString("groups");
+
+                // Decrypt if sensitive
+                if (isSensitive && body != null) {
+                    System.out.println("Encrypted Body After Loading: " + body);
+                    try {
+                        body = EncryptionManager.decrypt(body, "CustomKey123");
+                    } catch (Exception ex) {
+                        System.err.println("Decryption failed for article ID " + id + ": " + ex.getMessage());
+                        body = "[Decryption Error: Unable to retrieve article content]";
+                    }
+                }
+
+
+                HelpArticle article = new HelpArticle(id, level, title, description, keywords, body, referenceLinks, isSensitive, groups);
+                articles.add(article);
+            }
+        } catch (SQLException e) {
+            showMessage("Error loading articles: " + e.getMessage(), true);
+            e.printStackTrace();
+        }
+    }
+
+    
     public void deleteArticle(HelpArticle article) {
         String deleteSQL = "DELETE FROM articles WHERE id = ?";
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);

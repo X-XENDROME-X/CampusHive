@@ -61,6 +61,10 @@ public class EncryptionManager {
             System.out.println("Original Text: " + originalText);
 
             // Encrypt the data
+            String encryptedBody = "BhsQBhYdPwwWX39SLRQUER1DLwAaQ0tDN10RGwsU"; // Example
+            String decryptedBody = EncryptionManager.decrypt(encryptedBody, "CustomKey123");
+            System.out.println("Decrypted Body: " + decryptedBody);
+            
             String encryptedText = encrypt(originalText, key);
             System.out.println("Encrypted Text: " + encryptedText);
 
