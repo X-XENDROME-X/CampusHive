@@ -98,8 +98,7 @@ public class Create1stUserAdminController {
     private void createAdminAccount(String username, String password) {
         try {
 
-            H2Database.addUser(username, password, "", "", "", "", true, "admin");
-
+            H2Database.addUser(username, password, "", "", "", "", true, "admin",true,true);
             System.out.println("Admin account created for username: " + username);
         } catch (SQLException e) {
 

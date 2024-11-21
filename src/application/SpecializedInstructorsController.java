@@ -16,6 +16,9 @@ import javafx.scene.text.FontWeight;
 import javafx.geometry.Pos;
 import javafx.geometry.HPos;
 import java.io.IOException;
+import java.sql.*; // Import JDBC
+import java.util.List;
+import java.util.ArrayList;
 
 public class SpecializedInstructorsController {
     @FXML
@@ -35,20 +38,70 @@ public class SpecializedInstructorsController {
     }
 
     private void loadInstructorData() {
-        // Sample data - replace with actual database query
-        String[][] instructorData = {
-            {"INS001", "prof_john"},
-            {"INS002", "prof_sarah"},
-            {"INS003", "prof_mike"}
-        };
+        // Get instructors with special view rights from the database
+        List<Instructor> instructors = fetchInstructorsWithSpecialView();
 
-        for (int i = 0; i < instructorData.length; i++) {
-            for (int j = 0; j < instructorData[i].length; j++) {
-                Label label = createInstructorLabel(instructorData[i][j]);
-                instructorGrid.add(label, j, i + 1);
-                GridPane.setHalignment(label, HPos.CENTER); // Center in grid cell
+        // Clear any existing data in the grid before adding new data
+        instructorGrid.getChildren().clear();
+
+        // Set up headers
+        Label headerName = createInstructorLabel("Name");
+        instructorGrid.add(headerName, 0, 0);
+        GridPane.setHalignment(headerName, HPos.CENTER);
+
+        Label headerUsername = createInstructorLabel("Username");
+        instructorGrid.add(headerUsername, 1, 0);
+        GridPane.setHalignment(headerUsername, HPos.CENTER);
+
+        // Add each instructor to the grid
+        if (instructors.isEmpty()) {
+            showError("No instructors found with special view access.");
+        } else {
+            for (int i = 0; i < instructors.size(); i++) {
+                Instructor instructor = instructors.get(i);
+
+                Label instructorNameLabel = createInstructorLabel(instructor.getName());
+                instructorGrid.add(instructorNameLabel, 0, i + 1);
+                GridPane.setHalignment(instructorNameLabel, HPos.CENTER);
+
+                Label usernameLabel = createInstructorLabel(instructor.getUsername());
+                instructorGrid.add(usernameLabel, 1, i + 1);
+                GridPane.setHalignment(usernameLabel, HPos.CENTER);
             }
         }
+    }
+
+    // Fetch instructors who have special view permission set to true from the database
+    private List<Instructor> fetchInstructorsWithSpecialView() {
+        List<Instructor> instructors = new ArrayList<>();
+
+        // Replace with your actual database credentials and query
+        final String DB_URL = "jdbc:h2:./data/users/userdb";
+        final String DB_USER = "sa";
+        final String DB_PASSWORD = "";
+
+        // SQL query to get all instructors
+        String query = "SELECT username, firstName FROM users WHERE roles = 'Instructor'";
+
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                String username = rs.getString("username");
+                String name = rs.getString("firstName");
+
+                // Check if the instructor has specialview permission using H2Database.checkSpecialView
+                if (H2Database.checkSpecialView(username)) {
+                    instructors.add(new Instructor(username, name));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showError("Error fetching data from database: " + e.getMessage());
+        }
+
+        return instructors;
     }
 
     private Label createInstructorLabel(String text) {
@@ -68,47 +121,64 @@ public class SpecializedInstructorsController {
         alert.showAndWait();
     }
 
-
-
     @FXML
     private void handleHomeButtonAction(ActionEvent event) {
         try {
             UserSession session = UserSession.getInstance();
             Parent homePage;
-            
 
-             if (session.hasPreviousPage()) {
-                 String previousPage = session.getPreviousPage();
-                 homePage = FXMLLoader.load(getClass().getResource(previousPage));
+            // Home redirection logic
+            if (session.hasPreviousPage()) {
+                String previousPage = session.getPreviousPage();
+                homePage = FXMLLoader.load(getClass().getResource(previousPage));
 
-                 System.out.println("Redirecting to: " + previousPage);
-                 Scene homeScene = new Scene(homePage);
-                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                 currentStage.setScene(homeScene);
-                 currentStage.show();
-             } else {
-                 System.out.println("No previous page found.");
-                 String role = session.getRole(); 
-                 if (role == null) {
-                     System.out.println("Role not set in session. Defaulting to SELECTROLE02.fxml.");
-                     homePage = FXMLLoader.load(getClass().getResource("SELECTROLE02.fxml"));
-                 } else if ("admin".equals(role)) {
-                     homePage = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
-                 } else if ("instructor".equals(role)) {
-                     homePage = FXMLLoader.load(getClass().getResource("Instructor_Homepage.fxml"));
-                 } else if ("student".equals(role)) {
-                     homePage = FXMLLoader.load(getClass().getResource("STUDENTHOMEPAGE.fxml"));
-                 } else {
-                     throw new IOException("User role not recognized");
-                 }
-                 Scene homeScene = new Scene(homePage);
-                 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                 currentStage.setScene(homeScene);
-                 currentStage.show();
-             }
+                System.out.println("Redirecting to: " + previousPage);
+                Scene homeScene = new Scene(homePage);
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                currentStage.setScene(homeScene);
+                currentStage.show();
+            } else {
+                System.out.println("No previous page found.");
+                String role = session.getRole();
+                if (role == null) {
+                    System.out.println("Role not set in session. Defaulting to SELECTROLE02.fxml.");
+                    homePage = FXMLLoader.load(getClass().getResource("SELECTROLE02.fxml"));
+                } else if ("admin".equals(role)) {
+                    homePage = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
+                } else if ("instructor".equals(role)) {
+                    homePage = FXMLLoader.load(getClass().getResource("Instructor_Homepage.fxml"));
+                } else if ("student".equals(role)) {
+                    homePage = FXMLLoader.load(getClass().getResource("STUDENTHOMEPAGE.fxml"));
+                } else {
+                    throw new IOException("User role not recognized");
+                }
+                Scene homeScene = new Scene(homePage);
+                Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                currentStage.setScene(homeScene);
+                currentStage.show();
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    // Instructor class to represent instructor data
+    class Instructor {
+        private String username;
+        private String name;
+
+        public Instructor(String username, String name) {
+            this.username = username;
+            this.name = name;
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public String getName() {
+            return name;
         }
     }
 }

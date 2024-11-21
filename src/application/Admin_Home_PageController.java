@@ -16,12 +16,15 @@
 package application;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
@@ -47,6 +50,9 @@ public class Admin_Home_PageController {
 
     @FXML 
     private Button back;
+    
+    @FXML
+    private Label errorMessageLabel;
     
     @FXML private Button manageViewingRights;
     @FXML private Button manageAdminRights;
@@ -205,20 +211,49 @@ public class Admin_Home_PageController {
     @FXML
     private void handleManageViewingRights(ActionEvent event) {
         try {
+            // Check if the user has special viewing rights
+            String username = UserSession.getInstance().getUsername();
+            if (!H2Database.checkSpecialView(username)) {
+                showError("Access Denied: You do not have permission to manage viewing rights.");
+                return;
+            }
+
             navigateToPage("ManageViewingRightsView.fxml", event);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showError("Database error: Unable to verify viewing rights.");
         } catch (IOException e) {
             e.printStackTrace();
+            showError("An error occurred while navigating to the page.");
         }
     }
 
     @FXML
     private void handleManageAdminRights(ActionEvent event) {
         try {
+            // Check if the user has special admin rights
+            String username = UserSession.getInstance().getUsername();
+            if (!H2Database.checkSpecialAdmin(username)) {
+                showError("Access Denied: You do not have permission to manage admin rights.");
+                return;
+            }
+
             navigateToPage("ManageAdminRightsView.fxml", event);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showError("Database error: Unable to verify admin rights.");
         } catch (IOException e) {
             e.printStackTrace();
+            showError("An error occurred while navigating to the page.");
         }
     }
+
+
+    private void showError(String message) {
+        errorMessageLabel.setText(message);
+        errorMessageLabel.setStyle("-fx-text-fill: #ff0606;");
+    }
+
 
     @FXML
     private void handleViewSpecializedStudents(ActionEvent event) {

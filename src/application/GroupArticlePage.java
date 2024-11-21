@@ -229,6 +229,8 @@
 	            articles.clear();
 	        }
 	    }
+	    
+	    
 
 	    private void loadArticles() {
 
@@ -393,6 +395,29 @@
 	        }
 	    }
 
+	    @FXML
+	    private void handleBackButtonAction(ActionEvent event) {
+	        try {
+	            // Get the current user session
+	            UserSession session = UserSession.getInstance();
+	            Parent homePage;
+
+	            // Load the appropriate homepage based on user role
+	            if (session != null && session.getRole().equalsIgnoreCase("admin")) {
+	                homePage = FXMLLoader.load(getClass().getResource("HelpArticlePage.fxml"));
+	            
+	            } else {
+	                throw new IOException("User role not recognized");
+	            }
+
+	            Scene homeScene = new Scene(homePage);
+	            Stage currentStage = (Stage) backButton.getScene().getWindow();
+	            currentStage.setScene(homeScene);
+	            currentStage.show();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
 	    private String escapeField(String field) {
 	        if (field == null) return "";
 	        return field.replace(";", "\\;"); 

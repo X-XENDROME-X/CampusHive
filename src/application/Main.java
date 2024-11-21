@@ -32,7 +32,7 @@ public class Main extends Application {
         try {
 
             initializeUserDatabase();
-
+            H2Database.printUsers();
             boolean adminExists = H2Database.checkForAdminUser();
 
             Parent root;
@@ -56,6 +56,7 @@ public class Main extends Application {
             dbConnection = DriverManager.getConnection("jdbc:h2:./data/users/userdb", "sa", "");
             Statement stmt = dbConnection.createStatement();
 
+            
             String createUserTableSQL = "CREATE TABLE IF NOT EXISTS users ("
                     + "username VARCHAR(255) PRIMARY KEY, "
                     + "password VARCHAR(255), "
@@ -66,6 +67,14 @@ public class Main extends Application {
                     + "isActive BOOLEAN, "
                     + "roles VARCHAR(255))";
             stmt.execute(createUserTableSQL);
+            
+            String alterSpecialviewColumnSQL = "ALTER TABLE users ADD COLUMN IF NOT EXISTS specialview BOOLEAN";
+            stmt.execute(alterSpecialviewColumnSQL);
+            
+            String alterSpecialadminColumnSQL = "ALTER TABLE users ADD COLUMN IF NOT EXISTS specialadmin BOOLEAN";
+            stmt.execute(alterSpecialadminColumnSQL);
+            
+            
 
             String createInvitationTableSQL = "CREATE TABLE IF NOT EXISTS invitations ("
                     + "email VARCHAR(255), "

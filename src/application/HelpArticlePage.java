@@ -277,9 +277,6 @@ public class HelpArticlePage implements Initializable {
     private void setupEventHandlers() {
         // Menu items
         newArticleMenuItem.setOnAction(e -> handleNewArticle());
-//        backupMenuItem.setOnAction(e -> handleBackup());
-//        restoreMenuItem.setOnAction(e -> handleRestore(false));
-//        restoreAllMenuItem.setOnAction(e -> handleRestore(true));
 
         // Buttons
         newArticleButton.setOnAction(e -> handleNewArticle());
@@ -453,7 +450,6 @@ public class HelpArticlePage implements Initializable {
     private void printDatabaseContent() {
         String articlesQuery = "SELECT * FROM articles";
         String encryptionQuery = "SELECT * FROM article_encryption";
-
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              Statement stmt = connection.createStatement()) {
             System.out.println("----- Articles Table -----");
@@ -471,7 +467,6 @@ public class HelpArticlePage implements Initializable {
                     System.out.println("---------------------------");
                 }
             }
-
             System.out.println("----- Article Encryption Table -----");
             try (ResultSet rs = stmt.executeQuery(encryptionQuery)) {
                 while (rs.next()) {
@@ -503,13 +498,12 @@ public class HelpArticlePage implements Initializable {
                 }
             }
 
-            // Encrypt if sensitive
             if (article.isSensitive()) {
                 String encryptedBody = EncryptionManager.encrypt(article.getBody(), "CustomKey123");
                 System.out.println("Encrypted Body Before Saving: " + encryptedBody);
-                article.setBody(encryptedBody); // Save the encrypted body
+                article.setBody(encryptedBody); // Encrypt before saving
             }
-            
+
             PreparedStatement stmt;
             if (articleExists) {
                 stmt = connection.prepareStatement(updateSQL);
@@ -534,17 +528,15 @@ public class HelpArticlePage implements Initializable {
                 stmt.setBoolean(8, article.isSensitive());
                 stmt.setString(9, article.getGroups());
             }
-
-
-
             stmt.executeUpdate();
-            printDatabaseContent(); // Debug the database content
+            printDatabaseContent(); // Debugging output
         } catch (SQLException e) {
             showMessage("Error saving article: " + e.getMessage(), true);
             e.printStackTrace();
-            printDatabaseContent(); // Debug the database content.
+            printDatabaseContent(); // Debugging output
         }
     }
+
 
     private void loadArticles() {
         String query = "SELECT * FROM articles ORDER BY id";
@@ -565,29 +557,27 @@ public class HelpArticlePage implements Initializable {
                 boolean isSensitive = resultSet.getBoolean("isSensitive");
                 String groups = resultSet.getString("groups");
 
-                // Decrypt if sensitive
                 if (isSensitive && body != null) {
                     System.out.println("Encrypted Body After Loading: " + body);
                     try {
                         body = EncryptionManager.decrypt(body, "CustomKey123");
                     } catch (Exception ex) {
-                        System.err.println(id + ex.getMessage());
+                        System.err.println("Decryption failed for article ID " + id + ": " + ex.getMessage());
+                        body = "[Decryption Error: Unable to retrieve article content]";
                     }
                 }
 
-
                 HelpArticle article = new HelpArticle(id, level, title, description, keywords, body, referenceLinks, isSensitive, groups);
                 articles.add(article);
-                printDatabaseContent(); // Debug the database content.
-
             }
+            printDatabaseContent(); // Debugging output
         } catch (SQLException e) {
             showMessage("Error loading articles: " + e.getMessage(), true);
             e.printStackTrace();
-            printDatabaseContent(); // Debug the database content.
-
+            printDatabaseContent(); // Debugging output
         }
     }
+
 
     
     public void deleteArticle(HelpArticle article) {

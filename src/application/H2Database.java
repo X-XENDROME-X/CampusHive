@@ -47,8 +47,8 @@ public class H2Database {
         }
     }
 
-    public static void addUser(String username, String password, String firstName, String middleName, String lastName, String email, boolean isActive, String roles) throws SQLException {
-        String insertUserQuery = "INSERT INTO users (username, password, firstName, middleName, lastName, email, isActive, roles) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    public static void addUser(String username, String password, String firstName, String middleName, String lastName, String email, boolean isActive, String roles, boolean specialview, boolean specialadmin) throws SQLException {
+        String insertUserQuery = "INSERT INTO users (username, password, firstName, middleName, lastName, email, isActive, roles, specialview, specialadmin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(insertUserQuery)) {
 
@@ -60,6 +60,8 @@ public class H2Database {
             preparedStatement.setString(6, email);
             preparedStatement.setBoolean(7, isActive);
             preparedStatement.setString(8, roles);
+            preparedStatement.setBoolean(9, specialview);
+            preparedStatement.setBoolean(10, specialadmin);
             preparedStatement.executeUpdate();
         }
     }
@@ -92,6 +94,22 @@ public class H2Database {
 
     public static boolean checkForAdminUser() {
         String query = "SELECT COUNT(*) FROM users WHERE roles = 'admin'";
+        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+             PreparedStatement pstmt = connection.prepareStatement(query);
+             ResultSet resultSet = pstmt.executeQuery()) {
+
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                return count > 0;  
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;  
+    }
+    
+    public static boolean checkForInstructorUser() {
+        String query = "SELECT COUNT(*) FROM users WHERE roles = 'instructor'";
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              PreparedStatement pstmt = connection.prepareStatement(query);
              ResultSet resultSet = pstmt.executeQuery()) {
@@ -252,5 +270,66 @@ public class H2Database {
                 return null; 
             }
         }
+        
     }
+    
+
+	    public static boolean checkSpecialView(String username) throws SQLException {
+	        String query = "SELECT specialview FROM users WHERE username = ?";
+	        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+	             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	
+	            preparedStatement.setString(1, username);  // Set the username parameter
+	
+	            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	                if (resultSet.next()) {
+	                    return resultSet.getBoolean("specialview");  // Return true if specialview is true, false otherwise
+	                }
+	            }
+	        }
+	        return false;  // Return false if no such user or specialview is false
+	    }
+	    
+	    public static boolean checkSpecialAdmin(String username) throws SQLException {
+	        String query = "SELECT specialadmin FROM users WHERE username = ?";
+	        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+	             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	
+	            preparedStatement.setString(1, username);  // Set the username parameter
+	
+	            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	                if (resultSet.next()) {
+	                    return resultSet.getBoolean("specialadmin");  // Return true if specialadmin is true, false otherwise
+	                }
+	            }
+	        }
+	        return false;  // Return false if no such user or specialadmin is false
+	    }
+
+	    public static void printUsers() throws SQLException {
+	        String query = "SELECT * FROM users";
+	        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
+	             Statement statement = connection.createStatement();
+	             ResultSet resultSet = statement.executeQuery(query)) {
+
+	            // Print the column headers
+	            System.out.println("Username | First Name | Middle Name | Last Name | Email | Is Active | Roles | Special View | Special Admin");
+
+	            // Iterate through the result set and print each row
+	            while (resultSet.next()) {
+	                String username = resultSet.getString("username");
+	                String firstName = resultSet.getString("firstName");
+	                String middleName = resultSet.getString("middleName");
+	                String lastName = resultSet.getString("lastName");
+	                String email = resultSet.getString("email");
+	                boolean isActive = resultSet.getBoolean("isActive");
+	                String roles = resultSet.getString("roles");
+	                boolean specialview = resultSet.getBoolean("specialview");
+	                boolean specialadmin = resultSet.getBoolean("specialadmin");
+
+	                // Print user details
+	                System.out.println(username + " | " + firstName + " | " + middleName + " | " + lastName + " | " + email + " | " + isActive + " | " + roles + " | " + specialview + " | " + specialadmin);
+	            }
+	        }
+	    }
 }

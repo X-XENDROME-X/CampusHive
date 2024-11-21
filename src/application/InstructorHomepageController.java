@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * InstructorHomepageController Class
@@ -39,6 +40,9 @@ public class InstructorHomepageController {
     
     @FXML
     private Button back;
+    
+    @FXML
+    private Label errorMessageLabel;
     
     @FXML private Button viewGenericMessagesButton;
     @FXML private Button viewSpecificMessagesButton;
@@ -97,13 +101,37 @@ public class InstructorHomepageController {
     }
 
     @FXML
-    private void handleManageViewingRights(ActionEvent event) {
-        navigateToPage("ManageViewingRightsView.fxml", event);
+    private void handleManageViewingRights(ActionEvent event) throws IOException {
+        try {
+            // Check if the user has special viewing rights
+            String username = UserSession.getInstance().getUsername();
+            if (!H2Database.checkSpecialView(username)) {
+                showError("Access Denied: You do not have permission to manage viewing rights.");
+                return;
+            }
+
+            navigateToPage("ManageViewingRightsView.fxml", event);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showError("Database error: Unable to verify viewing rights.");
+        }
     }
 
     @FXML
-    private void handleManageAdminRights(ActionEvent event) {
-        navigateToPage("ManageAdminRightsView.fxml", event);
+    private void handleManageAdminRights(ActionEvent event) throws IOException {
+        try {
+            // Check if the user has special admin rights
+            String username = UserSession.getInstance().getUsername();
+            if (!H2Database.checkSpecialAdmin(username)) {
+                showError("Access Denied: You do not have permission to manage admin rights.");
+                return;
+            }
+
+            navigateToPage("ManageAdminRightsView.fxml", event);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showError("Database error: Unable to verify admin rights.");
+        }
     }
 
     @FXML
@@ -120,6 +148,12 @@ public class InstructorHomepageController {
     private void handleViewAdmins(ActionEvent event) {
         navigateToPage("SpecializedAdminsView.fxml", event);
     }
+    
+    private void showError(String message) {
+        errorMessageLabel.setText(message);
+        errorMessageLabel.setStyle("-fx-text-fill: #ff0606;");
+    }
+
 
     private void navigateToPage(String fxmlFile, ActionEvent event) {
         try {

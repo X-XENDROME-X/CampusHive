@@ -122,7 +122,21 @@ public class HelpArticleView {
         levelLabel.setText("Level: " + article.getLevel()); // Ensure levelLabel is set
         descriptionLabel.setText(article.getDescription());
         keywordsLabel.setText("Keywords: " + article.getKeywords());
-        bodyTextArea.setText(article.getBody());
+        try {
+        	String username = UserSession.getInstance().getUsername();
+        	boolean hasAccess = H2Database.checkSpecialView(username);
+			if (hasAccess)
+			{
+		        bodyTextArea.setText(article.getBody());
+			}
+			else
+			{
+		        bodyTextArea.setText("You don't have access to view the body of this article! Request Access through Help System.");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         linksListView.setText(article.getLinks());
     }
 
