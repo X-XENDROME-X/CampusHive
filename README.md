@@ -79,9 +79,6 @@ Below are the libraries required to run **Campus Hive**:
 - **JavaMail API**:
   - `javax.mail.jar`
 
-- **Bouncy Castle Cryptography**:
-  - `bcprov-lts8on-2.73.6.jar`
-
 ---
 
 ## Installation & Usage
