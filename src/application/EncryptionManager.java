@@ -50,6 +50,38 @@ public class EncryptionManager {
 
 	    return new String(decryptedBytes);
 	}
+	
+	/**
+	 * Checks if a given string is encrypted using the custom XOR-based encryption algorithm.
+	 *
+	 * @param data The string to check
+	 * @param key The key to attempt decryption
+	 * @return true if the string is encrypted, false otherwise
+	 */
+	public static boolean isEncrypted(String data, String key) {
+	    try {
+	        // Try to decode the data using Base64
+	        byte[] decodedBytes = Base64.getDecoder().decode(data);
+
+	        // Attempt decryption to verify if it makes sense
+	        byte[] keyBytes = key.getBytes();
+	        byte[] decryptedBytes = new byte[decodedBytes.length];
+
+	        for (int i = 0; i < decodedBytes.length; i++) {
+	            decryptedBytes[i] = (byte) (decodedBytes[i] ^ keyBytes[i % keyBytes.length]);
+	        }
+
+	        // Check if decrypted data is a valid string
+	        String decryptedString = new String(decryptedBytes);
+
+	        // If no exception occurs and the data is valid, return true
+	        return true;
+	    } catch (IllegalArgumentException | UnsupportedOperationException e) {
+	        // If decoding or decryption fails, it is not encrypted
+	        return false;
+	    }
+	}
+
 
 
     public static void main(String[] args) {

@@ -354,29 +354,32 @@
 	        alert.showAndWait();
 	    }
 
-	    private void createBackup(File file, List<String> selectedGroups) throws IOException {
+	    private void createBackup(File file, List<String> selectedGroups) throws IOException, SQLException {
 	        try (FileWriter writer = new FileWriter(file)) {
 	            String url = "jdbc:h2:./data/articles/help_articles";
 	            String user = "sa";
 	            String password = "";
-
-	            String query = "SELECT id, title, description, groups, keywords, level, body, isSensitive, referenceLinks FROM articles WHERE ";
-
-	            for (int i = 0; i < selectedGroups.size(); i++) {
-	                if (i > 0) query += " OR ";
-	                query += "groups LIKE ?";
+	            
+	            // Changed OR to AND for strict group filtering
+	            StringBuilder queryBuilder = new StringBuilder(
+	                "SELECT id, title, description, groups, keywords, level, body, isSensitive, referenceLinks " +
+	                "FROM articles WHERE 1=1"
+	            );
+	            
+	            for (String group : selectedGroups) {
+	                queryBuilder.append(" AND groups LIKE ?");
 	            }
-
+	            
 	            try (Connection connection = DriverManager.getConnection(url, user, password);
-	                 PreparedStatement statement = connection.prepareStatement(query)) {
-
+	                 PreparedStatement statement = connection.prepareStatement(queryBuilder.toString())) {
+	                
 	                for (int i = 0; i < selectedGroups.size(); i++) {
 	                    statement.setString(i + 1, "%" + selectedGroups.get(i) + "%");
 	                }
-
+	                
+	                // Rest of the backup logic remains the same
 	                ResultSet resultSet = statement.executeQuery();
 	                while (resultSet.next()) {
-
 	                    writer.write(String.format("%d;%s;%s;%s;%s;%s;%s;%b;%s%n",
 	                        resultSet.getLong("id"),
 	                        escapeField(resultSet.getString("title")),
@@ -389,8 +392,6 @@
 	                        escapeField(resultSet.getString("referenceLinks"))
 	                    ));
 	                }
-	            } catch (SQLException e) {
-	                throw new IOException("Error accessing database for backup", e);
 	            }
 	        }
 	    }
@@ -434,27 +435,27 @@
 	        String password = "";
 
 	        try (Connection connection = DriverManager.getConnection(url, user, password)) {
-	            if (replaceExisting) {
-	                try (Statement stmt = connection.createStatement()) {
-	                    stmt.execute("DELETE FROM articles");
-	                }
-	            }
-
-	            String insertQuery = "INSERT INTO articles (id, title, description, groups, keywords, level, body, isSensitive, referenceLinks) " +
-	                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-	            try (BufferedReader reader = new BufferedReader(new FileReader(file));
-	                 PreparedStatement statement = connection.prepareStatement(insertQuery)) {
-
-	                String line;
-	                while ((line = reader.readLine()) != null) {
-	                    String[] data = line.split(";(?<!\\\\;)"); 
-	                    if (data.length < 8) {
-	                        System.err.println("Skipping invalid line: " + line);
-	                        continue;
+	            connection.setAutoCommit(false);  // Start transaction
+	            
+	            try {
+	                if (replaceExisting) {
+	                    // Delete all existing records
+	                    try (Statement stmt = connection.createStatement()) {
+	                        stmt.execute("DELETE FROM articles");
 	                    }
+	                }
 
-	                    try {
+	                String mergeQuery = "MERGE INTO articles (id, title, description, groups, keywords, level, body, isSensitive, referenceLinks) " +
+	                        "KEY(id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+	                try (BufferedReader reader = new BufferedReader(new FileReader(file));
+	                     PreparedStatement statement = connection.prepareStatement(mergeQuery)) {
+	                    
+	                    String line;
+	                    while ((line = reader.readLine()) != null) {
+	                        String[] data = line.split(";(?<!\\\\;)");
+	                        if (data.length < 8) continue;
+	                        
 	                        statement.setLong(1, Long.parseLong(data[0].trim()));
 	                        statement.setString(2, unescapeField(data[1]));
 	                        statement.setString(3, unescapeField(data[2]));
@@ -463,25 +464,22 @@
 	                        statement.setString(6, unescapeField(data[5]));
 	                        statement.setString(7, unescapeField(data[6]));
 	                        statement.setBoolean(8, Boolean.parseBoolean(data[7].trim()));
-	                        if (data.length > 8) {
-	                            statement.setString(9, unescapeField(data[8]));
-	                        } else {
-	                            statement.setString(9, ""); 
-	                        }
-
+	                        statement.setString(9, data.length > 8 ? unescapeField(data[8]) : "");
+	                        
 	                        statement.addBatch();
-	                    } catch (NumberFormatException e) {
-	                        System.err.println("Error parsing line: " + line);
-	                        e.printStackTrace();
 	                    }
+	                    statement.executeBatch();
 	                }
-	                statement.executeBatch();
+	                
+	                connection.commit();
+	            } catch (Exception e) {
+	                connection.rollback();
+	                throw e;
 	            }
 	        } catch (SQLException e) {
 	            throw new IOException("Error restoring data to the database", e);
 	        }
 	    }
-
 	    private class HelpArticle {
 	    	private long id;
 	        private String title;

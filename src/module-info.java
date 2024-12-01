@@ -5,6 +5,7 @@ module CampusHive {
 	requires java.sql;
 	requires java.activation;
 	requires javafx.graphics;
+	requires org.junit.jupiter.api;
 	
 	opens application to javafx.graphics, javafx.fxml;
 }

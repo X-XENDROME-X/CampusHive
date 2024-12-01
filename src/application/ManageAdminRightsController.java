@@ -60,7 +60,7 @@ public class ManageAdminRightsController {
             String currentRole = session.getRole();
 
             // Ensure the current user has admin rights
-            if (!"admin".equals(currentRole)) {
+            if (!"admin".equalsIgnoreCase(currentRole)) {
                 showError("Access denied! Only admins can grant access.");
                 return;
             }
@@ -68,15 +68,23 @@ public class ManageAdminRightsController {
             // Fetch the target user's role
             String targetRole = getRoleForUser(targetUsername);
 
-            // Validate that the target user is not a student
-            if ("student".equals(targetRole)) {
-                showError("Cannot grant admin rights to a student!");
+            // Validate that the target user is not already an admin
+            if ("admin".equals(targetRole)) {
+                showError("The user is already an admin.");
                 return;
+            }
+            if("Student".equals(targetRole)) {
+            	showError("Students cannot be granted admin access.");
+            	return;
             }
 
             // Proceed to grant admin access
-            grantAdminRights(targetUsername);
-            showSuccess("Admin access granted successfully!");
+            boolean success = grantAdminRights(targetUsername);
+            if (success) {
+                showSuccess("Admin access granted successfully!");
+            } else {
+                showError("Failed to grant admin rights. Please try again.");
+            }
 
         } catch (Exception e) {
             showError("An error occurred: " + e.getMessage());
@@ -100,7 +108,7 @@ public class ManageAdminRightsController {
             String currentRole = session.getRole();
 
             // Ensure the current user has admin rights
-            if (!"admin".equals(currentRole)) {
+            if (!"admin".equalsIgnoreCase(currentRole)) {
                 showError("Access denied! Only admins can revoke access.");
                 return;
             }
@@ -108,9 +116,19 @@ public class ManageAdminRightsController {
             // Fetch the target user's role
             String targetRole = getRoleForUser(targetUsername);
 
+            // Validate that the user is an admin and has the rights to be revoked
+            if ("student".equals(targetRole)) {
+                showError("The user is not an admin.");
+                return;
+            }
+
             // Proceed to revoke admin access
-            revokeAdminRights(targetUsername);
-            showSuccess("Admin access revoked successfully!");
+            boolean success = revokeAdminRights(targetUsername);
+            if (success) {
+                showSuccess("Admin access revoked successfully!");
+            } else {
+                showError("Failed to revoke admin rights. Please try again.");
+            }
 
         } catch (Exception e) {
             showError("An error occurred: " + e.getMessage());
@@ -122,9 +140,20 @@ public class ManageAdminRightsController {
      * 
      * @param username The username of the user to grant admin rights to.
      */
-    private void grantAdminRights(String username) {
-        // TODO: Implement database logic to update the user's role to 'admin'
-        System.out.println("Granting admin rights to: " + username);
+    private boolean grantAdminRights(String username) {
+        String updateQuery = "UPDATE users SET specialAdmin = TRUE WHERE username = ?";
+
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement statement = connection.prepareStatement(updateQuery)) {
+
+            statement.setString(1, username);
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -132,9 +161,20 @@ public class ManageAdminRightsController {
      * 
      * @param username The username of the user to revoke admin rights from.
      */
-    private void revokeAdminRights(String username) {
-        // TODO: Implement database logic to update the user's role (e.g., revert to 'student')
-        System.out.println("Revoking admin rights from: " + username);
+    private boolean revokeAdminRights(String username) {
+        String updateQuery = "UPDATE users SET specialAdmin = FALSE WHERE username = ?";
+
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement statement = connection.prepareStatement(updateQuery)) {
+
+            statement.setString(1, username);
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -144,16 +184,23 @@ public class ManageAdminRightsController {
      * @return The role of the user (e.g., "admin" or "student").
      */
     private String getRoleForUser(String username) {
-        // TODO: Replace this mock implementation with actual database query logic
-        // Example: Query the database to get the user's role
-        if ("pshriv".equals(username)) {
-            return "student"; // Mocked role for testing
-        } else if ("adminUser".equals(username)) {
-            return "admin"; // Mocked admin role
-        }
-        return "unknown"; // Default for unrecognized users
-    }
+        String selectQuery = "SELECT role FROM users WHERE username = ?";
+        
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement statement = connection.prepareStatement(selectQuery)) {
 
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getString("role");
+            }
+            return "unknown";  // Default for unrecognized users
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "unknown";
+        }
+    }
 
     private void showError(String message) {
         errorMessageLabel.setText(message);
@@ -201,4 +248,3 @@ public class ManageAdminRightsController {
         }
     }
 }
-

@@ -41,33 +41,32 @@ public class SELECTROLEcontroller {
 
     @FXML
     public void handleStudentButtonAction() {
-        errorMessage.setVisible(false);  
+        errorMessage.setVisible(false);
         UserSession session = UserSession.getInstance();
 
-        if (session != null && (session.getRole().equalsIgnoreCase("student") || session.getRole().equalsIgnoreCase("admin"))) {
+        if (session != null && hasRole(session.getRole(), "student", "admin")) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("STUDENTHOMEPAGE.fxml"));
                 Parent root = loader.load();
-
                 Stage stage = (Stage) studentButton.getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             errorMessage.setText("Access denied. You do not have the Student role.");
-            errorMessage.setVisible(true);  
+            errorMessage.setVisible(true);
         }
     }
 
     @FXML
     public void handleAdminButtonAction() {
-        errorMessage.setVisible(false);  
+        errorMessage.setVisible(false);
         UserSession session = UserSession.getInstance();
-        if (session != null && session.getRole().equalsIgnoreCase("admin")) {
+
+        if (session != null && hasRole(session.getRole(), "admin")) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin_Home_Page.fxml"));
                 Parent root = loader.load();
@@ -86,9 +85,10 @@ public class SELECTROLEcontroller {
 
     @FXML
     public void handleInstructorButtonAction() {
-        errorMessage.setVisible(false);  
+        errorMessage.setVisible(false);
         UserSession session = UserSession.getInstance();
-        if (session != null && (session.getRole().equalsIgnoreCase("instructor")|| session.getRole().equalsIgnoreCase("admin"))) {
+
+        if (session != null && hasRole(session.getRole(), "instructor", "admin")) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Instructor_Homepage.fxml"));
                 Parent root = loader.load();
@@ -104,4 +104,33 @@ public class SELECTROLEcontroller {
             errorMessage.setVisible(true);
         }
     }
+    
+    /**
+     * Checks if the user has at least one of the required roles.
+     *
+     * @param roles A comma-separated string of roles (e.g., "admin,instructor").
+     * @param requiredRoles The roles to check for.
+     * @return true if the user has any of the required roles, false otherwise.
+     */
+    private boolean hasRole(String roles, String... requiredRoles) {
+        if (roles == null || roles.isEmpty()) {
+            return false;
+        }
+
+        // Split the roles into an array
+        String[] userRoles = roles.split(",");
+
+        // Check if any of the required roles are present
+        for (String requiredRole : requiredRoles) {
+            for (String userRole : userRoles) {
+                if (userRole.trim().equalsIgnoreCase(requiredRole.trim())) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+
 }
