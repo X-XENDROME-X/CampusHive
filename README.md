@@ -143,6 +143,45 @@ The **Campus Hive** project uses H2 for data persistence:
 
 ---
 
+## Automated Testing with JUnit
+
+To perform automated testing using JUnit with the test files located in your `src` folder, follow these instructions based on your development environment:
+
+### Eclipse
+
+1. **Set Up JUnit:**
+   - Ensure JUnit is included in your project. You can add it by right-clicking on your project, selecting "Build Path" > "Add Libraries," and then choosing "JUnit."
+
+2. **Run Tests:**
+   - Navigate to the `src` folder where your test files are located.
+   - Right-click on the test file or the entire test package.
+   - Select "Run As" > "JUnit Test" to execute the tests.
+
+### IntelliJ IDEA
+
+1. **Set Up JUnit:**
+   - IntelliJ IDEA typically includes JUnit by default. If not, you can add it via "File" > "Project Structure" > "Libraries."
+
+2. **Run Tests:**
+   - Open the `src` folder and locate your test files.
+   - Right-click on a test file or directory containing tests.
+   - Choose "Run 'TestName'" to execute the tests.
+
+### Other IDEs or Command Line
+
+1. **Set Up JUnit:**
+   - Ensure JUnit is added to your project's dependencies. This might involve configuring a build tool like Maven or Gradle.
+
+2. **Run Tests:**
+   - Use the IDE's specific feature to run JUnit tests, often found under a "Run" menu.
+   - Alternatively, use command line tools:
+     - For Maven: Run `mvn test`.
+     - For Gradle: Run `gradle test`.
+
+By following these steps, you can easily automate testing of your Java applications using JUnit across different development environments.
+
+---
+
 ## Credits
 
 **Campus Hive** uses the following third-party libraries and software:
