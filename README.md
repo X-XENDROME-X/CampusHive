@@ -119,23 +119,26 @@ The **Campus Hive** project uses H2 for data persistence:
 
 ## Project Structure
 ```
+├── articlebackups/
+├── bin/
+├── data/
+├── images/
+├── lib/
+│   ├── h2-2.2.232.jar
+│   ├── javax.activation.jar
+│   └── javax.mail.jar
+├── resources/
+│   └── build.fxbuild
 ├── src/
 │   ├── application/
 │   │   ├── controllers/
 │   │   └── views/
 │   ├── application.images/
 │   └── module-info.java
-├── lib/
-│   ├── bcprov-lts8on-2.73.6.jar
-│   ├── h2-2.2.232.jar
-│   ├── javax.activation.jar
-│   └── javax.mail.jar
-├── articlebackups/
-├── data/
-├── images/
-├── resources/
-│   └── build.fxbuild
-└── README.md
+├── target/
+├── README.md
+├── build.fxbuild
+└── pom.xml
 ```
 
 ---
@@ -147,7 +150,8 @@ The **Campus Hive** project uses H2 for data persistence:
 - **H2 Database Engine** for managing and accessing the embedded H2 database.
 - **JavaMail API** for handling email functionalities.
 - **Java Activation Framework** for handling MIME data types in Java applications.
-- **Bouncy Castle** for cryptography and encryption functionalities.
+
+Additionally, Campus Hive includes a custom **in-house encryption system** developed by the project team for enhanced data security.
 
 ---
 
@@ -162,10 +166,9 @@ The project uses the following third-party libraries and frameworks:
 - **H2 Database Engine**: Licensed under the [Mozilla Public License 2.0](https://www.h2database.com/html/license.html) or the [Eclipse Public License 1.0](https://www.h2database.com/html/license.html).
 - **JavaMail API**: Distributed under the [GPL v2 + CPE](https://javaee.github.io/javamail/).
 - **Java Activation Framework**: Licensed under the [Common Development and Distribution License (CDDL)](https://opensource.org/licenses/CDDL-1.0).
-- **Bouncy Castle**: Licensed under the [MIT License](https://www.bouncycastle.org/licence.html).
 
 Please consult the respective licenses for each library for more information. Use of these libraries is subject to their respective terms and conditions.
 
 Unauthorized use, reproduction, or distribution of this software, in part or whole, is strictly prohibited. For commercial inquiries or further licensing options, please contact the original developers.
 
-All product names, logos, and brands are property of their respective owners.
+All product names, logos, and brands are the property of their respective owners.
