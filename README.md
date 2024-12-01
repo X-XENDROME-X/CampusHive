@@ -178,7 +178,7 @@ To perform automated testing using JUnit with the test files located in your `sr
      - For Maven: Run `mvn test`.
      - For Gradle: Run `gradle test`.
 
-By following these steps, you can easily automate testing of your Java applications using JUnit across different development environments.
+By following these steps, you can easily automate the testing of CampusHive using JUnit across different development environments.
 
 ---
 
