@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #f7f6f3;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Admin_Home_PageController">
+   <children>
+
+      <AnchorPane layoutX="6.0" layoutY="1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #f7f6f3;">
+         <children>
+            <Label fx:id="errorMessageLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="1054.0" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="264.0" layoutY="57.0" prefHeight="122.0" prefWidth="552.0" text="Admin Home Page" textFill="#0171bc">
+               <font>
+                  <Font name="Avenir Light" size="35.0" />
+               </font>
+            </Label>
+            
+            <ImageView fitHeight="122.0" fitWidth="160.0" layoutX="45.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/CampusHive_Logo.png" />
+               </image>
+            </ImageView>
+            
+            <!-- Navigation Buttons -->
+            <Button fx:id="back" layoutX="773.0" layoutY="71.0" mnemonicParsing="false" onAction="#handleBackButtonAction" prefHeight="46.0" prefWidth="104.0" style="-fx-background-color: #0171bc;" text="BACK" textFill="WHITE">
+               <font>
+                  <Font name="Avenir Light" size="22.0" />
+               </font>
+            </Button>
+            
+            <Button fx:id="logOut" layoutX="912.0" layoutY="73.0" mnemonicParsing="false" onAction="#handleLogoutAction" prefHeight="41.0" prefWidth="123.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: darkred; -fx-background-color: red;" text="Logout " textFill="#f8f8f8">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+
+            <!-- First Row -->
+            <HBox layoutX="258.0" layoutY="207.0" prefHeight="68.0" prefWidth="565.0" spacing="20.0">
+               <children>
+                  <Button fx:id="inviteUser" onAction="#handleInviteUserAction" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #2ecc71; -fx-background-color: #f7f6f3;" text="Invite User">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="editRoles" onAction="#handleEditRoleAction" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3498db; -fx-background-color: #f7f6f3;" text="Edit Roles">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="listUsers" onAction="#handleListUsersAction" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #9b59b6; -fx-background-color: #f7f6f3;" text="List Users">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+
+            <!-- Second Row -->
+            <HBox layoutX="258.0" layoutY="300.0" prefHeight="68.0" prefWidth="565.0" spacing="20.0">
+               <children>
+                  <Button fx:id="resetUser" onAction="#handleResetUserAction" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #e74c3c; -fx-background-color: #f7f6f3;" text="Reset User">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="deleteUser" onAction="#handleDeleteUserAction" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #c0392b; -fx-background-color: #f7f6f3;" text="Delete User">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="ManageArticle" onAction="#handleHelpArticleManagement" prefHeight="68.0" prefWidth="175.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #27ae60; -fx-background-color: #f7f6f3;" text="Manage Article">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+
+            <!-- Third Row - New Buttons -->
+            <HBox alignment="CENTER" layoutX="279.0" layoutY="493.0" prefHeight="68.0" prefWidth="526.0" spacing="20.0">
+               <children>
+                  <Button fx:id="manageViewingRights" onAction="#handleManageViewingRights" prefHeight="68.0" prefWidth="213.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #f39c12; -fx-background-color: #f7f6f3;" text="Manage Viewing Rights">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="manageAdminRights" alignment="CENTER" contentDisplay="CENTER" onAction="#handleManageAdminRights" prefHeight="68.0" prefWidth="215.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #d35400; -fx-background-color: #f7f6f3;" text="Manage Admin Rights">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+
+            <!-- Fourth Row - New Buttons -->
+            <HBox layoutX="253.0" layoutY="403.0" prefHeight="68.0" prefWidth="582.0" spacing="20.0">
+               <children>
+                  <Button fx:id="viewSpecializedStudents" onAction="#handleViewSpecializedStudents" prefHeight="68.0" prefWidth="188.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #16a085; -fx-background-color: #f7f6f3;" text="View Specialized Students">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="viewSpecializedInstructors" onAction="#handleViewSpecializedInstructors" prefHeight="68.0" prefWidth="194.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #2980b9; -fx-background-color: #f7f6f3;" text="View Specialized Instructors">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+
+                  <Button fx:id="viewSpecializedAdmins" onAction="#handleViewSpecializedAdmins" prefHeight="68.0" prefWidth="174.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #8e44ad; -fx-background-color: #f7f6f3;" text="View Specialized Admins">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            
+            <!-- Fifth Row - Message Buttons -->
+			<HBox layoutX="320.0" layoutY="585.0" prefHeight="68.0" prefWidth="496.0" spacing="20.0">
+			   <children>
+			      <Button fx:id="viewGenericMessages" alignment="CENTER" contentDisplay="CENTER" onAction="#handleViewGenericMessages" prefHeight="68.0" prefWidth="213.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #1abc9c; -fx-background-color: #f7f6f3;" text="View Generic Messages">
+			         <font>
+			            <Font size="16.0" />
+			         </font>
+			      </Button>
+			
+			      <Button fx:id="viewSpecificMessages" alignment="CENTER" contentDisplay="CENTER" onAction="#handleViewSpecificMessages" prefHeight="68.0" prefWidth="213.0" style="-fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #3498db; -fx-background-color: #f7f6f3;" text="View Specific Messages">
+			         <font>
+			            <Font size="16.0" />
+			         </font>
+			      </Button>
+			   </children>
+			</HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

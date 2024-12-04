@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #f7f6f3;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SpecificMessagesController">
+   <children>
+      <ImageView fx:id="Logo" fitHeight="107.0" fitWidth="161.0" layoutX="19.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/CampusHive_Logo.png" />
+         </image>
+      </ImageView>
+
+      <Label layoutX="210.0" layoutY="44.0" text="Student Specific Help Requests" textFill="#0171bc">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+
+      <GridPane fx:id="messageGrid" alignment="TOP_CENTER" hgap="20" layoutX="69.0" layoutY="138.0" prefHeight="540.0" prefWidth="942.0" vgap="10">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" prefWidth="200.0" />
+            <ColumnConstraints halignment="CENTER" prefWidth="200.0" />
+            <ColumnConstraints halignment="CENTER" prefWidth="250.0" />
+            <ColumnConstraints halignment="CENTER" prefWidth="320.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Student ID" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0">
+               <font>
+                  <Font name="Dubai Light" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="200.0" text="Date" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0">
+               <font>
+                  <Font name="Dubai Light" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="250.0" text="Subject" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0">
+               <font>
+                  <Font name="Dubai Light" size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="320.0" text="Message" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0">
+               <font>
+                  <Font name="Dubai Light" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+
+      <Button fx:id="homeButton" layoutX="933.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleHomeButtonAction" prefHeight="52.0" prefWidth="53.0" style="-fx-background-color: #2596be;" textFill="#2596be">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/Home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</Pane>
