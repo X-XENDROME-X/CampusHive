@@ -111,9 +111,9 @@ public class AddRemoveUserRoleControllerTest {
 
     @Test
     void testRoleSelectionBoxInitialization() {
-        assertTrue(roleSelectionBox.getItems().contains("Admin"));
-        assertTrue(roleSelectionBox.getItems().contains("Student"));
-        assertTrue(roleSelectionBox.getItems().contains("Instructor"));
+        assertTrue(roleSelectionBox.getItems().contains("admin"));
+        assertTrue(roleSelectionBox.getItems().contains("student"));
+        assertTrue(roleSelectionBox.getItems().contains("instructor"));
         assertEquals("Select Role", roleSelectionBox.getPromptText());
     }
 
@@ -122,7 +122,7 @@ public class AddRemoveUserRoleControllerTest {
         H2Database.addUser("testUser", "password", "email@test.com",
             "Test", "User", "STUDENT", false, "", false, false);
         usernameTextField.setText("testUser");
-        roleSelectionBox.setValue("Admin");
+        roleSelectionBox.setValue("admin");
         Method addRoleMethod = AddRemoveUserRoleController.class.getDeclaredMethod("AddRole");
         addRoleMethod.setAccessible(true);
         addRoleMethod.invoke(controller);
@@ -132,9 +132,9 @@ public class AddRemoveUserRoleControllerTest {
     @Test
     void testAddDuplicateRole() throws Exception {
         H2Database.addUser("testUser2", "password", "email@test.com",
-            "Test", "User", "Admin", false, "Admin", false, false);
+            "Test", "User", "admin", false, "admin", false, false);
         usernameTextField.setText("testUser2");
-        roleSelectionBox.setValue("Admin");
+        roleSelectionBox.setValue("admin");
         Method addRoleMethod = AddRemoveUserRoleController.class.getDeclaredMethod("AddRole");
         addRoleMethod.setAccessible(true);
         addRoleMethod.invoke(controller);
@@ -144,9 +144,9 @@ public class AddRemoveUserRoleControllerTest {
     @Test
     void testRemoveRoleSuccess() throws Exception {
         H2Database.addUser("testUser3", "password", "email@test.com",
-            "Test", "User", "Admin", false, "Admin", false, false);
+            "Test", "User", "admin", false, "admin", false, false);
         usernameTextField.setText("testUser3");
-        roleSelectionBox.setValue("Admin");
+        roleSelectionBox.setValue("admin");
         Method removeRoleMethod = AddRemoveUserRoleController.class.getDeclaredMethod("RemoveRole");
         removeRoleMethod.setAccessible(true);
         removeRoleMethod.invoke(controller);
@@ -156,9 +156,9 @@ public class AddRemoveUserRoleControllerTest {
     @Test
     void testRemoveNonexistentRole() throws Exception {
         H2Database.addUser("testUser", "password", "email@test.com",
-            "Test", "User", "Student", false, "", false, false);
+            "Test", "User", "student", false, "", false, false);
         usernameTextField.setText("testUser");
-        roleSelectionBox.setValue("Admin");
+        roleSelectionBox.setValue("admin");
         Method removeRoleMethod = AddRemoveUserRoleController.class.getDeclaredMethod("RemoveRole");
         removeRoleMethod.setAccessible(true);
         removeRoleMethod.invoke(controller);
@@ -168,7 +168,7 @@ public class AddRemoveUserRoleControllerTest {
     @Test
     void testDatabaseError() throws Exception {
         usernameTextField.setText("");
-        roleSelectionBox.setValue("Admin");
+        roleSelectionBox.setValue("admin");
         Method addRoleMethod = AddRemoveUserRoleController.class.getDeclaredMethod("AddRole");
         addRoleMethod.setAccessible(true);
         addRoleMethod.invoke(controller);
@@ -181,7 +181,7 @@ public class AddRemoveUserRoleControllerTest {
         H2Database.addUser(specialUsername, "password", "email@test.com",
             "Test", "User", "", false, "", false, false);
         usernameTextField.setText(specialUsername);
-        roleSelectionBox.setValue("Admin");
+        roleSelectionBox.setValue("admin");
         Method addRoleMethod = AddRemoveUserRoleController.class.getDeclaredMethod("AddRole");
         addRoleMethod.setAccessible(true);
         addRoleMethod.invoke(controller);
@@ -191,9 +191,9 @@ public class AddRemoveUserRoleControllerTest {
     @Test
     void testMultipleRoleAssignment() throws Exception {
         H2Database.addUser("testUser4", "password", "email@test.com",
-            "Test", "User", "Student", false, "Student", false, false);
+            "Test", "User", "student", false, "student", false, false);
         usernameTextField.setText("testUser4");
-        roleSelectionBox.setValue("Admin");
+        roleSelectionBox.setValue("admin");
         Method addRoleMethod = AddRemoveUserRoleController.class.getDeclaredMethod("AddRole");
         addRoleMethod.setAccessible(true);
         addRoleMethod.invoke(controller);
@@ -205,7 +205,7 @@ public class AddRemoveUserRoleControllerTest {
         H2Database.addUser("testUser5", "password", "email@test.com",
             "Test", "User", "", false, "", false, false);
         usernameTextField.setText("testUser5");
-        roleSelectionBox.setValue("Admin");
+        roleSelectionBox.setValue("admin");
         Method addRoleMethod = AddRemoveUserRoleController.class.getDeclaredMethod("AddRole");
         addRoleMethod.setAccessible(true);
         addRoleMethod.invoke(controller);
@@ -221,7 +221,7 @@ public class AddRemoveUserRoleControllerTest {
             // Ignore if user doesn't exist
         }
         usernameTextField.setText(nonExistentUser);
-        roleSelectionBox.setValue("Admin");
+        roleSelectionBox.setValue("admin");
         Method addRoleMethod = AddRemoveUserRoleController.class.getDeclaredMethod("AddRole");
         addRoleMethod.setAccessible(true);
         addRoleMethod.invoke(controller);
@@ -236,7 +236,7 @@ public class AddRemoveUserRoleControllerTest {
 
     @Test
     void testRoleSelectionBoxSelection() {
-        roleSelectionBox.setValue("Admin");
+        roleSelectionBox.setValue("admin");
         assertEquals("Admin", roleSelectionBox.getValue());
     }
 

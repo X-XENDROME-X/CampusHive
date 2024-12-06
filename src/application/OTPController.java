@@ -91,13 +91,14 @@ public class OTPController {
             showError("Please enter a valid email address.");
             return;
         }
-
+     
         disableOtpButtonFor30Seconds();
 
         // Generate and send OTP
         generatedOtp = generateOtp();
         if (sendOtpEmail(email, generatedOtp)) {
             showError("OTP sent successfully to " + email);
+            emailField.setDisable(true);
         } else {
             showError("Failed to send OTP. Please try again.");
         }

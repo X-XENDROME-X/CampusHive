@@ -62,7 +62,7 @@ public class AddRemoveUserRoleController {
     @FXML
     void initialize() {
 
-        RoleSelectionBox.getItems().addAll("Admin", "Student", "Instructor");
+        RoleSelectionBox.getItems().addAll("admin", "student", "instructor");
 
         RoleSelectionBox.setPromptText("Select Role");
     }

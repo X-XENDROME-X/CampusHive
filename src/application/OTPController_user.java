@@ -99,6 +99,7 @@ public class OTPController_user {
         generatedOtp = generateOtp();
         if (sendOtpEmail(email, generatedOtp)) {
             showError("OTP sent successfully to " + email);
+            emailField.setDisable(true);
         } else {
             showError("Failed to send OTP. Please try again.");
         }
@@ -106,6 +107,7 @@ public class OTPController_user {
     @FXML
     private void handleVerifyButtonAction() {
         String enteredOtp = otpField.getText();
+        
         
         // Check if the OTP entered matches the generated OTP
         if (enteredOtp.equals(generatedOtp)) {
