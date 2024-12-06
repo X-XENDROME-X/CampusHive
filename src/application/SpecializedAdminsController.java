@@ -90,8 +90,7 @@ public class SpecializedAdminsController {
             while (rs.next()) {
                 String username = rs.getString("username");
                 String name = rs.getString("firstName");
-                
- 
+
                 // Check if the admin has specialadmin permission
                 if (H2Database.checkSpecialAdmin(username)) {
                     admins.add(new Admin(username, name));

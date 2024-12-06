@@ -67,18 +67,15 @@ public class ManageAdminRightsController {
 
             // Fetch the target user's role
             String targetRole = getRoleForUser(targetUsername);
-            System.out.println("Target role: " + targetRole);  // Debugging line
 
             // Validate that the target user is not already an admin
             if ("admin".equals(targetRole)) {
                 showError("The user is already an admin.");
                 return;
             }
-
-            // Check if the user is a student
-            if ("student".equalsIgnoreCase(targetRole)) {
-                showError("Students cannot be granted admin access.");
-                return;
+            if("Student".equals(targetRole)) {
+            	showError("Students cannot be granted admin access.");
+            	return;
             }
 
             // Proceed to grant admin access
@@ -93,7 +90,6 @@ public class ManageAdminRightsController {
             showError("An error occurred: " + e.getMessage());
         }
     }
-
 
     /**
      * Handle the "Revoke Access" button click.

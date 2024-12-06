@@ -428,11 +428,6 @@
 	        if (field == null) return "";
 	        return field.replace("\\;", ";"); 
 	    }
-	    
-		 // For testing purposes - allows setting test articles
-	    public void setTestArticles(ObservableList<HelpArticle> testArticles) {
-	        this.articles = testArticles;
-	    }
 
 	    private void restoreBackup(File file, boolean replaceExisting) throws IOException {
 	        String url = "jdbc:h2:./data/articles/help_articles";

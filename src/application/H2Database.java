@@ -288,6 +288,7 @@ public class H2Database {
         
     }
     
+
 	    public static boolean checkSpecialView(String username) throws SQLException {
 	        String query = "SELECT specialview FROM users WHERE username = ?";
 	        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);

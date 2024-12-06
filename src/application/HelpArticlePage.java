@@ -29,6 +29,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javafx.scene.Node;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.io.IOException;
@@ -231,29 +232,32 @@ public class HelpArticlePage implements Initializable {
         try {
             // Get the current user session
             UserSession session = UserSession.getInstance();
-            Parent nextPage;
+            Parent homePage;
 
-            // Check if the session is valid
-            if (session == null) {
-                throw new IOException("User session not found");
-            }
-
-            // Check user roles
-            String role = session.getRole(); // Assuming roles are comma-separated if multiple
-            if (role.contains(",")) { // User has multiple roles
-                nextPage = FXMLLoader.load(getClass().getResource("SELECTROLE02.fxml"));
-            } else if (role.equalsIgnoreCase("admin")) { // Single admin role
-                nextPage = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
-            } else if (role.equalsIgnoreCase("instructor")) { // Single instructor role
-                nextPage = FXMLLoader.load(getClass().getResource("Instructor_Homepage.fxml"));
+            if (session.hasPreviousPage()) {
+                // Navigate to the previous page if it exists
+                String previousPage = session.getPreviousPage();
+                homePage = FXMLLoader.load(getClass().getResource(previousPage));
+                System.out.println("Redirecting to: " + previousPage);
             } else {
-                throw new IOException("User role not recognized");
+                // If no previous page, navigate based on the user's role
+                String role = session.getRole();
+                if (role == null) {
+                    throw new IOException("Role not set in session. Unable to navigate.");
+                } else if ("admin".equalsIgnoreCase(role)) {
+                    homePage = FXMLLoader.load(getClass().getResource("Admin_Home_Page.fxml"));
+                } else if ("instructor".equalsIgnoreCase(role)) {
+                    homePage = FXMLLoader.load(getClass().getResource("Instructor_Homepage.fxml"));
+                } 
+                else {
+                    throw new IOException("User role not recognized");
+                }
             }
 
-            // Switch to the appropriate scene
-            Scene nextScene = new Scene(nextPage);
-            Stage currentStage = (Stage) BackButton.getScene().getWindow();
-            currentStage.setScene(nextScene);
+            // Set the scene to the loaded page
+            Scene homeScene = new Scene(homePage);
+            Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentStage.setScene(homeScene);
             currentStage.show();
         } catch (IOException e) {
             e.printStackTrace();
