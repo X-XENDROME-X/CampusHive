@@ -1,9 +1,0 @@
-2024-11-19 16:48:20.469843-07:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGES" not found (this database is empty); SQL statement:
-SELECT studentID, date, subject, message FROM messages WHERE messageType = 'Specific Query' [42104-232]
-2024-11-19 16:48:26.420263-07:00 jdbc[4]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGES" not found (this database is empty); SQL statement:
-SELECT studentID, date, subject, message FROM messages WHERE messageType = 'Generic Message' [42104-232]
-2024-11-19 16:48:32.540811-07:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MESSAGES" not found (this database is empty); SQL statement:
-SELECT studentID, date, subject, message FROM messages WHERE messageType = 'Specific Query' [42104-232]
