@@ -119,26 +119,14 @@ The **Campus Hive** project uses H2 for data persistence:
 
 ## Project Structure
 ```
-├── articlebackups/
 ├── bin/
 ├── data/
 ├── images/
 ├── lib/
-│   ├── h2-2.2.232.jar
-│   ├── javax.activation.jar
-│   └── javax.mail.jar
 ├── resources/
-│   └── build.fxbuild
 ├── src/
-│   ├── application/
-│   │   ├── controllers/
-│   │   └── views/
-│   ├── application.images/
-│   └── module-info.java
-├── target/
 ├── README.md
 ├── build.fxbuild
-└── pom.xml
 ```
 
 ---
