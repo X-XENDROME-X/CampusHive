@@ -1,3 +1,18 @@
+/**
+ * <p> STUDENTHOMEPAGEcontroller Class </p>
+ *
+ * <p> Description: This class handles the functionality for the student homepage within the application.
+ * It includes actions for logging out, viewing articles, requesting help, and navigating to other pages. 
+ * The class interacts with the user session and manages transitions between different scenes based on user actions. </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Phase 4 of the project
+ */
+
+
 package application;
 
 import javafx.event.ActionEvent;
