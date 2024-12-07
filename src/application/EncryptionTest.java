@@ -1,3 +1,19 @@
+/**
+ * <p> EncryptionTest Class </p>
+ *
+ * <p> Description: This class contains unit tests for testing the functionality of the 
+ * EncryptionManager class, specifically the encryption and decryption methods. The tests 
+ * ensure that encryption and decryption work correctly with valid inputs, handle errors 
+ * for invalid Base64 strings, and properly address incorrect decryption keys. </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of the test suite for the EncryptionManager class.
+ */
+
+
 package application;
 
 import static org.junit.jupiter.api.Assertions.*;
