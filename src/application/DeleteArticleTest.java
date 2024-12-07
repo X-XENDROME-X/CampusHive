@@ -1,3 +1,18 @@
+/**
+ * <p> DeleteArticleTest Class </p>
+ *
+ * <p> Description: This class contains unit tests for verifying the deletion functionality 
+ * of articles from the HelpArticlePage. It includes setup, teardown, and test methods to 
+ * ensure the delete operation works as expected and data is correctly managed. </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project was made (Phase 4)
+ */
+
+
 package application;
 
 import org.junit.jupiter.api.AfterEach;
