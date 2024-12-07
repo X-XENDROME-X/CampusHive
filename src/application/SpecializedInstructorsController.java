@@ -1,3 +1,19 @@
+/**
+ * <p> SpecializedInstructorsController Class </p>
+ *
+ * <p> Description: This class manages the display and retrieval of instructors with special view 
+ * permissions. It handles loading instructor data from the database, presenting it in a grid layout, 
+ * and provides functionality for navigation to different pages based on user roles. The controller 
+ * also includes error handling for database operations and user interface updates. </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project was made (Phase 4)
+ */
+
+
 package application;
 
 import javafx.fxml.FXML;
