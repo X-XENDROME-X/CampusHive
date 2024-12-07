@@ -1,3 +1,19 @@
+/**
+ * <p> SpecializedStudentsController Class </p>
+ *
+ * <p> Description: This controller class is responsible for managing the specialized view of students
+ * within the application. It handles the display of student data with special access rights, 
+ * including fetching student information from a database, displaying it on the UI, and managing
+ * navigation actions like redirection to different pages. </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project (Phase 4)
+ */
+
+
 package application;
 
 import javafx.fxml.FXML;
