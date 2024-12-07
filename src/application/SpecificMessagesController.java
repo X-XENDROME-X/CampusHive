@@ -1,3 +1,19 @@
+/**
+ * <p> SpecificMessagesController Class </p>
+ *
+ * <p> Description: This class handles the functionality of displaying specific messages related
+ * to student queries. It loads the messages from a database and displays them in a grid. The class
+ * also provides error handling for database connectivity issues, as well as functionality for 
+ * redirecting users to their home page based on their session role.</p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project was made (Phase 4)
+ */
+
+
 package application;
 
 import javafx.fxml.FXML;
