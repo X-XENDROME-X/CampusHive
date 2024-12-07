@@ -1,3 +1,18 @@
+/**
+ * <p> AddRemoveUserRoleControllerTest Class </p>
+ *
+ * <p> Description: This class provides unit tests for the AddRemoveUserRoleController, ensuring 
+ * that functionalities like adding roles, removing roles, error handling, and UI component 
+ * interactions work as expected. </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project was made (Phase 4)
+ */
+
+
 package application;
 
 import static org.junit.jupiter.api.Assertions.*;
