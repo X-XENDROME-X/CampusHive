@@ -1,3 +1,19 @@
+/**
+ * <p> EncryptionManager Class </p>
+ *
+ * <p> Description: This class provides encryption and decryption functionalities using a custom
+ * XOR-based encryption algorithm. It includes methods to encrypt and decrypt data using a provided
+ * key, along with a check to determine whether a string is encrypted. The class also ensures the proper
+ * encoding and decoding of data in Base64 format for secure transmission. </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project (Phase 4)
+ */
+
+
 package application;
 
 import java.util.Base64;
