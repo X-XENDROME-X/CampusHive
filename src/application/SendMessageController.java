@@ -1,3 +1,20 @@
+/**
+ * SendMessageController Class
+ * 
+ * Description: This class handles the functionality for sending messages
+ * from students to instructors or admins. It includes methods for message
+ * creation, validation, sending, and interaction with the database to 
+ * store the messages. It also provides UI handling for form fields, 
+ * including subject, message body, and recipient details, and incorporates 
+ * input validation to ensure message content is appropriate.
+ * 
+ * Copyright: Campus Hive © 2024
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project made (Phase 4)
+ */
+
+
 package application;
 
 import javafx.fxml.FXML;
