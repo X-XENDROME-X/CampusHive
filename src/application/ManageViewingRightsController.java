@@ -1,3 +1,19 @@
+/**
+ * <p> ManageViewingRightsController Class </p>
+ *
+ * <p> Description: This class handles the functionality for managing the viewing rights of users within
+ * an application. It includes methods for granting and revoking access to special article groups, along with
+ * necessary error handling and user interface updates. The class interacts with the database to update 
+ * user access permissions based on the student's ID and selected group. </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project (Phase 4)
+ */
+
+
 package application;
 
 import javafx.fxml.FXML;
