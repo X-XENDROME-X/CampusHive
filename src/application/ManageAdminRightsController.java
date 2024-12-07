@@ -1,3 +1,18 @@
+/**
+ * <p> ManageAdminRightsController Class </p>
+ *
+ * <p> Description: This class handles the management of admin rights, including granting and revoking
+ * admin privileges for users. It includes methods for validating user inputs, interacting with the database 
+ * to update user roles, and handling UI events related to admin access. </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project was made (Phase 4)
+ */
+
+
 package application;
 
 import javafx.fxml.FXML;
