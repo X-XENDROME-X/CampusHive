@@ -1,3 +1,19 @@
+/**
+ * <p> SpecializedAdminsController Class </p>
+ *
+ * <p> Description: This class manages the functionality for displaying admins with special
+ * admin permissions within an application. It fetches data from a database, loads it into a 
+ * GridPane for display, and includes error handling. The class also handles navigation actions 
+ * through a home button based on the user's session. </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project was made (Phase 4)
+ */
+
+
 package application;
 
 import javafx.fxml.FXML;
