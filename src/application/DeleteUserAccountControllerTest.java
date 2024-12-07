@@ -1,3 +1,27 @@
+/**
+ * <p> DeleteUserAccountControllerTest Class </p>
+ *
+ * <p> Description: This class contains unit tests for the DeleteUserAccountController. 
+ * It ensures proper functionality, including edge cases, error handling, 
+ * and interaction with UI components. </p>
+ *
+ * <p> Key Features Tested:
+ * - Validation for empty usernames
+ * - Confirmation checkbox validation
+ * - Successful and unsuccessful user deletions
+ * - Navigation and session handling
+ * - Interaction with database for user management
+ * - Handling special cases such as special characters, multiple roles, and active users
+ * </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project was made (Phase 4)
+ */
+
+
 package application;
 
 import static org.junit.jupiter.api.Assertions.*;
