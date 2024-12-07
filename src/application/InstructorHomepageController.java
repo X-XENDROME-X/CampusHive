@@ -1,3 +1,19 @@
+/**
+ * InstructorHomepageController Class
+ * 
+ * Description: This class handles the user interface and logic for the instructor's homepage
+ * within the Campus Hive application. It manages functionalities such as viewing and managing
+ * student interactions, accessing course materials, facilitating discussions, and managing user roles.
+ * The class also includes methods for handling user actions, such as logging out, viewing messages, and 
+ * navigating between different views within the application.
+ * 
+ * Copyright: Campus Hive © 2024
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project made (Phase 4)
+ */
+
+
 package application;
 
 import javafx.event.ActionEvent;
