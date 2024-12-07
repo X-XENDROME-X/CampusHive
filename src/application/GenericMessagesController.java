@@ -1,3 +1,19 @@
+/**
+ * <p> GenericMessagesController Class </p>
+ *
+ * <p> Description: This class manages the user interface and functionality for displaying 
+ * generic messages from a database in a GridPane format. It handles loading messages from a 
+ * database, managing the layout, and ensuring proper database connections. Additionally, it 
+ * provides error handling and supports navigation to various pages based on user roles. </p>
+ *
+ * <p> Copyright: Campus Hive © 2024 </p>
+ * 
+ * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
+ * 
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project was made (Phase 4)
+ */
+
+
 package application;
 
 import javafx.fxml.FXML;
