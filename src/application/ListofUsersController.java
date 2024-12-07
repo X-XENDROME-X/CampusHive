@@ -3,14 +3,15 @@
  *
  * <p> Description: This class handles the functionality for displaying a list of users within
  * the application. It retrieves user data from the H2 database, dynamically sets font sizes 
- * based on the number of users, and manages the action for the home button. </p>
+ * based on the number of users, and manages the action for the home button. Additionally, it 
+ * supports navigation between views and ensures seamless interaction with the user interface. </p>
  *
  * <p> Copyright: Campus Hive © 2024 </p>
  * 
  * @author Th01 (Abhinav Ranish, Aditya Singh, Bharath Gowda, Pranjal Shrivastava, Shorya Raj)
- * 
- * @version 2.00 2024-10-29 Second version of this JavaFX project was made
+ * @version 4.00 2024-12-06 Fourth version of this JavaFX project made (Phase 4)
  */
+
 
 package application;
 
